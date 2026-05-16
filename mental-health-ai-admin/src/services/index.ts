@@ -1,0 +1,9 @@
+export { authService } from './auth';
+export { userService } from './user';
+export { dashboardService } from './dashboard';
+export { resourceService } from './resource.service';
+export { assessmentService } from './assessment';
+export { roleService } from './role';
+export { permissionService } from './permission';
+export { rolePermissionService } from './rolePermission';
+export { reportService } from './report';
