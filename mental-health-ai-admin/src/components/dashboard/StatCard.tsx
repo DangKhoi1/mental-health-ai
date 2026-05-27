@@ -32,12 +32,12 @@ export const StatCard: React.FC<StatCardProps> = ({ title, value, icon, trend, c
           </p>
           {typeof trend === 'number' && (
             <div className={`mt-2 flex items-center gap-1 text-[11px] font-medium ${trend >= 0 ? 'text-emerald-600' : 'text-red-500'}`}>
-              {trend >= 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
+              {trend >= 0 ? <TrendingUp className="size-3.5" /> : <TrendingDown className="size-3.5" />}
               <span>{trend >= 0 ? '+' : ''}{trend}% so với tháng trước</span>
             </div>
           )}
         </div>
-        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${c.icon}`}>
+        <div className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${c.icon}`}>
           {icon}
         </div>
       </div>

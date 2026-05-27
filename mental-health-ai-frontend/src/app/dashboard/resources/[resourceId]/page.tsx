@@ -27,10 +27,10 @@ const getYoutubeEmbedUrl = (url: string) => {
 
 const getTypeIcon = (typeCode: string) => {
     switch (typeCode) {
-        case 'TYPE_VIDEO': return <Play className="w-5 h-5" />;
-        case 'TYPE_ARTICLE': return <FileText className="w-5 h-5" />;
-        case 'TYPE_AUDIO': return <Headphones className="w-5 h-5" />;
-        default: return <FileText className="w-5 h-5" />;
+        case 'TYPE_VIDEO': return <Play className="size-5" />;
+        case 'TYPE_ARTICLE': return <FileText className="size-5" />;
+        case 'TYPE_AUDIO': return <Headphones className="size-5" />;
+        default: return <FileText className="size-5" />;
     }
 };
 
@@ -90,10 +90,10 @@ export default function ResourceDetailPage() {
     // If modal is closed, show a minimal UI
     if (!showModal) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
-                <p className="text-muted-foreground">Đang chuyển hướng...</p>
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-y-4">
+                <p className="text-muted-foreground">Đang chuyển hướng…</p>
                 <Button onClick={handleClose} variant="outline">
-                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    <ArrowLeft className="size-4 mr-2" />
                     Quay lại thư viện
                 </Button>
             </div>
@@ -102,19 +102,19 @@ export default function ResourceDetailPage() {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-                <p className="text-muted-foreground">Đang tải...</p>
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-y-4">
+                <div className="animate-spin rounded-full size-12 border-b-2 border-primary"></div>
+                <p className="text-muted-foreground">Đang tải…</p>
             </div>
         );
     }
 
     if (error || !resource) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4">
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-y-4">
                 <p className="text-muted-foreground">{error || 'Không tìm thấy tài nguyên'}</p>
                 <Button onClick={handleClose} variant="outline">
-                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    <ArrowLeft className="size-4 mr-2" />
                     Quay lại thư viện
                 </Button>
             </div>
@@ -132,14 +132,14 @@ export default function ResourceDetailPage() {
                     className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-white/20 text-white rounded-full transition-colors z-20 focus:outline-none focus:ring-2 focus:ring-white"
                     aria-label="Đóng"
                 >
-                    <X className="w-5 h-5" />
+                    <X className="size-5" />
                 </button>
 
                 <div className={`relative w-full ${resource.typeCode === 'TYPE_VIDEO' ? 'pt-[56.25%]' : 'h-[90vh] bg-white'}`}>
                     <iframe
                         src={getYoutubeEmbedUrl(resource.contentUrl ?? '')}
                         title={resource.title}
-                        className="absolute inset-0 w-full h-full border-0"
+                        className="absolute inset-0 size-full border-0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     />

@@ -131,7 +131,7 @@ export default function ProfileEditForm({
                     disabled={isLoading}
                     className="flex-1 h-12 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-sm"
                 >
-                    {isLoading ? 'Đang lưu...' : 'Lưu thay đổi'}
+                    {isLoading ? 'Đang lưu…' : 'Lưu thay đổi'}
                 </Button>
             </div>
         </form>

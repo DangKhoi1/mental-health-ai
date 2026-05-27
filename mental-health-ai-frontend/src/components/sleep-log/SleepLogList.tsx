@@ -61,9 +61,9 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
 
     if (sleepLogs.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center py-16 px-4 text-center bg-card rounded-3xl border border-border shadow-sm">
-                <div className="w-20 h-20 mb-6 rounded-full bg-indigo-500/10 flex items-center justify-center">
-                    <Moon className="w-10 h-10 text-indigo-500" />
+            <div suppressHydrationWarning className="flex flex-col items-center justify-center py-16 px-4 text-center bg-card rounded-3xl border border-border shadow-sm">
+                <div className="size-20 mb-6 rounded-full bg-indigo-500/10 flex items-center justify-center">
+                    <Moon className="size-10 text-indigo-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                     Chưa có dữ liệu giấc ngủ
@@ -94,7 +94,7 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
                         className={cn("group relative overflow-hidden rounded-3xl border border-border bg-card text-foreground shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl cursor-pointer", theme.shadow)}
                     >
                         <div className={cn("absolute inset-0 bg-linear-to-br pointer-events-none", theme.gradient)} />
-                        <div className={cn("absolute -top-16 -right-16 h-52 w-52 rounded-full blur-3xl pointer-events-none", theme.glow)} />
+                        <div className={cn("absolute -top-16 -right-16 size-52 rounded-full blur-3xl pointer-events-none", theme.glow)} />
 
                         <div className="relative p-5 md:p-6">
                             <div className="flex items-start justify-between gap-4">
@@ -107,14 +107,14 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
                                         <p className="text-sm text-muted-foreground">Nhật ký giấc ngủ</p>
                                         <p className="text-base font-semibold">{date.toLocaleDateString('vi-VN', { weekday: 'long' })}</p>
                                         {isToday && (
-                                            <span className={cn("mt-1 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold", theme.badge)}>Hôm nay</span>
+                                            <span suppressHydrationWarning className={cn("mt-1 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold", theme.badge)}>Hôm nay</span>
                                         )}
                                     </div>
                                 </div>
 
                                 <div className="flex items-center gap-2">
                                     <div className={cn("inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold", theme.badge)}>
-                                        <Star className="w-3.5 h-3.5" />
+                                        <Star className="size-3.5" />
                                         {log.sleepQualityScore}/10 · {qualityLabel}
                                     </div>
                                     {isToday ? (
@@ -126,7 +126,7 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
                                             className={cn("rounded-xl border p-2 transition", theme.button)}
                                             title="Sửa bản ghi (Chỉ trong ngày)"
                                         >
-                                            <Pencil className="w-4 h-4" />
+                                            <Pencil className="size-4" />
                                         </button>
                                     ) : (
                                         <button
@@ -137,7 +137,7 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
                                             className={cn("rounded-xl border p-2 transition", theme.button)}
                                             title="Xóa bản ghi"
                                         >
-                                            <Trash2 className="w-4 h-4" />
+                                            <Trash2 className="size-4" />
                                         </button>
                                     )}
                                 </div>
@@ -145,19 +145,19 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
 
                             <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
                                 <div className={cn("rounded-2xl border p-3", theme.card)}>
-                                    <p className={cn("text-[11px] flex items-center gap-1.5", theme.dayText)}><Sunset className="w-3.5 h-3.5" />Đi ngủ</p>
+                                    <p className={cn("text-[11px] flex items-center gap-1.5", theme.dayText)}><Sunset className="size-3.5" />Đi ngủ</p>
                                     <p className="mt-1 text-lg font-semibold">{bedTime.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</p>
                                 </div>
-                                <div className={cn("rounded-2xl border p-3", theme.card)}>
-                                    <p className={cn("text-[11px] flex items-center gap-1.5", theme.dayText)}><Sunrise className="w-3.5 h-3.5" />Thức dậy</p>
+                                <div suppressHydrationWarning className={cn("rounded-2xl border p-3", theme.card)}>
+                                    <p className={cn("text-[11px] flex items-center gap-1.5", theme.dayText)}><Sunrise className="size-3.5" />Thức dậy</p>
                                     <p className="mt-1 text-lg font-semibold">{wakeTime.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</p>
                                 </div>
-                                <div className={cn("rounded-2xl border p-3", theme.card)}>
-                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Timer className="w-3.5 h-3.5" />Thời lượng</p>
+                                <div suppressHydrationWarning className={cn("rounded-2xl border p-3", theme.card)}>
+                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Timer className="size-3.5" />Thời lượng</p>
                                     <p className="mt-1 text-lg font-semibold">{formatDuration(log.duration)}</p>
                                 </div>
                                 <div className={cn("rounded-2xl border p-3", theme.card)}>
-                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Moon className="w-3.5 h-3.5" />Điểm sức khỏe</p>
+                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Moon className="size-3.5" />Điểm sức khỏe</p>
                                     <p className="mt-1 text-lg font-semibold">{Math.round(log.sleepHealthScore)}/100</p>
                                 </div>
                             </div>
@@ -171,8 +171,8 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
                                         className={cn("absolute top-1.5 h-3 rounded-full bg-linear-to-r", theme.bar)}
                                         style={getTimelineStyle(bedTime, wakeTime)}
                                     >
-                                        <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white ml-1" />
-                                        <div className="absolute right-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white mr-1" />
+                                        <div className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-white ml-1" />
+                                        <div className="absolute right-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-white mr-1" />
                                     </div>
                                     <div className="absolute top-5 w-full flex justify-between text-[10px] font-semibold text-muted-foreground px-1">
                                         <span>18:00</span>
@@ -186,7 +186,7 @@ export default function SleepLogList({ sleepLogs, isLoading, onDelete, onSelect,
                             <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border pt-4">
                                 {(napStartTime && napEndTime) ? (
                                     <div className={cn("inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold", theme.badge)}>
-                                        <Clock className="w-3.5 h-3.5" />
+                                        <Clock className="size-3.5" />
                                         Ngủ trưa {napStartTime.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })} - {napEndTime.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                                     </div>
                                 ) : (

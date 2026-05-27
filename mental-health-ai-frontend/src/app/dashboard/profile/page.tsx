@@ -278,7 +278,7 @@ export default function ProfilePage() {
                 isGoogleAccount ? {} : { password: deletePassword }
             );
             if (res?.EC === 1) {
-                toast.success('Tài khoản đã được khóa. Đang đăng xuất...');
+                toast.success('Tài khoản đã được khóa. Đang đăng xuất…');
                 logoutAction();
                 if (typeof window !== 'undefined') {
                     window.location.href = '/auth/login';
@@ -294,7 +294,7 @@ export default function ProfilePage() {
     return (
         <div className="max-w-5xl mx-auto w-full space-y-6">
             <div>
-                <h1 className="text-2xl font-bold text-foreground">
+                <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
                     Hồ sơ cá nhân
                 </h1>
                 <p className="text-muted-foreground mt-1">
@@ -339,7 +339,7 @@ export default function ProfilePage() {
             <div className="bg-card rounded-2xl p-4 sm:p-6 border border-border">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="bg-blue-100 dark:bg-blue-900 p-2 rounded-lg">
-                        <LockKeyhole className="w-5 h-5 text-blue-600 dark:text-blue-300" />
+                        <LockKeyhole className="size-5 text-blue-600 dark:text-blue-300" />
                     </div>
                     <div>
                         <h3 className="text-lg font-semibold text-foreground">Bảo vệ dữ liệu cá nhân</h3>
@@ -349,8 +349,8 @@ export default function ProfilePage() {
                     </div>
                     <div className="ml-auto">
                         {hasPin
-                            ? <span className="flex items-center gap-1 text-xs font-medium text-green-600 bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full"><ShieldCheck className="w-3.5 h-3.5" />Đang bật</span>
-                            : <span className="flex items-center gap-1 text-xs font-medium text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full"><ShieldOff className="w-3.5 h-3.5" />Chưa bật</span>
+                            ? <span className="flex items-center gap-1 text-xs font-medium text-green-600 bg-green-100 dark:bg-green-900 px-2 py-1 rounded-full"><ShieldCheck className="size-3.5" />Đang bật</span>
+                            : <span className="flex items-center gap-1 text-xs font-medium text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full"><ShieldOff className="size-3.5" />Chưa bật</span>
                         }
                     </div>
                 </div>
@@ -359,7 +359,7 @@ export default function ProfilePage() {
                     <div className="flex gap-3">
                         {!hasPin ? (
                             <Button size="sm" onClick={() => setPinMode('set')} variant="outline">
-                                <LockKeyhole className="w-4 h-4 mr-1" /> Bật mã PIN
+                                <LockKeyhole className="size-4 mr-1" /> Bật mã PIN
                             </Button>
                         ) : (
                             <>
@@ -367,7 +367,7 @@ export default function ProfilePage() {
                                     Đổi mã PIN
                                 </Button>
                                 <Button size="sm" onClick={() => setPinMode('remove')} variant="outline" className="text-destructive border-destructive/50 hover:bg-destructive/10">
-                                    <ShieldOff className="w-4 h-4 mr-1" /> Tắt mã PIN
+                                    <ShieldOff className="size-4 mr-1" /> Tắt mã PIN
                                 </Button>
                             </>
                         )}
@@ -388,7 +388,7 @@ export default function ProfilePage() {
                                 className="w-full px-3 py-2 rounded-lg border border-border bg-background text-base tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
                             />
                             <button type="button" onClick={() => setShowPin(!showPin)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                                {showPin ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                {showPin ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                             </button>
                         </div>
                         <input
@@ -402,7 +402,7 @@ export default function ProfilePage() {
                         />
                         <div className="flex gap-2">
                             <Button size="sm" onClick={handleSetPin} disabled={pinLoading}>
-                                {pinLoading ? 'Đang lưu...' : 'Lưu PIN'}
+                                {pinLoading ? 'Đang lưu…' : 'Lưu PIN'}
                             </Button>
                             <Button size="sm" variant="ghost" onClick={() => { setPinMode('idle'); setPinInput(''); setPinConfirm(''); }}>
                                 Huỷ
@@ -442,7 +442,7 @@ export default function ProfilePage() {
                                 onClick={handleRemovePin}
                                 disabled={pinLoading || !removePinInput || removePinLockedSeconds > 0}
                             >
-                                {pinLoading ? 'Đang xử lý...' : 'Xác nhận tắt'}
+                                {pinLoading ? 'Đang xử lý…' : 'Xác nhận tắt'}
                             </Button>
                             <Button
                                 size="sm"
@@ -465,7 +465,7 @@ export default function ProfilePage() {
                 <div className="bg-card rounded-2xl p-4 sm:p-6 border border-border space-y-4">
                     <div className="flex items-center gap-3">
                         <div className="bg-violet-100 dark:bg-violet-900 p-2 rounded-lg">
-                            <KeyRound className="w-5 h-5 text-violet-600 dark:text-violet-300" />
+                            <KeyRound className="size-5 text-violet-600 dark:text-violet-300" />
                         </div>
                         <div>
                             <h3 className="text-lg font-semibold text-foreground">Đổi mật khẩu</h3>
@@ -498,14 +498,14 @@ export default function ProfilePage() {
                     </div>
 
                     <Button onClick={handleChangePassword} disabled={passwordLoading} className="w-full sm:w-auto">
-                        {passwordLoading ? 'Đang cập nhật...' : 'Đổi mật khẩu'}
+                        {passwordLoading ? 'Đang cập nhật…' : 'Đổi mật khẩu'}
                     </Button>
                 </div>
 
                 <div className="bg-card rounded-2xl p-4 sm:p-6 border border-destructive/30 space-y-4">
                     <div className="flex items-center gap-3">
                         <div className="bg-destructive/10 p-2 rounded-lg">
-                            <AlertTriangle className="w-5 h-5 text-destructive" />
+                            <AlertTriangle className="size-5 text-destructive" />
                         </div>
                         <div>
                             <h3 className="text-lg font-semibold text-destructive">Khóa tài khoản</h3>
@@ -537,7 +537,7 @@ export default function ProfilePage() {
                     </div>
 
                     <Button variant="destructive" onClick={handleDeleteAccount} disabled={deleteLoading} className="w-full sm:w-auto">
-                        {deleteLoading ? 'Đang xử lý...' : 'Khóa tài khoản'}
+                        {deleteLoading ? 'Đang xử lý…' : 'Khóa tài khoản'}
                     </Button>
                 </div>
             </div>

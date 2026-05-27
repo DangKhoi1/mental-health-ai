@@ -14,12 +14,19 @@ interface Props {
 }
 
 export function CreateRoleModal({ open, onClose, onSuccess }: Props) {
-  const [roleName, setRoleName] = useState('');
-  const [description, setDescription] = useState('');
-  const [isActive, setIsActive] = useState(true);
-  const [selectedPermissions, setSelectedPermissions] = useState<number[]>([]);
-  const [listPermissions, setListPermissions] = useState<PermissionModule[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [state, setState] = React.useReducer(
+    (prev: any, next: any) => ({ ...prev, ...next }),
+    {
+      roleName: '',
+      description: '',
+      isActive: true,
+      selectedPermissions: [] as number[],
+      listPermissions: [] as PermissionModule[],
+      loading: false,
+    }
+  );
+
+  const { roleName, description, isActive, selectedPermissions, listPermissions, loading } = state;
 
   useEffect(() => {
     if (!open) return;
@@ -32,23 +39,23 @@ export function CreateRoleModal({ open, onClose, onSuccess }: Props) {
           return acc;
         }, {});
         
-        setListPermissions(
-          Object.entries(grouped).map(([module, permissions]) => ({ module, permissions: permissions as import('@/components/roles/PermissionSelector').IPermission[] }))
-        );
+        setState({
+          listPermissions: Object.entries(grouped).map(([module, permissions]) => ({ module, permissions: permissions as import('@/components/roles/PermissionSelector').IPermission[] }))
+        });
       }
     };
     fetch();
   }, [open]);
 
   const handleClose = () => {
-    setRoleName(''); setDescription(''); setIsActive(true); setSelectedPermissions([]);
+    setState({ roleName: '', description: '', isActive: true, selectedPermissions: [] });
     onClose();
   };
 
   const handleSubmit = async () => {
     if (!roleName.trim()) { toast.warning('Vui lòng nhập tên vai trò.'); return; }
     if (!description.trim()) { toast.warning('Vui lòng nhập mô tả.'); return; }
-    setLoading(true);
+    setState({ loading: true });
     try {
       const res = await roleService.createRole({ roleName: roleName.trim(), description: description.trim(), isActive });
       if (res?.EC === 1) {
@@ -69,7 +76,7 @@ export function CreateRoleModal({ open, onClose, onSuccess }: Props) {
     } catch {
       toast.error('Đã có lỗi xảy ra.');
     } finally {
-      setLoading(false);
+      setState({ loading: false });
     }
   };
 
@@ -78,38 +85,41 @@ export function CreateRoleModal({ open, onClose, onSuccess }: Props) {
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-foreground">
+            <label htmlFor="create-roleName" className="text-sm font-medium text-foreground">
               Tên vai trò <span className="text-red-500">*</span>
             </label>
             <input
+              id="create-roleName"
               type="text"
               value={roleName}
-              onChange={(e) => setRoleName(e.target.value)}
+              onChange={(e) => setState({ roleName: e.target.value })}
               placeholder="Ví dụ: Moderator, Editor..."
               className="w-full px-4 py-2.5 text-sm bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-foreground placeholder:text-muted-foreground"
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-foreground">Trạng thái</label>
+            <label htmlFor="create-isActive" className="text-sm font-medium text-foreground">Trạng thái</label>
             <div className="flex items-center gap-3 h-10.5">
               <button
+                id="create-isActive"
                 type="button"
-                onClick={() => setIsActive(!isActive)}
+                onClick={() => setState({ isActive: !isActive })}
                 className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none ${isActive ? 'bg-primary' : 'bg-border'}`}
               >
-                <span className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white shadow transition-transform ${isActive ? 'translate-x-4' : 'translate-x-0.5'}`} />
+                <span className={`inline-block size-3.5 transform rounded-full bg-white shadow transition-transform ${isActive ?'translate-x-4' : 'translate-x-0.5'}`} />
               </button>
               <span className="text-sm text-foreground">{isActive ? 'Hoạt động' : 'Không hoạt động'}</span>
             </div>
           </div>
         </div>
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-foreground">
+          <label htmlFor="create-description" className="text-sm font-medium text-foreground">
             Mô tả <span className="text-red-500">*</span>
           </label>
           <textarea
+            id="create-description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setState({ description: e.target.value })}
             placeholder="Mô tả chi tiết về vai trò này..."
             rows={3}
             className="w-full px-4 py-3 text-sm bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary text-foreground placeholder:text-muted-foreground resize-none"
@@ -119,7 +129,7 @@ export function CreateRoleModal({ open, onClose, onSuccess }: Props) {
           <PermissionSelector
             listPermissions={listPermissions}
             value={selectedPermissions}
-            onChange={setSelectedPermissions}
+            onChange={(val) => setState({ selectedPermissions: val })}
           />
         )}
         <div className="flex justify-end gap-3 pt-2 border-t border-border">

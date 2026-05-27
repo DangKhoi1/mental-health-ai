@@ -69,11 +69,11 @@ export default function MoodTrendChart({ moodData, trendDirection, averageMoodSc
     const getTrendIcon = () => {
         switch (trendDirection) {
             case 'improving':
-                return <TrendingUp className="h-4 w-4" />;
+                return <TrendingUp className="size-4" />;
             case 'declining':
-                return <TrendingDown className="h-4 w-4" />;
+                return <TrendingDown className="size-4" />;
             default:
-                return <Minus className="h-4 w-4" />;
+                return <Minus className="size-4" />;
         }
     };
 

@@ -38,13 +38,13 @@ export default function DashboardWorldClock() {
 
     return (
         <div className="space-y-4">
-            <h3 className="text-lg font-medium text-foreground">Giờ thế giới</h3>
+            <h3 className="text-lg font-semibold text-foreground">Giờ thế giới</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {CITIES.map((city) => (
                     <Card key={city.name} className="hover:shadow-md transition-shadow bg-card/50">
-                        <CardContent className="p-4 flex flex-col items-center text-center space-y-2">
+                        <CardContent className="p-4 flex flex-col items-center text-center gap-y-2">
                             <div className="flex items-center gap-2 text-muted-foreground text-xs font-medium uppercase tracking-wider">
-                                <Clock className="h-3 w-3" />
+                                <Clock className="size-3" />
                                 {city.label}
                             </div>
                             <div className="text-2xl font-semibold text-foreground tabular-nums">

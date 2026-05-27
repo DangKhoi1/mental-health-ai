@@ -90,10 +90,10 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
             <div className="px-6 md:px-8 pt-8 pb-6 bg-linear-to-br from-indigo-500/10 to-indigo-500/5">
                 <div className="flex items-center gap-4">
                     <div className="p-2.5 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
-                        <Moon className="w-5 h-5 text-indigo-500" />
+                        <Moon className="size-5 text-indigo-500" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-foreground">Ghi nhận giấc ngủ</h2>
+                        <h2 className="text-xl font-semibold text-foreground">Ghi nhận giấc ngủ</h2>
                         <p className="text-sm text-muted-foreground">Chúc bạn có một ngày mới năng lượng!</p>
                     </div>
                 </div>
@@ -105,7 +105,7 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                     <div className="flex items-center justify-between gap-3 flex-wrap">
                         <div>
                             <p className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                <Sun className="w-4 h-4 text-indigo-500" />
+                                <Sun className="size-4 text-indigo-500" />
                                 Ngủ trưa (giấc ngủ phụ)
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">Theo dõi thêm giấc ngủ trưa nếu có.</p>
@@ -115,7 +115,7 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                             onClick={toggleNap}
                             className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/20 bg-background px-3 py-1.5 text-sm font-medium text-indigo-500 hover:bg-indigo-500/5 transition-colors"
                         >
-                            <Plus className="w-4 h-4" />
+                            <Plus className="size-4" />
                             {hasNap ? 'Bỏ ghi chú ngủ trưa' : 'Thêm giấc ngủ trưa'}
                         </button>
                     </div>
@@ -151,7 +151,7 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                 {/* Date */}
                 <div className="space-y-2.5">
                     <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-violet-500" />
+                        <Calendar className="size-4 text-violet-500" />
                         Ngày ngủ
                     </label>
                     <DatePicker
@@ -161,11 +161,11 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                     />
                 </div>
 
-                {/* Bed + Wake time — Side by side cards */}
+                {/* Bed + Wake time ,  Side by side cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-indigo-500/5 rounded-2xl p-5 space-y-3 border border-indigo-500/10">
                         <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                            <Moon className="w-4 h-4 text-indigo-500" />
+                            <Moon className="size-4 text-indigo-500" />
                             Giờ đi ngủ
                         </label>
                         <div className="w-full bg-background border border-indigo-500/10 rounded-xl focus-within:border-indigo-500/30 focus-within:ring-2 focus-within:ring-indigo-500/10 transition-all text-foreground overflow-hidden">
@@ -178,7 +178,7 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
 
                     <div className="bg-indigo-500/5 rounded-2xl p-5 space-y-3 border border-indigo-500/10">
                         <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                            <Sun className="w-4 h-4 text-indigo-500" />
+                            <Sun className="size-4 text-indigo-500" />
                             Giờ thức dậy
                         </label>
                         <div className="w-full bg-background border border-indigo-500/10 rounded-xl focus-within:border-indigo-500/30 focus-within:ring-2 focus-within:ring-indigo-500/10 transition-all text-foreground overflow-hidden">
@@ -194,7 +194,7 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                 <div className="bg-indigo-500/5 rounded-2xl p-6 space-y-5 border border-indigo-500/10">
                     <div className="flex items-center justify-between">
                         <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                            <Star className="w-4 h-4 text-indigo-500" />
+                            <Star className="size-4 text-indigo-500" />
                             Chất lượng giấc ngủ
                         </label>
                         <div className="flex items-center gap-2">
@@ -221,7 +221,7 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                 {/* Note */}
                 <div className="space-y-2.5">
                     <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                        <AlignLeft className="w-4 h-4 text-muted-foreground" />
+                        <AlignLeft className="size-4 text-muted-foreground" />
                         Ghi chú
                         <span className="text-xs text-muted-foreground/60 font-normal">()</span>
                     </label>
@@ -246,12 +246,12 @@ export default function SleepLogForm({ formData, setFormData, onSubmit, isSubmit
                 >
                     {isSubmitting ? (
                         <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            Đang lưu...
+                            <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Đang lưu…
                         </>
                     ) : (
                         <>
-                            <Send className="w-4 h-4" />
+                            <Send className="size-4" />
                             Lưu giấc ngủ
                         </>
                     )}

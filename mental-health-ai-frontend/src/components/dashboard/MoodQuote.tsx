@@ -43,7 +43,7 @@ const QUOTES_BY_MOOD: Record<MoodCategory, MoodQuoteEntry[]> = {
         { id: 'very_happy_1', text: 'Khi bạn tràn đầy niềm vui, hãy chia sẻ nó — niềm vui nhân lên khi được trao đi.', author: 'Khuyết danh' },
         { id: 'very_happy_2', text: 'Đây là khoảnh khắc tuyệt vời — hãy lưu giữ cảm giác này trong tim bạn.', author: 'Khuyết danh' },
         { id: 'very_happy_3', text: 'Năng lượng bạn mang lại hôm nay có thể truyền cảm hứng cho cả những người xung quanh.', author: 'Khuyết danh' },
-        { id: 'very_happy_4', text: 'Sống hết mình hôm nay — bạn xứng đáng với tất cả niềm vui này!', author: 'Khuyết danh' },
+        { id: 'very_happy_4', text: 'Sống hết mình hôm nay ,  bạn xứng đáng với tất cả niềm vui này!', author: 'Khuyết danh' },
     ],
 };
 
@@ -176,16 +176,16 @@ export default function MoodQuote() {
     return (
         <Card className="relative overflow-hidden rounded-3xl backdrop-blur-xl border border-primary/10 bg-gradient-to-br from-primary/[0.04] via-background to-violet-50/20 dark:from-primary/[0.06] dark:via-background dark:to-violet-950/20 shadow-md shadow-primary/5 transition-all duration-700 group/quote animate-in fade-in duration-700">
             {/* Glow */}
-            <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none transition-all duration-1000 group-hover/quote:bg-primary/10" />
-            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-violet-400/5 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
+            <div className="absolute -top-16 -right-16 size-64 bg-primary/5 rounded-full blur-3xl pointer-events-none transition-all duration-1000 group-hover/quote:bg-primary/10" />
+            <div className="absolute -bottom-12 -left-12 size-48 bg-violet-400/5 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDuration: '6s' }} />
 
             {/* Large faded quote icon */}
             <div className="absolute -top-8 -right-8 opacity-[0.04] group-hover/quote:opacity-[0.07] transition-opacity duration-1000 pointer-events-none">
-                <Quote className="w-64 h-64 text-primary" />
+                <Quote className="size-64 text-primary" />
             </div>
 
-            <Quote className="absolute top-5 left-5 w-8 h-8 text-primary/10 rotate-180 pointer-events-none" />
-            <Quote className="absolute bottom-5 right-5 w-8 h-8 text-primary/10 pointer-events-none" />
+            <Quote className="absolute top-5 left-5 size-8 text-primary/10 rotate-180 pointer-events-none" />
+            <Quote className="absolute bottom-5 right-5 size-8 text-primary/10 pointer-events-none" />
 
             <CardContent className="relative z-10 px-6 sm:px-10 py-8 sm:py-10 flex flex-col items-center justify-center">
                 {/* Quote indicators */}
@@ -217,7 +217,7 @@ export default function MoodQuote() {
                     </p>
                     {showAuthor && (
                         <p className="text-xs sm:text-sm font-semibold text-primary/70 mt-4 uppercase tracking-[0.2em]">
-                            — {current.author} —
+                            — {current.author} , 
                         </p>
                     )}
                 </div>

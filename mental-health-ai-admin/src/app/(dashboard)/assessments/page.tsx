@@ -334,7 +334,7 @@ export default function AssessmentsPage() {
                                             checked={form.isActive}
                                             onChange={(e) => setForm((p) => ({ ...p, isActive: e.target.checked }))}
                                             disabled={submitting}
-                                            className="h-4 w-4"
+                                            className="size-4"
                                         />
                                         <span className="text-sm font-medium text-slate-700">Kích hoạt</span>
                                     </label>
@@ -354,7 +354,7 @@ export default function AssessmentsPage() {
                                     Hủy
                                 </Button>
                                 <Button onClick={handleSave} disabled={submitting} className="gap-2">
-                                    {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
+                                    {submitting && <Loader2 className="size-4 animate-spin" />}
                                     {submitting ? 'Đang lưu...' : 'Lưu'}
                                 </Button>
                             </div>
@@ -391,7 +391,7 @@ export default function AssessmentsPage() {
                                 <div className="flex flex-1 items-center gap-3">
                                     <button
                                         onClick={() => handleToggleExpand(template)}
-                                        className="h-8 w-8 flex items-center justify-center hover:bg-slate-100 rounded-lg transition-colors shrink-0"
+                                        className="size-8 flex items-center justify-center hover:bg-slate-100 rounded-lg transition-colors shrink-0"
                                     >
                                         <ChevronDown
                                             size={18}
@@ -419,7 +419,7 @@ export default function AssessmentsPage() {
                                         onClick={() => openEdit(template)}
                                         disabled={submitting}
                                         title="Chỉnh sửa"
-                                        className="h-10 w-10 p-0"
+                                        className="size-10 p-0"
                                     >
                                         <Edit2 size={16} />
                                     </Button>
@@ -429,7 +429,7 @@ export default function AssessmentsPage() {
                                         onClick={() => setPendingDelete(template)}
                                         disabled={submitting}
                                         title="Xóa"
-                                        className="h-10 w-10 p-0"
+                                        className="size-10 p-0"
                                     >
                                         <Trash2 size={16} className="text-red-600" />
                                     </Button>

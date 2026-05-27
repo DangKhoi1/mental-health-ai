@@ -7,7 +7,7 @@ export default function JournalGridSkeleton() {
                 <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
                     <div className="flex items-start justify-between mb-3">
                         <Skeleton className="h-5 w-3/4" />
-                        <Skeleton className="h-4 w-4 rounded" />
+                        <Skeleton className="size-4 rounded" />
                     </div>
                     <Skeleton className="h-5 w-16 rounded-full mb-2" />
                     <div className="space-y-2 mb-3">

@@ -79,14 +79,14 @@ function AdminPdfReportTemplate({
       style={{ left: '-9999px', width: '794px', fontFamily: 'Arial, sans-serif' }}
     >
       <div className="mb-8 border-b border-slate-200 pb-5">
-        <h1 className="text-[28px] font-bold tracking-tight">Báo cáo thống kê hệ thống</h1>
+        <h1 className="text-[28px] font-semibold tracking-tight">Báo cáo thống kê hệ thống</h1>
         <p className="mt-2 text-sm text-slate-600">
           Thời gian tạo: {generatedAt ? new Date(generatedAt).toLocaleString('vi-VN') : '--'}
         </p>
       </div>
 
       <div className="mb-8">
-        <h2 className="mb-4 text-lg font-bold">Tổng quan chỉ số</h2>
+        <h2 className="mb-4 text-lg font-semibold">Tổng quan chỉ số</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 text-sm">
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-4"><p className="text-slate-500">Tổng người dùng</p><p className="text-2xl font-bold">{stats.totalUsers}</p></div>
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-4"><p className="text-slate-500">Người dùng hoạt động</p><p className="text-2xl font-bold">{stats.activeUsers}</p></div>
@@ -98,7 +98,7 @@ function AdminPdfReportTemplate({
       </div>
 
       <div className="mb-8">
-        <h2 className="mb-3 text-lg font-bold">Tâm trạng</h2>
+        <h2 className="mb-3 text-lg font-semibold">Tâm trạng</h2>
         <p className="mb-2 text-sm text-slate-600">Điểm trung bình: {moodData.avgScore}/10</p>
         <table className="w-full border-collapse text-sm">
           <thead>
@@ -121,7 +121,7 @@ function AdminPdfReportTemplate({
       </div>
 
       <div className="mb-8">
-        <h2 className="mb-3 text-lg font-bold">Phân bố tài liệu</h2>
+        <h2 className="mb-3 text-lg font-semibold">Phân bố tài liệu</h2>
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="bg-slate-100 text-left">
@@ -130,8 +130,8 @@ function AdminPdfReportTemplate({
             </tr>
           </thead>
           <tbody>
-            {resourceData.map((item, index) => (
-              <tr key={`${item.category}-${index}`}>
+            {resourceData.map((item) => (
+              <tr key={item.category}>
                 <td className="border border-slate-200 px-3 py-2">{categoryLabelMap[item.category] || item.category}</td>
                 <td className="border border-slate-200 px-3 py-2">{item.count}</td>
               </tr>
@@ -141,7 +141,7 @@ function AdminPdfReportTemplate({
       </div>
 
       <div>
-        <h2 className="mb-3 text-lg font-bold">Hoạt động theo ngày ({days} ngày qua)</h2>
+        <h2 className="mb-3 text-lg font-semibold">Hoạt động theo ngày ({days} ngày qua)</h2>
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="bg-slate-100 text-left">
@@ -152,9 +152,9 @@ function AdminPdfReportTemplate({
             </tr>
           </thead>
           <tbody>
-            {trendData.slice(-15).map((item, index) => (
-              <tr key={`${item.date || index}-${index}`}>
-                <td className="border border-slate-200 px-3 py-2">{item.date || `Mốc ${index + 1}`}</td>
+            {trendData.slice(-15).map((item) => (
+              <tr key={item.date}>
+                <td className="border border-slate-200 px-3 py-2">{item.date || 'Gần đây'}</td>
                 <td className="border border-slate-200 px-3 py-2">{item.users}</td>
                 <td className="border border-slate-200 px-3 py-2">{item.assessments}</td>
                 <td className="border border-slate-200 px-3 py-2">{item.chats}</td>
@@ -363,7 +363,7 @@ export default function DashboardPage() {
             />
           </div>
           <Button variant="primary" onClick={exportBaoCaoPdf} loading={exporting}>
-            <Download className="w-4 h-4" /> Xuất báo cáo
+            <Download className="size-4" /> Xuất báo cáo
           </Button>
         </PageHeader>
 
@@ -371,7 +371,7 @@ export default function DashboardPage() {
           <CardContent className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-primary shadow-sm">
-                <FileSpreadsheet className="w-3.5 h-3.5" /> Báo cáo hệ thống
+                <FileSpreadsheet className="size-3.5" /> Báo cáo hệ thống
               </div>
               <h2 className="mt-4 text-2xl font-semibold text-foreground">Xuất báo cáo tổng quan cho quản trị viên</h2>
               <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
@@ -391,31 +391,31 @@ export default function DashboardPage() {
           <StatCard
             title="Tổng người dùng"
             value={stats.totalUsers}
-            icon={<Users className="w-6 h-6" />}
+            icon={<Users className="size-6" />}
             color="blue"
           />
           <StatCard
             title="Người dùng hoạt động"
             value={stats.activeUsers}
-            icon={<Activity className="w-6 h-6" />}
+            icon={<Activity className="size-6" />}
             color="green"
           />
           <StatCard
             title="Đánh giá hoàn thành"
             value={stats.completedAssessments}
-            icon={<TrendingUp className="w-6 h-6" />}
+            icon={<TrendingUp className="size-6" />}
             color="purple"
           />
           <StatCard
             title="Trò chuyện AI"
             value={stats.totalAiChats}
-            icon={<MessageSquare className="w-6 h-6" />}
+            icon={<MessageSquare className="size-6" />}
             color="amber"
           />
           <StatCard
             title="Tài liệu & Nhật ký"
             value={stats.totalResources + stats.totalJournals}
-            icon={<BookOpen className="w-6 h-6" />}
+            icon={<BookOpen className="size-6" />}
             color="red"
           />
         </div>
@@ -423,42 +423,42 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 gap-6">
           <Card className="border-border/70 bg-white">
             <CardContent className="space-y-4 p-6">
-              <h3 className="text-lg font-bold text-foreground">Thao tác nhanh</h3>
+              <h3 className="text-lg font-semibold text-foreground">Thao tác nhanh</h3>
               <div className="grid grid-cols-1 gap-2">
                 <Link
                   href="/users"
                   className="flex items-center justify-between rounded-xl border border-border/80 bg-secondary/35 px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
                 >
                   Quản lý người dùng
-                  <Users className="h-4 w-4 text-muted-foreground" />
+                  <Users className="size-4 text-muted-foreground" />
                 </Link>
                 <Link
                   href="/assessment-templates"
                   className="flex items-center justify-between rounded-xl border border-border/80 bg-secondary/35 px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
                 >
                   Quản lý bài đánh giá
-                  <FileSpreadsheet className="h-4 w-4 text-muted-foreground" />
+                  <FileSpreadsheet className="size-4 text-muted-foreground" />
                 </Link>
                 <Link
                   href="/resources"
                   className="flex items-center justify-between rounded-xl border border-border/80 bg-secondary/35 px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
                 >
                   Cập nhật thư viện
-                  <BookOpen className="h-4 w-4 text-muted-foreground" />
+                  <BookOpen className="size-4 text-muted-foreground" />
                 </Link>
                 <Link
                   href="/assessment-questions"
                   className="flex items-center justify-between rounded-xl border border-border/80 bg-secondary/35 px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
                 >
                   Quản lý câu hỏi
-                  <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                  <HelpCircle className="size-4 text-muted-foreground" />
                 </Link>
                 <Link
                   href="/role-management"
                   className="flex items-center justify-between rounded-xl border border-border/80 bg-secondary/35 px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
                 >
                   Phân quyền hệ thống
-                  <ShieldAlert className="h-4 w-4 text-muted-foreground" />
+                  <ShieldAlert className="size-4 text-muted-foreground" />
                 </Link>
               </div>
             </CardContent>
@@ -468,11 +468,11 @@ export default function DashboardPage() {
         {/* Daily Admin Tip - Full Width
       <Card className="relative overflow-hidden border-none bg-[linear-gradient(135deg,rgba(156,169,134,0.08),rgba(156,169,134,0.03))] shadow-sm mt-4">
         <div className="absolute top-0 right-0 opacity-10">
-          <Lightbulb className="w-48 h-48 text-primary/20 rotate-12 translate-x-12 -translate-y-12" />
+          <Lightbulb className="size-48 text-primary/20 rotate-12 translate-x-12 -translate-y-12" />
         </div>
         <CardContent className="relative z-10 flex items-center gap-6 py-8 px-8">
-          <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shadow-inner group transition-transform hover:scale-105 duration-300">
-            <Lightbulb className="w-8 h-8 text-primary" />
+          <div className="flex-shrink-0 size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shadow-inner group transition-transform hover:scale-105 duration-300">
+            <Lightbulb className="size-8 text-primary" />
           </div>
           <div className="space-y-2 flex-grow">
             <div className="flex items-center gap-2">

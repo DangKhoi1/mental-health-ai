@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { getAssessmentResultInfo } from '@/components/assessment/assessmentResultConfig';
 import { useChatStore, useAuthStore } from '@/stores';
+import Image from 'next/image';
 
 function PublicResultContent() {
     const router = useRouter();
@@ -67,22 +68,22 @@ function PublicResultContent() {
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
     return (
-        <div className="relative min-h-screen overflow-hidden bg-linear-to-br from-[#eaf2e8] via-[#f0f4ea] to-[#f5ece6] px-4 pb-24 pt-8">
+        <div suppressHydrationWarning className="relative min-h-screen overflow-hidden bg-linear-to-br from-[#eaf2e8] via-[#f0f4ea] to-[#f5ece6] px-4 pb-24 pt-8">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-linear-to-b from-primary/8 via-transparent to-transparent" />
-            <div className="pointer-events-none absolute -left-20 top-24 h-80 w-80 rounded-full bg-primary/8 blur-3xl" />
-            <div className="pointer-events-none absolute -right-24 top-40 h-96 w-96 rounded-full bg-[#f5ece6]/60 blur-3xl" />
+            <div className="pointer-events-none absolute -left-20 top-24 size-80 rounded-full bg-primary/8 blur-3xl" />
+            <div className="pointer-events-none absolute -right-24 top-40 size-96 rounded-full bg-[#f5ece6]/60 blur-3xl" />
 
             <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
                 <Link href="/trangchu" className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/85 px-3 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-card">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary">
-                        <img src="/mental_health.png" alt="Logo" width={20} height={20} className="brightness-0 invert" />
+                    <div className="flex size-8 items-center justify-center rounded-xl bg-primary">
+                        <Image src="/mental_health.png" alt="Logo" width={20} height={20} className="brightness-0 invert" />
                     </div>
                     Mental Health AI
                 </Link>
 
                 <div className="flex flex-wrap items-center gap-2">
                     <Link href="/trangchu" className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground">
-                        <Home className="h-4 w-4" />
+                        <Home className="size-4" />
                         Trang chủ
                     </Link>
                     <Link href="/assessment" className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground">
@@ -101,8 +102,8 @@ function PublicResultContent() {
                     </div>
 
                     <div className="mt-6 flex justify-center">
-                        <div className="relative h-52 w-52">
-                            <svg className="h-full w-full -rotate-90" viewBox="0 0 120 120">
+                        <div className="relative size-52">
+                            <svg className="size-full -rotate-90" viewBox="0 0 120 120">
                                 <circle cx="60" cy="60" r="54" fill="none" strokeWidth="8" className="stroke-muted/20" />
                                 <circle
                                     cx="60"
@@ -160,7 +161,7 @@ function PublicResultContent() {
                                     {resultInfo.message}
                                 </p>
                                 <div className={cn('inline-flex items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-medium', resultInfo.bgColor, resultInfo.borderColor, resultInfo.color)}>
-                                    <Icon className="h-4 w-4" />
+                                    <Icon className="size-4" />
                                     {resultInfo.highlight}
                                 </div>
                             </div>
@@ -182,7 +183,7 @@ function PublicResultContent() {
                         <div className="rounded-3xl border border-white/70 bg-white/55 backdrop-blur-2xl p-6 shadow-[0_8px_32px_rgba(142,179,122,0.08)]">
                             <div className="mb-5 flex items-center gap-3">
                                 <div className={cn('rounded-2xl p-2.5', resultInfo.bgColor)}>
-                                    <ClipboardList className={cn('h-4 w-4', resultInfo.color)} />
+                                    <ClipboardList className={cn('size-4', resultInfo.color)} />
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-semibold text-foreground">Gợi ý phù hợp lúc này</h2>
@@ -195,7 +196,7 @@ function PublicResultContent() {
                                     return (
                                         <div key={`${item.text}-${index}`} className="flex items-start gap-3 rounded-2xl border border-border/60 bg-secondary/20 p-4">
                                             <div className={cn('mt-0.5 rounded-xl p-2', resultInfo.bgColor)}>
-                                                <ItemIcon className={cn('h-3.5 w-3.5', resultInfo.color)} />
+                                                <ItemIcon className={cn('size-3.5', resultInfo.color)} />
                                             </div>
                                             <p className="text-sm leading-relaxed text-foreground/85">{item.text}</p>
                                         </div>
@@ -207,7 +208,7 @@ function PublicResultContent() {
                         <div className="rounded-3xl border border-white/70 bg-white/55 backdrop-blur-2xl p-6 shadow-[0_8px_32px_rgba(142,179,122,0.08)]">
                             <div className="mb-5 flex items-center gap-3">
                                 <div className={cn('rounded-2xl p-2.5', resultInfo.bgColor)}>
-                                    <ArrowRight className={cn('h-4 w-4', resultInfo.color)} />
+                                    <ArrowRight className={cn('size-4', resultInfo.color)} />
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-semibold text-foreground">Bạn có thể làm tiếp</h2>
@@ -217,7 +218,7 @@ function PublicResultContent() {
                             <div className="space-y-3">
                                 {resultInfo.nextSteps.map((step, index) => (
                                     <div key={`${step}-${index}`} className="flex items-center gap-3 rounded-2xl border border-border/70 bg-background/80 p-4">
-                                        <span className={cn('flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold', resultInfo.badgeBg, resultInfo.color)}>
+                                        <span className={cn('flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold', resultInfo.badgeBg, resultInfo.color)}>
                                             {index + 1}
                                         </span>
                                         <p className="text-sm leading-relaxed text-foreground/85">{step}</p>
@@ -230,8 +231,8 @@ function PublicResultContent() {
                     {resultInfo.safetyNotice && (
                         <div className="rounded-[28px] border border-rose-200 bg-rose-50/80 p-6 shadow-sm dark:border-rose-800 dark:bg-rose-950/25 sm:p-7">
                             <div className="flex items-start gap-3">
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300">
-                                    <AlertTriangle className="h-4 w-4" />
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300">
+                                    <AlertTriangle className="size-4" />
                                 </div>
                                 <div className="space-y-3">
                                     <p className="text-base font-semibold text-rose-700 dark:text-rose-300">
@@ -267,7 +268,7 @@ function PublicResultContent() {
                                 {isGuest && (
                                     <>
                                         <Link href="/auth/register?reason=save_result" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:opacity-90">
-                                            <UserPlus className="h-4 w-4" />
+                                            <UserPlus className="size-4" />
                                             Tạo tài khoản mới
                                         </Link>
                                     </>
@@ -292,7 +293,7 @@ function PublicResultContent() {
                                             useChatStore.getState().openChat(prompt, context);
                                         }}
                                     >
-                                        <Bot className="h-4 w-4 text-primary" />
+                                        <Bot className="size-4 text-primary" />
                                         Phân tích AI
                                     </button>
                                 )}
@@ -309,7 +310,7 @@ export default function PublicAssessmentResultPage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center">
-                <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                <div className="size-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
             </div>
         }>
             <PublicResultContent />

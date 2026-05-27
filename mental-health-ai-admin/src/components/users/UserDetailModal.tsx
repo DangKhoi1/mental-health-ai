@@ -44,19 +44,22 @@ function getProvider(provider?: string) {
 }
 
 export function UserDetailModal({ open, userId, onClose }: UserDetailModalProps) {
-    const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState<UserDetailResponse['user'] | null>(null);
+    const [state, setState] = React.useReducer(
+        (prev: any, next: any) => ({ ...prev, ...next }),
+        { loading: false, user: null as UserDetailResponse['user'] | null }
+    );
+    const { loading, user } = state;
 
     useEffect(() => {
         const loadUser = async () => {
             if (!open || !userId) return;
             try {
-                setLoading(true);
+                setState({ loading: true });
                 const res = (await userService.getUserById(userId)) as UserDetailResponse;
                 const data = res?.user || res?.data?.user || null;
-                setUser(data);
-            } finally {
-                setLoading(false);
+                setState({ user: data, loading: false });
+            } catch {
+                setState({ loading: false });
             }
         };
 

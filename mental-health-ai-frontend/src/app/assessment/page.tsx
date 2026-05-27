@@ -8,6 +8,7 @@ import { ClipboardList, Clock, ArrowRight, Heart, ChevronRight, Home, Sparkles }
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { isOnboardingAssessmentType } from '@/constants/onboardingAssessment';
+import Image from 'next/image';
 
 export default function PublicAssessmentPage() {
     const router = useRouter();
@@ -43,15 +44,15 @@ export default function PublicAssessmentPage() {
 
     return (
         <div className="min-h-screen flex flex-col relative overflow-hidden bg-linear-to-br from-[#eaf2e8] via-[#f0f4ea] to-[#f5ece6]">
-            <div className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-primary/8 blur-3xl" />
+            <div className="pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-primary/8 blur-3xl" />
 
             {/* Header */}
             <header className="bg-white/60 backdrop-blur-2xl border-b border-white/60 shadow-sm sticky top-0 z-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="h-16 flex items-center justify-between">
                         <Link href="/trangchu" className="flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors">
-                            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
-                                <img src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
+                            <div className="size-9 rounded-xl bg-primary flex items-center justify-center">
+                                <Image src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
                             </div>
                             <span className="font-medium text-xl text-foreground">Mental Health AI</span>
                         </Link>
@@ -60,7 +61,7 @@ export default function PublicAssessmentPage() {
                                 href="/trangchu"
                                 className="inline-flex items-center gap-1.5 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors font-medium px-3 py-1.5 rounded-2xl hover:bg-slate-100"
                             >
-                                <Home className="w-4 h-4" />
+                                <Home className="size-4" />
                                 Trang chủ
                             </Link>
                             <Link
@@ -75,16 +76,16 @@ export default function PublicAssessmentPage() {
             </header>
 
             {/* Main content */}
-            <main className="relative z-10 flex-1 max-w-4xl mx-auto w-full px-4 py-10 sm:py-12 space-y-8">
+            <main className="relative z-10 flex-1 max-w-4xl mx-auto w-full px-4 py-10 sm:py-12 gap-y-8">
                 {/* Hero */}
                 <div className="rounded-3xl border border-white/70 bg-white/55 backdrop-blur-2xl p-6 sm:p-8 shadow-[0_8px_32px_rgba(142,179,122,0.1)] space-y-4">
                     <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm text-primary font-semibold">
-                        <Heart className="h-4 w-4" />
+                        <Heart className="size-4" />
                         Miễn phí · Ẩn danh · Khoa học
                     </div>
 
                     <div className="space-y-3">
-                        <h1 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight leading-tight">
+                        <h1 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight leading-tight">
                             Chọn bài đánh giá phù hợp
                         </h1>
                         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
@@ -108,8 +109,8 @@ export default function PublicAssessmentPage() {
                                     href={href}
                                     className="rounded-xl border border-slate-200 bg-white p-4 text-left transition-colors hover:bg-slate-50"
                                 >
-                                    <div className="mb-2.5 flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                                        <Icon className="h-4 w-4" />
+                                    <div className="mb-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                                        <Icon className="size-4" />
                                     </div>
                                     <p className="font-medium text-foreground">{title}</p>
                                     <p className="mt-1 text-sm text-muted-foreground">{description}</p>
@@ -122,8 +123,8 @@ export default function PublicAssessmentPage() {
                 {/* Template grid */}
                 {isLoading ? (
                     <div className="rounded-2xl border border-slate-200 bg-white/80 p-10 sm:p-14 flex flex-col items-center gap-4">
-                        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                        <p className="text-sm text-muted-foreground">Đang tải danh sách bài đánh giá...</p>
+                        <div className="size-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                        <p className="text-sm text-muted-foreground">Đang tải danh sách bài đánh giá…</p>
                     </div>
                 ) : templates.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 text-center py-16 px-6">
@@ -132,7 +133,7 @@ export default function PublicAssessmentPage() {
                 ) : (
                     <div className="space-y-4">
                         <div className="flex items-center justify-between gap-4">
-                            <h2 className="text-lg sm:text-xl font-bold text-foreground">Danh sách bài đánh giá</h2>
+                            <h2 className="text-lg sm:text-xl font-semibold text-foreground">Danh sách bài đánh giá</h2>
                             <span className="text-xs sm:text-sm text-muted-foreground bg-white/80 border border-slate-200 px-3 py-1 rounded-full">
                                 {templates.length} bài có sẵn
                             </span>
@@ -155,16 +156,16 @@ export default function PublicAssessmentPage() {
                                     >
                                         {isOnboarding && (
                                             <div className="absolute -top-3 right-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-                                                <Sparkles className="w-3 h-3" />
+                                                <Sparkles className="size-3" />
                                                 KHUYÊN DÙNG
                                             </div>
                                         )}
 
                                         <div className="flex items-start justify-between gap-4">
-                                            <div className="flex-1 space-y-2">
+                                            <div className="flex-1 gap-y-2">
                                                 <div className="flex items-center gap-2">
-                                                    <ClipboardList className="h-5 w-5 text-primary shrink-0" />
-                                                    <h2 className="font-bold text-foreground text-lg leading-snug">{template.title}</h2>
+                                                    <ClipboardList className="size-5 text-primary shrink-0" />
+                                                    <h2 className="font-semibold text-foreground text-lg leading-snug">{template.title}</h2>
                                                 </div>
                                                 {template.description && (
                                                     <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
@@ -172,12 +173,12 @@ export default function PublicAssessmentPage() {
                                                     </p>
                                                 )}
                                                 <div className="flex items-center gap-1 text-xs text-muted-foreground pt-1">
-                                                    <Clock className="h-3.5 w-3.5" />
+                                                    <Clock className="size-3.5" />
                                                     <span>{template.totalQuestions || '?'} câu hỏi · {estimateDuration(template.totalQuestions)}</span>
                                                 </div>
                                             </div>
-                                            <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                                                <ChevronRight className="h-5 w-5" />
+                                            <div className="shrink-0 size-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                                <ChevronRight className="size-5" />
                                             </div>
                                         </div>
 
@@ -186,7 +187,7 @@ export default function PublicAssessmentPage() {
                                                 {template.typeCode}
                                             </span>
                                             <span className="text-sm font-semibold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                                                Bắt đầu <ArrowRight className="h-4 w-4" />
+                                                Bắt đầu <ArrowRight className="size-4" />
                                             </span>
                                         </div>
                                     </button>

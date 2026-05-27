@@ -2,6 +2,7 @@
 
 import { useTransition, startTransition, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/authStore';
 import {
@@ -97,14 +98,14 @@ export default function Sidebar() {
     const pathname = usePathname();
     const { user, logoutAction } = useAuthStore();
     const { isOpen: isChatOpen, openChat, closeChat } = useChatStore();
-    const router = useRouter();
+    const { push } = useRouter();
     const [isMobileOpen, setIsMobileOpen] = useState(false);
     const { isSidebarCollapsed: isCollapsed, toggleSidebarCollapse: toggleCollapsed } = useUIStore();
     const [navigatingTo, setNavigatingTo] = useState<string | null>(null);
 
     const handleLogout = () => {
         logoutAction();
-        router.push('/');
+        push('/');
     };
 
     const closeMobile = () => setIsMobileOpen(false);
@@ -113,7 +114,7 @@ export default function Sidebar() {
         if (href !== pathname) {
             setNavigatingTo(href);
             startTransition(() => {
-                router.push(href);
+                push(href);
                 closeMobile();
                 setTimeout(() => setNavigatingTo(null), 500);
             });
@@ -133,10 +134,10 @@ export default function Sidebar() {
             {/* Mobile top bar */}
             <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/60 shadow-sm px-4 py-3 flex items-center justify-between">
                 <Link href="/dashboard" className="flex items-center gap-2 group">
-                    <div className="w-8 h-8 rounded-lg bg-[#8eb37a] dark:bg-[#9ca986] flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
-                        <img src="/mental_health.png" alt="Logo" width={24} height={24} className="brightness-0 invert" />
+                    <div className="size-8 rounded-lg bg-[#8eb37a] dark:bg-[#9ca986] flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
+                        <Image src="/mental_health.png" alt="Logo" width={24} height={24} className="brightness-0 invert" />
                     </div>
-                    <span className="text-base font-bold text-foreground">
+                    <span className="text-base font-semibold text-foreground">
                         Mental Health AI
                     </span>
                 </Link>
@@ -152,7 +153,7 @@ export default function Sidebar() {
                         )}
                         aria-label={isChatOpen ? 'Đóng chatbot' : 'Mở chatbot'}
                     >
-                        <Bot className="w-5 h-5" />
+                        <Bot className="size-5" />
                     </button>
                     <NotificationBell />
                     <button
@@ -160,7 +161,7 @@ export default function Sidebar() {
                         className="p-2 rounded-xl text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                         aria-label={isMobileOpen ? 'Đóng menu' : 'Mở menu'}
                     >
-                        {isMobileOpen ? <XIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
+                        {isMobileOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
                     </button>
                 </div>
             </div>
@@ -168,8 +169,11 @@ export default function Sidebar() {
             {/* Mobile overlay */}
             {isMobileOpen && (
                 <div
+                    role="button"
+                    tabIndex={0}
                     className="lg:hidden fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
                     onClick={closeMobile}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') closeMobile(); }}
                 />
             )}
 
@@ -181,22 +185,22 @@ export default function Sidebar() {
                 isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
             )}>
                 <div className="flex flex-col h-full">
-                    {/* Logo — desktop */}
+                    {/* Logo ,  desktop */}
                     <div className={cn('hidden lg:flex items-center p-5 border-b border-white/40 min-h-[72px]', isCollapsed ? 'justify-center' : 'justify-between')}>
                         {!isCollapsed && (
                             <Link href="/dashboard" className="flex items-center gap-3 group min-w-0">
-                                <div className="w-9 h-9 rounded-xl bg-linear-to-br from-[#8eb37a] to-[#8eb37a]/80 dark:from-[#9ca986] dark:to-[#9ca986]/80 flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm shadow-[#8eb37a]/20 text-primary-foreground shrink-0">
-                                    <img src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
+                                <div className="size-9 rounded-xl bg-linear-to-br from-[#8eb37a] to-[#8eb37a]/80 dark:from-[#9ca986] dark:to-[#9ca986]/80 flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm shadow-[#8eb37a]/20 text-primary-foreground shrink-0">
+                                    <Image src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
                                 </div>
-                                <span className="text-base font-bold text-foreground truncate">
+                                <span className="text-base font-semibold text-foreground truncate">
                                     Mental Health AI
                                 </span>
                             </Link>
                         )}
                         {isCollapsed && (
                             <Link href="/dashboard" className="group">
-                                <div className="w-9 h-9 rounded-xl bg-linear-to-br from-[#8eb37a] to-[#8eb37a]/80 dark:from-[#9ca986] dark:to-[#9ca986]/80 flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm shadow-[#8eb37a]/20 text-primary-foreground">
-                                    <img src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
+                                <div className="size-9 rounded-xl bg-linear-to-br from-[#8eb37a] to-[#8eb37a]/80 dark:from-[#9ca986] dark:to-[#9ca986]/80 flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm shadow-[#8eb37a]/20 text-primary-foreground">
+                                    <Image src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
                                 </div>
                             </Link>
                         )}
@@ -241,8 +245,8 @@ export default function Sidebar() {
                                                 )}
                                             >
                                                 {loading
-                                                    ? <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-                                                    : <Icon className={cn("w-4 h-4 shrink-0 transition-colors", active ? variant.icon : "text-muted-foreground/60 group-hover:text-inherit")} />
+                                                    ? <Loader2 className="size-4 animate-spin shrink-0" />
+                                                    : <Icon className={cn("size-4 shrink-0 transition-colors", active ? variant.icon : "text-muted-foreground/60 group-hover:text-inherit")} />
                                                 }
                                                 {!isCollapsed && <span className="truncate">{item.name}</span>}
                                             </Link>
@@ -257,9 +261,9 @@ export default function Sidebar() {
                     <div className={cn('p-3 border-t border-white/60', isCollapsed && 'flex flex-col items-center gap-2')}>
                         {!isCollapsed && (
                             <div className="flex items-center gap-3 mb-3 p-3 rounded-2xl bg-white/50 border border-white/60 shadow-sm">
-                                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold border-2 border-white shrink-0 overflow-hidden">
+                                <div className="size-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold border-2 border-white shrink-0 overflow-hidden">
                                     {user?.avatarUrl ? (
-                                        <img src={user.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                        <Image src={user.avatarUrl} alt="Avatar" width={36} height={36} className="size-full object-cover" />
                                     ) : (
                                         <span>{user?.fullName?.charAt(0) || 'U'}</span>
                                     )}
@@ -276,9 +280,9 @@ export default function Sidebar() {
                         )}
 
                         {isCollapsed && (
-                            <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold border-2 border-white overflow-hidden mb-1">
+                            <div className="size-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold border-2 border-white overflow-hidden mb-1">
                                 {user?.avatarUrl ? (
-                                    <img src={user.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                    <Image src={user.avatarUrl} alt="Avatar" width={36} height={36} className="size-full object-cover" />
                                 ) : (
                                     <span>{user?.fullName?.charAt(0) || 'U'}</span>
                                 )}
@@ -290,18 +294,18 @@ export default function Sidebar() {
                             title="Đăng xuất"
                             className={cn(
                                 'flex items-center gap-2 px-3 py-2.5 text-muted-foreground hover:bg-rose-50 hover:text-rose-500 rounded-2xl transition-all duration-200 font-medium text-sm group',
-                                isCollapsed ? 'justify-center w-10 h-10 px-0' : 'w-full justify-center'
+                                isCollapsed ? 'justify-center size-10 px-0' : 'w-full justify-center'
                             )}
                             aria-label="Đăng xuất"
                         >
-                            <LogOut className="w-4 h-4 transition-transform group-hover:-translate-x-0.5 shrink-0" />
+                            <LogOut className="size-4 transition-transform group-hover:-translate-x-0.5 shrink-0" />
                             {!isCollapsed && <span>Đăng xuất</span>}
                         </button>
                     </div>
                 </div>
             </aside>
 
-            {/* Desktop collapse toggle button — mounted outside aside so it floats on the edge */}
+            {/* Desktop collapse toggle button ,  mounted outside aside so it floats on the edge */}
             <button
                 onClick={toggleCollapsed}
                 className={cn(
@@ -315,13 +319,13 @@ export default function Sidebar() {
                 aria-label={isCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
             >
                 {isCollapsed
-                    ? <ChevronRight className="w-3.5 h-3.5" />
-                    : <ChevronLeft className="w-3.5 h-3.5" />
+                    ? <ChevronRight className="size-3.5" />
+                    : <ChevronLeft className="size-3.5" />
                 }
             </button>
 
             {/* Spacer div to push main content */}
-            <style jsx global>{`
+            <style>{`
                 .dashboard-main {
                     transition: margin-left 300ms ease-in-out;
                 }

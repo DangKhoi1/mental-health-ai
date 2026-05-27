@@ -593,7 +593,7 @@ export default function ReminderManager() {
                 <CardHeader className="pb-3">
                     <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                         <CardTitle className="text-lg flex items-center gap-2">
-                            <Bell className="w-5 h-5 text-primary" />
+                            <Bell className="size-5 text-primary" />
                             Quản lý nhắc nhở
                         </CardTitle>
                         <div className="flex flex-wrap gap-2">
@@ -608,7 +608,7 @@ export default function ReminderManager() {
                                 }}
                                 size="sm"
                             >
-                                {showForm ? <X className="mr-1 h-4 w-4" /> : <Plus className="mr-1 h-4 w-4" />}
+                                {showForm ? <X className="mr-1 size-4" /> : <Plus className="mr-1 size-4" />}
                                 {showForm ? 'Đóng' : 'Thêm mới'}
                             </Button>
                         </div>
@@ -699,7 +699,7 @@ export default function ReminderManager() {
                                         </Button>
                                     )}
                                     <Button type="button" onClick={handleSubmit} isLoading={isSubmitting} size="sm">
-                                        {!isSubmitting && <Save className="mr-1 h-4 w-4" />}
+                                        {!isSubmitting && <Save className="mr-1 size-4" />}
                                         {editingId ? 'Lưu cập nhật' : 'Lưu nhắc nhở'}
                                     </Button>
                                 </div>
@@ -712,7 +712,7 @@ export default function ReminderManager() {
                             <div className="rounded-xl border border-border/70 p-3">
                                 <div className="flex flex-col gap-3">
                                     <div className="relative">
-                                        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                                         <Input
                                             type="text"
                                             value={searchTerm}
@@ -742,11 +742,11 @@ export default function ReminderManager() {
 
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                            <Filter className="h-3.5 w-3.5" />
+                                            <Filter className="size-3.5" />
                                             <span>{filteredReminders.length} kết quả</span>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground" />
+                                            <ArrowUpDown className="size-3.5 text-muted-foreground" />
                                             <Select value={sortMode} onValueChange={(val) => setSortMode(val as SortMode)}>
                                                 <SelectTrigger className="h-8 w-32.5 text-xs">
                                                     <SelectValue placeholder="Sắp xếp" />
@@ -766,7 +766,7 @@ export default function ReminderManager() {
 
                             {filteredReminders.length === 0 ? (
                                 <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-10 text-muted-foreground">
-                                    <BellOff className="mb-3 h-10 w-10 opacity-40" />
+                                    <BellOff className="mb-3 size-10 opacity-40" />
                                     <p className="text-sm font-medium">Không có nhắc nhở phù hợp bộ lọc</p>
                                     <p className="mt-1 text-xs">Thử đổi từ khóa tìm kiếm hoặc đổi cách lọc mới</p>
                                 </div>
@@ -796,7 +796,7 @@ export default function ReminderManager() {
                                                             }`}
                                                         title={reminder.isActive ? 'Tạm dừng nhắc nhở' : 'Kích hoạt nhắc nhở'}
                                                     >
-                                                        {reminder.isActive ? <Bell className="h-4 w-4" /> : <BellOff className="h-4 w-4" />}
+                                                        {reminder.isActive ? <Bell className="size-4" /> : <BellOff className="size-4" />}
                                                     </button>
 
                                                     <button
@@ -815,11 +815,11 @@ export default function ReminderManager() {
                                                         <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{reminder.message}</p>
                                                         <div className="mt-2 flex items-center gap-3 text-[11px] text-muted-foreground/80">
                                                             <span className="inline-flex items-center gap-1">
-                                                                <Clock className="h-3 w-3" />
+                                                                <Clock className="size-3" />
                                                                 {formatDateTime(reminder.scheduleTime)}
                                                             </span>
                                                             <span className="inline-flex items-center gap-1">
-                                                                <CalendarDays className="h-3 w-3" />
+                                                                <CalendarDays className="size-3" />
                                                                 Tạo: {formatDateTime(reminder.createdAt)}
                                                             </span>
                                                         </div>
@@ -830,22 +830,22 @@ export default function ReminderManager() {
                                                             type="button"
                                                             variant="ghost"
                                                             size="icon"
-                                                            className="h-8 w-8"
+                                                            className="size-8"
                                                             onClick={() => openEditForm(reminder.notificationId)}
                                                             title="Chỉnh sửa"
                                                         >
-                                                            <Pencil className="h-4 w-4" />
+                                                            <Pencil className="size-4" />
                                                         </Button>
                                                         <Button
                                                             type="button"
                                                             variant="ghost"
                                                             size="icon"
-                                                            className="h-8 w-8 text-destructive hover:text-destructive"
+                                                            className="size-8 text-destructive hover:text-destructive"
                                                             onClick={() => handleDelete(reminder.notificationId)}
                                                             disabled={isPendingDelete}
                                                             title="Xóa nhắc nhở"
                                                         >
-                                                            <Trash2 className="h-4 w-4" />
+                                                            <Trash2 className="size-4" />
                                                         </Button>
                                                     </div>
                                                 </div>
@@ -900,7 +900,7 @@ export default function ReminderManager() {
                                                         onClick={() => openRepeatPopup(selectedReminder.notificationId)}
                                                         disabled={pendingRepeatId === selectedReminder.notificationId}
                                                     >
-                                                        <Clock className="mr-1 h-4 w-4" />
+                                                        <Clock className="mr-1 size-4" />
                                                         Lặp lại
                                                     </Button>
                                                 </PopoverTrigger>
@@ -1015,7 +1015,7 @@ export default function ReminderManager() {
                                                 variant="outline"
                                                 onClick={() => openEditForm(selectedReminder.notificationId)}
                                             >
-                                                <Pencil className="mr-1 h-4 w-4" />
+                                                <Pencil className="mr-1 size-4" />
                                                 Chỉnh sửa
                                             </Button>
                                             <Button
@@ -1027,12 +1027,12 @@ export default function ReminderManager() {
                                             >
                                                 {selectedReminder.isActive ? (
                                                     <>
-                                                        <BellOff className="mr-1 h-4 w-4" />
+                                                        <BellOff className="mr-1 size-4" />
                                                         Tạm dừng
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <Bell className="mr-1 h-4 w-4" />
+                                                        <Bell className="mr-1 size-4" />
                                                         Kích hoạt
                                                     </>
                                                 )}
@@ -1044,7 +1044,7 @@ export default function ReminderManager() {
                                                 onClick={() => handleDelete(selectedReminder.notificationId)}
                                                 disabled={pendingDeleteId === selectedReminder.notificationId}
                                             >
-                                                <Trash2 className="mr-1 h-4 w-4" />
+                                                <Trash2 className="mr-1 size-4" />
                                                 Xóa
                                             </Button>
                                         </div>
@@ -1052,7 +1052,7 @@ export default function ReminderManager() {
                                         {!selectedReminder.scheduleTime && (
                                             <div className="rounded-lg border border-amber-200 bg-amber-50/70 p-3 text-xs text-amber-800 dark:bg-amber-900/10 dark:text-amber-200">
                                                 <p className="inline-flex items-center gap-1 font-medium">
-                                                    <AlertTriangle className="h-4 w-4" />
+                                                    <AlertTriangle className="size-4" />
                                                     Nhắc nhở này chưa có lịch cụ thể.
                                                 </p>
                                             </div>

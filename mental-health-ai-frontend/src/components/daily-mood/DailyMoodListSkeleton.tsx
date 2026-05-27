@@ -7,7 +7,7 @@ export default function DailyMoodListSkeleton() {
                 <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-200 dark:border-gray-700">
                     <div className="flex items-start justify-between">
                         <div className="flex items-center gap-4 flex-1">
-                            <Skeleton className="w-14 h-14 rounded-xl" />
+                            <Skeleton className="size-14 rounded-xl" />
                             <div className="flex-1">
                                 <Skeleton className="h-5 w-32 mb-2" />
                                 <Skeleton className="h-4 w-48" />

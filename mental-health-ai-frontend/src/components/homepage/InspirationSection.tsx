@@ -19,8 +19,8 @@ export default function InspirationSection() {
                 />
             </div>
             <div className="absolute inset-0 bg-linear-to-r from-sky-100/20 via-transparent to-blue-100/20" aria-hidden />
-            <div className="absolute left-10 top-16 h-48 w-48 rounded-full bg-sky-300/25 blur-3xl" aria-hidden />
-            <div className="absolute right-6 bottom-6 h-56 w-56 rounded-full bg-primary/10 blur-3xl" aria-hidden />
+            <div className="absolute left-10 top-16 size-48 rounded-full bg-sky-300/25 blur-3xl" aria-hidden />
+            <div className="absolute right-6 bottom-6 size-56 rounded-full bg-primary/10 blur-3xl" aria-hidden />
 
             <div
                 ref={quoteRef}

@@ -310,7 +310,7 @@ export default function AssessmentQuestionsPage() {
                             <div className="space-y-1.5">
                                 <label className="ml-1 block text-sm font-medium text-foreground">Tìm kiếm câu hỏi</label>
                                 <div className="relative">
-                                    <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                    <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                                     <Input
                                         className="pl-11"
                                         placeholder="Tìm theo nội dung, số thứ tự hoặc lựa chọn..."
@@ -340,11 +340,11 @@ export default function AssessmentQuestionsPage() {
                                 onClick={clearFilters}
                                 disabled={!search}
                             >
-                                <X className="h-4 w-4" />
+                                <X className="size-4" />
                                 Xóa lọc
                             </Button>
                             <Button onClick={() => handleOpenModal()} disabled={!selectedTemplateId}>
-                                <Plus className="h-4 w-4" />
+                                <Plus className="size-4" />
                                 Thêm câu hỏi
                             </Button>
                         </div>
@@ -435,10 +435,10 @@ export default function AssessmentQuestionsPage() {
                                                     <td className="px-4 py-4 text-center">
                                                         <div className="flex justify-center gap-2">
                                                             <Button size="sm" variant="outline" onClick={() => handleOpenModal(q)} title="Chỉnh sửa">
-                                                                <Edit2 className="w-4 h-4" />
+                                                                <Edit2 className="size-4" />
                                                             </Button>
                                                             <Button size="sm" variant="danger" onClick={() => handleDelete(q)} title="Xóa">
-                                                                <Trash2 className="w-4 h-4" />
+                                                                <Trash2 className="size-4" />
                                                             </Button>
                                                         </div>
                                                     </td>
@@ -486,7 +486,7 @@ export default function AssessmentQuestionsPage() {
                     <div className="flex justify-end gap-3">
                         <Button variant="ghost" type="button" onClick={handleCloseModal}>Hủy</Button>
                         <Button type="submit" form="question-form">
-                            <Save className="w-4 h-4" /> Lưu thông tin
+                            <Save className="size-4" /> Lưu thông tin
                         </Button>
                     </div>
                 )}
@@ -518,7 +518,7 @@ export default function AssessmentQuestionsPage() {
                         <div className="flex justify-between items-center">
                             <h5 className="font-semibold text-foreground">Các lựa chọn trả lời</h5>
                             <Button type="button" variant="outline" size="sm" onClick={handleAddOption}>
-                                <Plus className="w-4 h-4" /> Thêm lựa chọn
+                                <Plus className="size-4" /> Thêm lựa chọn
                             </Button>
                         </div>
 
@@ -544,10 +544,10 @@ export default function AssessmentQuestionsPage() {
                                     <Button
                                         type="button"
                                         variant="danger"
-                                        className="h-11.5 w-11.5"
+                                        className="size-11.5"
                                         onClick={() => handleRemoveOption(opt.id)}
                                     >
-                                        <X className="w-4 h-4" />
+                                        <X className="size-4" />
                                     </Button>
                                 </div>
                             ))}

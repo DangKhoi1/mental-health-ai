@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Sparkles, ArrowRight, UserCircle } from "lucide-react";
@@ -27,14 +28,13 @@ export default function Header() {
 
                 <div className="relative mx-auto flex h-18 w-full max-w-7xl items-center justify-between gap-3 px-3 sm:px-6">
                     <Link href="/trangchu" className="group flex min-w-0 items-center gap-3" onClick={closeMenu}>
-                        <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm text-primary-foreground">
-                            <img
+                        <div className="size-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm text-primary-foreground">
+                            <Image
                                 src="/mental_health.png"
                                 alt="Logo"
                                 width={32}
                                 height={32}
-                                className="brightness-0 invert"
-                            />
+                                className="brightness-0 invert" />
                         </div>
                         <div className="min-w-0 leading-tight">
                             <span className="block truncate text-base font-semibold text-foreground sm:text-lg">
@@ -66,7 +66,7 @@ export default function Header() {
                             href="/auth/login"
                             className="inline-flex items-center gap-2 rounded-full border border-white/55 bg-white/55 px-5 py-2.5 text-sm font-medium text-foreground shadow-[0_8px_22px_rgba(120,150,120,0.14)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/70"
                         >
-                            <UserCircle className="h-4 w-4 text-primary" />
+                            <UserCircle className="size-4 text-primary" />
                             Đăng nhập
                         </Link>
                         <Link
@@ -74,17 +74,17 @@ export default function Header() {
                             className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-primary to-primary/85 px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_24px_rgba(142,179,122,0.28)] transition-all hover:-translate-y-0.5 hover:opacity-95"
                         >
                             Đăng ký
-                            <ArrowRight className="h-4 w-4" />
+                            <ArrowRight className="size-4" />
                         </Link>
                     </div>
 
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/55 bg-white/55 text-muted-foreground backdrop-blur-xl transition-colors hover:bg-white/70 lg:hidden"
+                        className="inline-flex size-10 items-center justify-center rounded-2xl border border-white/55 bg-white/55 text-muted-foreground backdrop-blur-xl transition-colors hover:bg-white/70 lg:hidden"
                         aria-label={isMenuOpen ? "Đóng menu" : "Mở menu"}
                         aria-expanded={isMenuOpen}
                     >
-                        {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                        {isMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
                     </button>
                 </div>
 

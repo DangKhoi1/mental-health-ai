@@ -99,7 +99,7 @@ export default function IntroSection() {
                     >
                         {SLIDE_IMAGES.map((slide) => (
                             <SwiperSlide key={slide.src}>
-                                <div className="relative h-full w-full overflow-hidden">
+                                <div className="relative size-full overflow-hidden">
                                     <Image
                                         src={slide.src}
                                         alt={slide.alt}
@@ -134,8 +134,8 @@ export default function IntroSection() {
                                 )}
                                 style={{ animationDelay: `${cardsVisible ? i * 100 : 0}ms`, animationFillMode: 'both' }}
                             >
-                                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50/80 text-sky-600">
-                                    <Icon className="h-5 w-5" />
+                                <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-sky-50/80 text-sky-600">
+                                    <Icon className="size-5" />
                                 </div>
                                 <h3 className="mt-5 text-xl font-medium text-foreground">{item.title}</h3>
                                 <p className="mt-3 text-base text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: item.description }} />

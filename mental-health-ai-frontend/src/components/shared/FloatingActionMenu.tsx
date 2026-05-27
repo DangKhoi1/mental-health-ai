@@ -31,7 +31,7 @@ export function FloatingActionMenu() {
         }
         if (isMenuOpen || isMusicOpen) {
             document.addEventListener('mousedown', handleClickOutside);
-            document.addEventListener('touchstart', handleClickOutside);
+            document.addEventListener('touchstart', handleClickOutside, { passive: true });
         }
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -46,7 +46,8 @@ export function FloatingActionMenu() {
     }, [pathname, setMusicOpen]);
 
     return (
-        <div 
+        <div
+            role="presentation"
             ref={(el) => {
                 if (el) {
                     // @ts-expect-error - assigning to ref
@@ -75,15 +76,15 @@ export function FloatingActionMenu() {
                             setIsMenuOpen(false);
                         }}
                         className={cn(
-                            "w-12 h-12 flex items-center justify-center rounded-full bg-card shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition-colors border border-border relative",
+                            "size-12 flex items-center justify-center rounded-full bg-card shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition-colors border border-border relative",
                             isPlaying ? "text-primary bg-primary/10" : "text-primary hover:bg-primary/10"
                         )}
                         aria-label="Mở Nhạc"
                     >
                         <div className="relative">
-                            <Music className="w-5 h-5" />
+                            <Music className="size-5" />
                             {isPlaying && (
-                                <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />
+                                <span className="absolute -top-1 -right-1 size-2 bg-primary rounded-full" />
                             )}
                         </div>
                     </button>
@@ -94,10 +95,10 @@ export function FloatingActionMenu() {
                             toggleChat();
                             setIsMenuOpen(false);
                         }}
-                        className="w-12 h-12 flex items-center justify-center rounded-full bg-card shadow-[0_8px_20px_rgba(0,0,0,0.15)] text-primary hover:bg-primary/10 transition-colors border border-border"
+                        className="size-12 flex items-center justify-center rounded-full bg-card shadow-[0_8px_20px_rgba(0,0,0,0.15)] text-primary hover:bg-primary/10 transition-colors border border-border"
                         aria-label="Mở Chatbot"
                     >
-                        <Bot className="w-5 h-5" />
+                        <Bot className="size-5" />
                     </button>
                 </div>
             )}
@@ -107,7 +108,7 @@ export function FloatingActionMenu() {
                 data-drag-handle="true"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={cn(
-                    "w-12 h-12 touch-none cursor-grab active:cursor-grabbing flex items-center justify-center rounded-full text-primary-foreground shadow-[0_8px_20px_rgba(142,179,122,0.3)] hover:shadow-[0_12px_25px_rgba(142,179,122,0.4)] transition-all duration-300 active:scale-95 relative",
+                    "size-12 touch-none cursor-grab active:cursor-grabbing flex items-center justify-center rounded-full text-primary-foreground shadow-[0_8px_20px_rgba(142,179,122,0.3)] hover:shadow-[0_12px_25px_rgba(142,179,122,0.4)] transition-all duration-300 active:scale-95 relative",
                     isPlaying
                         ? "bg-primary animate-pulse-subtle"
                         : "bg-primary hover:bg-primary/90"
@@ -123,11 +124,11 @@ export function FloatingActionMenu() {
                     </div>
                 ) : (
                     <div className={cn("transition-transform duration-300", isMenuOpen ? "rotate-45" : "rotate-0")}>
-                        <Sparkles className="w-6 h-6" />
+                        <Sparkles className="size-6" />
                     </div>
                 )}
                 {isPlaying && (
-                    <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-primary rounded-full border-2 border-white animate-ping" />
+                    <div className="absolute -top-1 -right-1 size-2.5 bg-primary rounded-full border-2 border-white animate-ping" />
                 )}
             </button>
         </div>

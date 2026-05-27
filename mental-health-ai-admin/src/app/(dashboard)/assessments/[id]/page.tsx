@@ -227,7 +227,7 @@ export default function QuestionsPage() {
             </div>
 
             <div>
-                <h1 className="text-3xl font-bold text-slate-900">{template?.title}</h1>
+                <h1 className="text-3xl font-semibold text-slate-900">{template?.title}</h1>
                 {template?.description && (
                     <p className="mt-1 text-slate-600">{template.description}</p>
                 )}
@@ -348,7 +348,7 @@ export default function QuestionsPage() {
                                     Hủy
                                 </Button>
                                 <Button onClick={handleSave} disabled={submitting} className="gap-2">
-                                    {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
+                                    {submitting && <Loader2 className="size-4 animate-spin" />}
                                     {submitting ? 'Đang lưu...' : 'Lưu'}
                                 </Button>
                             </div>

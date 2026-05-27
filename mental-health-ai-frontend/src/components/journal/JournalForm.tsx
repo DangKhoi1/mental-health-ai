@@ -100,10 +100,10 @@ export default function JournalForm({
             <div className="px-6 md:px-8 pt-8 pb-6 bg-linear-to-br from-amber-500/10 to-amber-500/5">
                 <div className="flex items-center gap-4">
                     <div className="p-2.5 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
-                        <PenLine className="w-5 h-5 text-amber-500" />
+                        <PenLine className="size-5 text-amber-500" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-foreground">Viết nhật ký</h2>
+                        <h2 className="text-xl font-semibold text-foreground">Viết nhật ký</h2>
                         <p className="text-sm text-muted-foreground">Chia sẻ câu chuyện của bạn hôm nay</p>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ export default function JournalForm({
                 {/* Title */}
                 <div className="space-y-2.5">
                     <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                        <Type className="w-4 h-4 text-muted-foreground" />
+                        <Type className="size-4 text-muted-foreground" />
                         Tiêu đề
                     </label>
                     <input
@@ -123,7 +123,7 @@ export default function JournalForm({
                         maxLength={200}
                         minLength={3}
                         className="w-full px-5 py-3.5 bg-secondary/20 border border-transparent rounded-2xl focus:bg-background focus:border-amber-500/20 focus:ring-2 focus:ring-amber-500/10 outline-none text-base font-medium placeholder:text-muted-foreground/50 transition-all duration-200"
-                        placeholder="Đặt tiêu đề cho ngày hôm nay..."
+                        placeholder="Đặt tiêu đề cho ngày hôm nay…"
                         required
                     />
                     <div className="flex justify-between text-xs text-muted-foreground/60 px-1">
@@ -135,7 +135,7 @@ export default function JournalForm({
                 {/* Mood Chips */}
                 <div className="space-y-2.5">
                     <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                        <Smile className="w-4 h-4 text-muted-foreground" />
+                        <Smile className="size-4 text-muted-foreground" />
                         Cảm xúc của bạn
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -164,11 +164,11 @@ export default function JournalForm({
                 <div className="space-y-2.5">
                     <div className="flex items-center justify-between">
                         <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                            <PenLine className="w-4 h-4 text-muted-foreground" />
+                            <PenLine className="size-4 text-muted-foreground" />
                             Nội dung
                         </label>
                         <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/5 rounded-lg border border-amber-500/10">
-                            <Mic className="w-3.5 h-3.5 text-amber-500" />
+                            <Mic className="size-3.5 text-amber-500" />
                             <span className="text-xs font-medium text-muted-foreground">Giọng nói</span>
                             <div className="scale-90 origin-right">
                                 <VoiceInput
@@ -187,7 +187,7 @@ export default function JournalForm({
                     <TiptapEditor
                         content={formData.content}
                         onChange={(content) => setFormData({ ...formData, content })}
-                        placeholder="Hôm nay bạn cảm thấy thế nào?..."
+                        placeholder="Hôm nay bạn cảm thấy thế nào?…"
                     />
 
                     <div className="flex justify-between text-xs text-muted-foreground/60 px-1">
@@ -199,7 +199,7 @@ export default function JournalForm({
                 {/* Images Section */}
                 <div className="space-y-2.5">
                     <label className="text-sm font-semibold text-foreground flex items-center gap-2">
-                        <ImageIcon className="w-4 h-4 text-muted-foreground" />
+                        <ImageIcon className="size-4 text-muted-foreground" />
                         Thêm ảnh kỷ niệm (tùy chọn)
                     </label>
 
@@ -220,7 +220,7 @@ export default function JournalForm({
                                 />
                                 <div className="flex flex-col items-center justify-center gap-2">
                                     <div className="p-2.5 bg-amber-500/10 rounded-lg">
-                                        <Upload className="w-5 h-5 text-amber-500" />
+                                        <Upload className="size-5 text-amber-500" />
                                     </div>
                                     <div className="text-center">
                                         <p className="font-medium text-foreground text-sm">Chọn ảnh để tải lên</p>
@@ -254,7 +254,7 @@ export default function JournalForm({
                                                     onClick={() => handleRemoveImage(index)}
                                                     className="absolute top-1 right-1 p-1 bg-destructive/90 hover:bg-destructive rounded-md transition-colors"
                                                 >
-                                                    <X className="w-3 h-3 text-white" />
+                                                    <X className="size-3 text-white" />
                                                 </button>
                                             </div>
                                         ))}
@@ -288,12 +288,12 @@ export default function JournalForm({
                 >
                     {isSubmitting ? (
                         <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            Đang lưu...
+                            <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Đang lưu…
                         </>
                     ) : (
                         <>
-                            <Send className="w-4 h-4" />
+                            <Send className="size-4" />
                             Lưu nhật ký
                         </>
                     )}

@@ -29,7 +29,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
     }
 
     const actionBaseClass =
-        'flex h-9 w-9 items-center justify-center rounded-lg border border-transparent text-muted-foreground transition-all duration-150 hover:border-border/70 hover:bg-background/80 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-30';
+        'flex size-9 items-center justify-center rounded-lg border border-transparent text-muted-foreground transition-all duration-150 hover:border-border/70 hover:bg-background/80 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-30';
     const actionActiveClass = 'border-amber-500/25 bg-amber-500/10 text-amber-500 shadow-sm';
 
     return (
@@ -157,7 +157,7 @@ export default function TiptapEditor({ content, onChange, placeholder }: TiptapE
                 types: ['heading', 'paragraph'],
             }),
             Placeholder.configure({
-                placeholder: placeholder || 'Bắt đầu viết...',
+                placeholder: placeholder || 'Bắt đầu viết…',
                 emptyEditorClass: 'is-editor-empty',
             }),
         ],

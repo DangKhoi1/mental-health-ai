@@ -176,7 +176,7 @@ function SleepLogContent() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pr-0 sm:pr-20 lg:pr-32">
                 <div className="relative">
-                    <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
+                    <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight flex items-center gap-3">
                         <span className="w-2 h-8 bg-indigo-500 rounded-full" />
                         Theo dõi giấc ngủ
                     </h1>
@@ -189,11 +189,11 @@ function SleepLogContent() {
             <Tabs defaultValue="active" className="w-full">
                 <TabsList className="mb-4">
                     <TabsTrigger value="active" className="flex items-center gap-2">
-                        <Moon className="w-4 h-4" />
+                        <Moon className="size-4" />
                         Nhật ký
                     </TabsTrigger>
                     <TabsTrigger value="trash" className="flex items-center gap-2">
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="size-4" />
                         Đã xóa
                     </TabsTrigger>
                 </TabsList>
@@ -201,9 +201,9 @@ function SleepLogContent() {
                 <TabsContent value="active" className="space-y-6 mt-0">
                     {/* Filter & Action Section */}
                     <div className="bg-indigo-500/5 dark:bg-indigo-500/10 p-4 md:p-6 rounded-2xl border border-indigo-500/20 shadow-sm flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-end backdrop-blur-sm">
-                        <div className="w-full md:flex-1 space-y-2">
+                        <div className="w-full md:flex-1 gap-y-2">
                             <label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                                <Calendar className="w-4 h-4" />
+                                <Calendar className="size-4" />
                                 Lọc theo ngày
                             </label>
                             <DatePicker
@@ -216,9 +216,9 @@ function SleepLogContent() {
                                 placeholder="Chọn ngày lọc"
                             />
                         </div>
-                        <div className="w-full md:flex-1 space-y-2">
+                        <div className="w-full md:flex-1 gap-y-2">
                             <label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                                <Filter className="w-4 h-4" />
+                                <Filter className="size-4" />
                                 Lọc theo chất lượng
                             </label>
                             <Select value={filterQuality} onValueChange={setFilterQuality}>
@@ -244,7 +244,7 @@ function SleepLogContent() {
                                     }}
                                     className="flex items-center gap-2 w-full sm:w-auto"
                                 >
-                                    <X className="w-4 h-4" />
+                                    <X className="size-4" />
                                     Xóa
                                 </Button>
                             )}
@@ -261,12 +261,12 @@ function SleepLogContent() {
                             >
                                 {showForm ? (
                                     <>
-                                        <X className="w-4 h-4" />
+                                        <X className="size-4" />
                                         Đóng
                                     </>
                                 ) : (
                                     <>
-                                        <Moon className="w-4 h-4" />
+                                        <Moon className="size-4" />
                                         Thêm mới
                                     </>
                                 )}

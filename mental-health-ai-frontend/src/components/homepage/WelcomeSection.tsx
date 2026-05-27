@@ -13,7 +13,7 @@ export default function WelcomeSection() {
                 className={`mx-auto max-w-4xl text-center space-y-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
                 <div className="mx-auto inline-flex items-center justify-center p-4 bg-white rounded-full shadow-sm border border-border/50">
-                    <Heart className="h-8 w-8 text-primary" strokeWidth={1.5} />
+                    <Heart className="size-8 text-primary" strokeWidth={1.5} />
                 </div>
                 <div className="space-y-4">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-foreground tracking-tight leading-tight">

@@ -114,8 +114,8 @@ export default function RiskLevelDashboard() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-bold text-slate-900">Theo dõi mức độ rủi ro tinh thần</h2>
-                <p className="mt-1 text-slate-600">Xem xu hướng sức khỏe tinh thần của bạn theo thời gian</p>
+                <h2 className="text-lg font-semibold text-foreground">Theo dõi mức độ rủi ro tinh thần</h2>
+                <p className="mt-1 text-sm text-muted-foreground">Xem xu hướng sức khỏe tinh thần của bạn theo thời gian</p>
             </div>
 
             {error && <div className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</div>}
@@ -127,7 +127,7 @@ export default function RiskLevelDashboard() {
             ) : data.length === 0 ? (
                 <Card>
                     <CardContent className="py-12 text-center">
-                        <AlertCircle className="mx-auto mb-4 h-12 w-12 text-slate-400" />
+                        <AlertCircle className="mx-auto mb-4 size-12 text-slate-400" />
                         <p className="text-slate-600 mb-2">Chưa có dữ liệu đánh giá nào</p>
                         <p className="text-sm text-slate-500">
                             Hãy hoàn thành tối thiểu 1 bài đánh giá để xem xu hướng sức khỏe tinh thần của bạn.
@@ -153,7 +153,7 @@ export default function RiskLevelDashboard() {
                                             <div className="flex items-center gap-2 justify-end mb-2">
                                                 {trend === 'up' && <TrendingUp size={24} className="text-red-600" />}
                                                 {trend === 'down' && <TrendingDown size={24} className="text-green-600" />}
-                                                {trend === 'stable' && <span className="text-slate-400 text-2xl">—</span>}
+                                                {trend === 'stable' && <span className="text-slate-400 text-2xl">, </span>}
                                                 <span className="text-sm text-slate-600 font-medium">
                                                     {trend === 'up' && 'Tăng'}
                                                     {trend === 'down' && 'Giảm'}

@@ -58,7 +58,7 @@ export default function FAQSection() {
                                             {faq.question}
                                         </span>
                                         <ChevronDown
-                                            className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180 text-primary' : ''
+                                            className={`size-5 shrink-0 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180 text-primary' : ''
                                                 }`}
                                         />
                                     </button>

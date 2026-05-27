@@ -74,9 +74,9 @@ export function PermissionSelector({ listPermissions, value, onChange }: Props) 
                   onClick={() => toggleModule(mod.module)}
                 >
                   {isOpen ? (
-                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                    <ChevronDown className="size-4 text-muted-foreground" />
                   ) : (
-                    <ChevronRight className="w-4 h-4 text-muted-foreground" />
+                    <ChevronRight className="size-4 text-muted-foreground" />
                   )}
                   <span className="font-medium text-sm text-foreground">{mod.module}</span>
                   <span className="text-xs text-muted-foreground">({mod.permissions.length})</span>

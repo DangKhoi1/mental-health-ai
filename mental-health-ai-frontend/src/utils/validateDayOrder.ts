@@ -29,7 +29,7 @@ export function validateAndCorrectDayOrder(text: string): string {
 
     // Kiểm tra nếu đơn hàng bị lộn
     const dayNumbers = dayItems.map(d => d.firstDay);
-    const expectedOrder = [...dayNumbers].sort((a, b) => a - b);
+    const expectedOrder = dayNumbers.toSorted((a, b) => a - b);
 
     // So sánh thứ tự
     const isSorted = dayNumbers.every((val, idx) => val === expectedOrder[idx]);

@@ -94,7 +94,7 @@ export default function AssessmentSessionView({
         return (
             <div className="flex items-center justify-center h-screen bg-slate-50/60">
                 <div className="text-center text-muted-foreground animate-pulse flex flex-col items-center gap-3">
-                    <Sparkles className="w-8 h-8 opacity-50" />
+                    <Sparkles className="size-8 opacity-50" />
                     <p>Không tìm thấy câu hỏi</p>
                 </div>
             </div>
@@ -107,7 +107,7 @@ export default function AssessmentSessionView({
                 <div className="max-w-5xl mx-auto px-4 py-3 sm:py-4">
                     <div className="flex flex-col gap-2 sm:gap-3">
                         <div className="flex items-center justify-between gap-2">
-                            <h1 className="text-lg sm:text-xl font-bold text-slate-800 tracking-tight line-clamp-1">
+                            <h1 className="text-lg sm:text-xl font-semibold text-slate-800 tracking-tight line-clamp-1">
                                 {session.template?.title || 'Bài đánh giá Tâm lý'}
                             </h1>
                             <div className="flex items-center gap-1.5 sm:gap-2">
@@ -118,7 +118,7 @@ export default function AssessmentSessionView({
                                             className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-primary border border-slate-200 px-2 sm:px-3 py-1.5 rounded-full hover:bg-slate-50 transition-colors"
                                             title="Danh sách bài"
                                         >
-                                            <ClipboardList className="w-3.5 h-3.5" />
+                                            <ClipboardList className="size-3.5" />
                                             <span className="hidden sm:inline">Danh sách</span>
                                         </Link>
                                         <Link
@@ -126,7 +126,7 @@ export default function AssessmentSessionView({
                                             className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-primary border border-slate-200 px-2 sm:px-3 py-1.5 rounded-full hover:bg-slate-50 transition-colors"
                                             title={showDashboardNav ? 'Dashboard' : 'Trang chủ'}
                                         >
-                                            {showDashboardNav ? <LayoutDashboard className="w-3.5 h-3.5" /> : <Home className="w-3.5 h-3.5" />}
+                                            {showDashboardNav ? <LayoutDashboard className="size-3.5" /> : <Home className="size-3.5" />}
                                             <span className="hidden sm:inline">{showDashboardNav ? 'Dashboard' : 'Trang chủ'}</span>
                                         </Link>
                                     </>
@@ -181,12 +181,12 @@ export default function AssessmentSessionView({
 
                         <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-4 sm:p-6">
                             <div className="flex items-center justify-between gap-3 mb-3">
-                                <h3 className="text-xl font-bold text-slate-800">Câu hỏi hiện tại</h3>
+                                <h3 className="text-xl font-semibold text-slate-800">Câu hỏi hiện tại</h3>
                                 <span className="text-sm font-medium text-slate-500">Câu {currentQuestionIndex + 1}/{questions.length}</span>
                             </div>
 
                             <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg sm:text-xl">
+                                <div className="shrink-0 size-10 sm:w-12 sm:h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg sm:text-xl">
                                     {currentQuestionIndex + 1}
                                 </div>
                                 <h2 className="text-lg sm:text-xl font-semibold text-slate-800 leading-relaxed pt-1 sm:pt-2">
@@ -214,11 +214,11 @@ export default function AssessmentSessionView({
                                                 </span>
 
                                                 <div className="shrink-0">
-                                                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${isSelected
+                                                    <div className={`size-5 rounded-full border-2 flex items-center justify-center transition-all ${isSelected
                                                         ? 'border-primary bg-primary text-white scale-110'
                                                         : 'border-slate-300 text-transparent group-hover:border-primary/40'
                                                         }`}>
-                                                        <CheckCircle2 className={`w-3.5 h-3.5 ${isSelected ? 'opacity-100' : 'opacity-0'}`} />
+                                                        <CheckCircle2 className={`size-3.5 ${isSelected ? 'opacity-100' : 'opacity-0'}`} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,7 +232,7 @@ export default function AssessmentSessionView({
                     <div className="xl:col-span-1">
                         <div className="rounded-3xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm xl:sticky xl:top-4">
                             <div className="flex items-center justify-between gap-3 mb-3">
-                                <h3 className="text-base sm:text-lg font-bold text-slate-800">Tổng quan câu hỏi</h3>
+                                <h3 className="text-base sm:text-lg font-semibold text-slate-800">Tổng quan câu hỏi</h3>
                                 <span className="text-sm font-semibold text-orange-600">{answeredCount}/{questions.length}</span>
                             </div>
 
@@ -265,15 +265,15 @@ export default function AssessmentSessionView({
 
                             <div className="flex flex-wrap items-center gap-5 text-sm">
                                 <div className="flex items-center gap-2">
-                                    <span className="inline-block w-5 h-5 rounded-md bg-primary ring-2 ring-primary ring-offset-2" />
+                                    <span className="inline-block size-5 rounded-md bg-primary ring-2 ring-primary ring-offset-2" />
                                     <span>Câu hiện tại</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <span className="inline-block w-5 h-5 rounded-md bg-emerald-500" />
+                                    <span className="inline-block size-5 rounded-md bg-emerald-500" />
                                     <span>Đã trả lời</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <span className="inline-block w-5 h-5 rounded-md bg-slate-100 border border-slate-200" />
+                                    <span className="inline-block size-5 rounded-md bg-slate-100 border border-slate-200" />
                                     <span>Chưa trả lời</span>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@ export default function AssessmentSessionView({
                             type="button"
                             className="cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-slate-700 rounded-2xl font-semibold text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-all shadow-sm border border-slate-200"
                         >
-                            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                            <ChevronLeft className="size-4 sm:w-5 sm:h-5" />
                             <span className="hidden sm:inline">Quay lại</span>
                         </button>
 
@@ -311,7 +311,7 @@ export default function AssessmentSessionView({
                                 className="cursor-pointer flex-1 flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-primary text-white rounded-2xl font-bold text-sm sm:text-base hover:shadow-md disabled:opacity-50 disabled:hover:shadow-none disabled:cursor-not-allowed transition-all"
                             >
                                 <span>Hoàn thành</span>
-                                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                                <CheckCircle2 className="size-4 sm:w-5 sm:h-5" />
                             </button>
                         ) : (
                             <button
@@ -321,7 +321,7 @@ export default function AssessmentSessionView({
                                 className="cursor-pointer flex-1 flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-primary text-white rounded-2xl font-bold text-sm sm:text-base hover:shadow-md disabled:opacity-50 disabled:hover:shadow-none disabled:cursor-not-allowed transition-all"
                             >
                                 <span>Tiếp theo</span>
-                                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                                <ChevronRight className="size-4 sm:w-5 sm:h-5" />
                             </button>
                         )}
                     </div>

@@ -10,9 +10,9 @@ export default function HealthStatusCard({ healthSummary }: HealthStatusCardProp
 
     if (!hasData) {
         return (
-            <div className="rounded-2xl bg-card border border-border shadow-md p-6">
+            <div suppressHydrationWarning className="rounded-2xl bg-card border border-border shadow-md p-6">
                 <div className="text-center py-8">
-                    <Activity className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                    <Activity className="size-12 mx-auto mb-4 text-muted-foreground" />
                     <p className="text-foreground mb-2">Chưa có dữ liệu sức khỏe tinh thần</p>
                     <p className="text-sm text-muted-foreground">
                         Hãy hoàn thành bài đánh giá hoặc ghi nhận tâm trạng để xem tình trạng sức khỏe của bạn
@@ -37,11 +37,11 @@ export default function HealthStatusCard({ healthSummary }: HealthStatusCardProp
     const getTrendIcon = () => {
         switch (trendDirection) {
             case 'improving':
-                return <TrendingUp className="w-5 h-5 text-green-600 dark:text-green-400" />;
+                return <TrendingUp className="size-5 text-green-600 dark:text-green-400" />;
             case 'declining':
-                return <TrendingDown className="w-5 h-5 text-red-600 dark:text-red-400" />;
+                return <TrendingDown className="size-5 text-red-600 dark:text-red-400" />;
             default:
-                return <Minus className="w-5 h-5 text-gray-600 dark:text-gray-400" />;
+                return <Minus className="size-5 text-gray-600 dark:text-gray-400" />;
         }
     };
 
@@ -59,7 +59,7 @@ export default function HealthStatusCard({ healthSummary }: HealthStatusCardProp
     return (
         <div className="rounded-2xl bg-card border border-border shadow-md p-6">
             <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg sm:text-xl font-bold text-foreground">
+                <h3 className="text-lg font-semibold text-foreground">
                     Tình trạng sức khỏe tinh thần
                 </h3>
                 <div className="flex items-center gap-2">
@@ -71,7 +71,7 @@ export default function HealthStatusCard({ healthSummary }: HealthStatusCardProp
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-                {}
+                { }
                 <div className={`rounded-xl bg-gradient-to-br ${getStatusColorClasses(statusColor)} border-2 p-6 transition-all duration-300 hover:scale-[1.02]`}>
                     <div className="text-sm font-medium opacity-80 mb-2">Trạng thái hiện tại</div>
                     <div className="text-2xl sm:text-3xl font-bold">{currentStatus}</div>
@@ -80,7 +80,7 @@ export default function HealthStatusCard({ healthSummary }: HealthStatusCardProp
                     </div>
                 </div>
 
-                {}
+                { }
                 {latestAssessment && (
                     <div className="rounded-xl bg-muted/50 border-2 border-primary/20 p-6 transition-all duration-300 hover:scale-[1.02]">
                         <div className="text-sm font-medium text-primary mb-2">
@@ -104,7 +104,7 @@ export default function HealthStatusCard({ healthSummary }: HealthStatusCardProp
                 {!latestAssessment && (
                     <div className="rounded-xl bg-muted/30 border-2 border-muted p-6 flex items-center justify-center">
                         <div className="text-center">
-                            <Activity className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                            <Activity className="size-8 mx-auto mb-2 text-muted-foreground" />
                             <p className="text-sm text-muted-foreground">
                                 Chưa có đánh giá gần đây
                             </p>

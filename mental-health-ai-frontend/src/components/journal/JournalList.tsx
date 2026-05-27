@@ -81,9 +81,9 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
 
     if (journals.length === 0) {
         return (
-            <div className="text-center py-16 bg-muted/30 rounded-2xl border-2 border-dashed border-border">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-amber-500/10 flex items-center justify-center">
-                    <FileText className="w-10 h-10 text-amber-500" />
+            <div suppressHydrationWarning className="text-center py-16 bg-muted/30 rounded-2xl border-2 border-dashed border-border">
+                <div className="size-20 mx-auto mb-4 rounded-full bg-amber-500/10 flex items-center justify-center">
+                    <FileText className="size-10 text-amber-500" />
                 </div>
                 <h3 className="text-xl font-medium text-foreground mb-2">
                     Chưa có bài nhật ký nào
@@ -111,7 +111,7 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
                         onClick={() => onSelect(journal)}
                     >
                         <div className={cn("absolute inset-0 bg-linear-to-br pointer-events-none", theme.gradient)} />
-                        <div className={cn("absolute -top-16 -right-16 h-52 w-52 rounded-full blur-3xl pointer-events-none", theme.glow)} />
+                        <div className={cn("absolute -top-16 -right-16 size-52 rounded-full blur-3xl pointer-events-none", theme.glow)} />
 
                         <div className="relative p-5 md:p-6">
                             <div className="flex items-start justify-between gap-3 min-w-0">
@@ -127,7 +127,7 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
                                         <div className="mt-1 flex items-center gap-2 flex-wrap">
                                             {journal.mood ? (
                                                 <span className={cn("inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold", theme.badge)}>
-                                                    <BookHeart className="w-3.5 h-3.5" />
+                                                    <BookHeart className="size-3.5" />
                                                     {journal.mood}
                                                 </span>
                                             ) : (
@@ -144,7 +144,7 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
 
                                 <div className="flex flex-wrap items-center gap-2 shrink-0">
                                     <span className={cn("inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold", theme.subBadge)}>
-                                        <Clock3 className="w-3.5 h-3.5" />
+                                        <Clock3 className="size-3.5" />
                                         {date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                                     </span>
                                     <button
@@ -156,7 +156,7 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
                                         aria-label="Sửa bài viết"
                                         title="Sửa bài viết"
                                     >
-                                        <Pencil className="w-4 h-4" />
+                                        <Pencil className="size-4" />
                                     </button>
 
                                     {!isToday && (
@@ -169,7 +169,7 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
                                             aria-label="Xóa bản ghi"
                                             title="Xóa bản ghi"
                                         >
-                                            <Trash2 className="w-4 h-4" />
+                                            <Trash2 className="size-4" />
                                         </button>
                                     )}
                                 </div>
@@ -184,7 +184,7 @@ export default function JournalList({ journals, isLoading, onSelect, onDelete, o
                             {images.length > 0 ? (
                                 <div className="mt-4 space-y-2">
                                     <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                                        <ImageIcon className={cn("w-3.5 h-3.5", theme.icon)} />
+                                        <ImageIcon className={cn("size-3.5", theme.icon)} />
                                         <span>{images.length} ảnh</span>
                                     </div>
                                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6">

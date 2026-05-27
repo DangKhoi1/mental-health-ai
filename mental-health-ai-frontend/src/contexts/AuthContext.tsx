@@ -24,7 +24,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const initAuth = async () => {
             try {
                 const token = localStorage.getItem('accessToken');
-                const savedUser = localStorage.getItem('user');
+                const savedUser = localStorage.getItem('user:v1');
 
                 if (token && savedUser && savedUser !== 'undefined') {
                     try {
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                         setUser(parsedUser);
                         setIsLoading(false);
                     } catch {
-                        localStorage.removeItem('user');
+                        localStorage.removeItem('user:v1');
                         localStorage.removeItem('accessToken');
                         setIsLoading(false);
                     }
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const login = (token: string, userData: User) => {
         localStorage.setItem('accessToken', token);
-        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('user:v1', JSON.stringify(userData));
         setUser(userData);
     };
 
@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
             const freshUser = await userService.getProfile();
             setUser(freshUser);
-            localStorage.setItem('user', JSON.stringify(freshUser));
+            localStorage.setItem('user:v1', JSON.stringify(freshUser));
         } catch (error) {
             console.error('Failed to refresh user:', error);
         }

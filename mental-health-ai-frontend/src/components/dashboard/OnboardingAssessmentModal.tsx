@@ -58,11 +58,11 @@ export default function OnboardingAssessmentModal() {
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="bg-linear-to-br from-sky-500 via-cyan-500 to-emerald-500 p-6 pb-5 text-white text-center relative shrink-0">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <Brain className="w-6 h-6" />
+                    <div className="size-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Brain className="size-6" />
                     </div>
 
-                    <h2 className="text-xl font-bold mb-1">
+                    <h2 className="text-xl font-semibold mb-1">
                         Chào mừng, {firstName}!
                     </h2>
                     <p className="text-white/85 text-[13px] leading-relaxed">
@@ -75,7 +75,7 @@ export default function OnboardingAssessmentModal() {
                 <div className="p-5 space-y-4 overflow-y-auto">
                     <div>
                         <div className="flex items-center gap-2 mb-1">
-                            <ClipboardList className="w-4 h-4 text-primary" />
+                            <ClipboardList className="size-4 text-primary" />
                             <p className="text-foreground font-semibold text-sm">
                                 {isResuming ? 'Tiếp tục bài sàng lọc sức khỏe tâm lý' : 'Bài sàng lọc sức khỏe tâm lý ban đầu'}
                             </p>
@@ -90,7 +90,7 @@ export default function OnboardingAssessmentModal() {
                     <div className="rounded-xl border border-sky-100 bg-sky-50/70 p-3.5 space-y-2.5">
                         {BENEFITS.map((benefit, i) => (
                             <div key={i} className="flex items-start gap-2.5 text-[13px] text-foreground">
-                                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                <CheckCircle2 className="size-4 text-emerald-500 shrink-0 mt-0.5" />
                                 <span>{benefit}</span>
                             </div>
                         ))}
@@ -106,7 +106,7 @@ export default function OnboardingAssessmentModal() {
                             onClick={handleStart}
                             className="cursor-pointer w-full py-3 px-6 bg-primary hover:opacity-90 text-primary-foreground rounded-2xl font-semibold transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
                         >
-                            <Sparkles className="w-4 h-4" />
+                            <Sparkles className="size-4" />
                             {isResuming ? 'Tiếp tục bài sàng lọc' : 'Bắt đầu bài sàng lọc'}
                         </button>
                     </div>

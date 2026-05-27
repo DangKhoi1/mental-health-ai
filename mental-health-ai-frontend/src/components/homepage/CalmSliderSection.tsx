@@ -79,16 +79,16 @@ export default function CalmSliderSection() {
                         <button
                             onClick={prevSlide}
                             aria-label="Gợi ý trước"
-                            className="h-10 w-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                            className="size-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                         >
-                            <ChevronLeft className="h-4 w-4" />
+                            <ChevronLeft className="size-4" />
                         </button>
                         <button
                             onClick={nextSlide}
                             aria-label="Gợi ý tiếp theo"
-                            className="h-10 w-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-md hover:bg-foreground/90 transition-colors"
+                            className="size-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-md hover:bg-foreground/90 transition-colors"
                         >
-                            <ChevronRight className="h-4 w-4" />
+                            <ChevronRight className="size-4" />
                         </button>
                     </div>
                 </div>
@@ -108,11 +108,11 @@ export default function CalmSliderSection() {
                                 }`}
                             >
                                 {/* Decorative circle */}
-                                <div className={`absolute -top-6 -right-6 w-24 h-24 rounded-full transition-all duration-500 ${isActive ? 'bg-primary/15 scale-110' : 'bg-sky-100/50 scale-75'}`} />
+                                <div className={`absolute -top-6 -right-6 size-24 rounded-full transition-all duration-500 ${isActive ? 'bg-primary/15 scale-110' : 'bg-sky-100/50 scale-75'}`} />
 
                                 <div className="relative z-10 space-y-3">
-                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-sm transition-transform duration-500 ${slide.color} ${isActive ? 'scale-110' : ''}`}>
-                                        <slide.icon className="h-5 w-5" />
+                                    <div className={`size-10 rounded-xl flex items-center justify-center shadow-sm transition-transform duration-500 ${slide.color} ${isActive ? 'scale-110' : ''}`}>
+                                        <slide.icon className="size-5" />
                                     </div>
                                     <div>
                                         <span className="text-[10px] font-medium tracking-widest text-muted-foreground uppercase">{slide.header}</span>

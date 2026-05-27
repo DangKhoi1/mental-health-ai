@@ -96,57 +96,34 @@ export function CreateUserModal({ open, onClose, onSuccess, roles }: CreateUserM
         <Modal open={open} onClose={handleClose} title="Thêm người dùng">
             <div className="space-y-4">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Tên đăng nhập</label>
-                        <Input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Nhập tên đăng nhập" />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Email</label>
-                        <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" />
-                    </div>
+                    <Input label="Tên đăng nhập" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Nhập tên đăng nhập" />
+                    <Input label="Email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com" />
                 </div>
 
-                <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Mật khẩu</label>
-                    <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ít nhất 6 ký tự" />
-                </div>
+                <Input label="Mật khẩu" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Ít nhất 6 ký tự" />
+                <Input label="Họ và tên" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Nhập họ tên" />
 
-                <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Họ và tên</label>
-                    <Input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Nhập họ tên" />
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <Input label="Số điện thoại" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="0912345678" />
+                    <DatePicker label="Ngày sinh" value={dateOfBirth} onChange={setDateOfBirth} disableFutureDates />
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Số điện thoại</label>
-                        <Input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="0912345678" />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Ngày sinh</label>
-                        <DatePicker value={dateOfBirth} onChange={setDateOfBirth} disableFutureDates />
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Giới tính</label>
-                        <Select
-                            value={genderCode}
-                            onChange={(e) => setGenderCode(e.target.value)}
-                            options={[{ value: '', label: 'Chọn giới tính' }, ...GENDER_OPTIONS]}
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Vai trò</label>
-                        <Select
-                            value={roleId}
-                            onChange={(e) => setRoleId(e.target.value)}
-                            options={[
-                                { value: '', label: 'Chọn vai trò' },
-                                ...activeRoles.map((role) => ({ value: String(role.roleId), label: role.roleName })),
-                            ]}
-                        />
-                    </div>
+                    <Select
+                        label="Giới tính"
+                        value={genderCode}
+                        onChange={(e) => setGenderCode(e.target.value)}
+                        options={[{ value: '', label: 'Chọn giới tính' }, ...GENDER_OPTIONS]}
+                    />
+                    <Select
+                        label="Vai trò"
+                        value={roleId}
+                        onChange={(e) => setRoleId(e.target.value)}
+                        options={[
+                            { value: '', label: 'Chọn vai trò' },
+                            ...activeRoles.map((role) => ({ value: String(role.roleId), label: role.roleName })),
+                        ]}
+                    />
                 </div>
 
                 <div className="flex items-center justify-end gap-2 pt-2">

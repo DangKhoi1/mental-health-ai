@@ -106,13 +106,13 @@ export default function ChatHistoryPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-3xl font-bold text-slate-900">Lịch sử chat</h1>
+                <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">Lịch sử chat</h1>
                 <p className="mt-1 text-slate-600">Xem lại tất cả các cuộc trò chuyện của bạn với trợ lý AI</p>
             </div>
 
             {/* Search */}
             <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
                 <Input
                     placeholder="Tìm kiếm phiên chat..."
                     value={search}
@@ -132,7 +132,7 @@ export default function ChatHistoryPage() {
             ) : filteredSessions.length === 0 ? (
                 <Card>
                     <CardContent className="py-12 text-center">
-                        <MessageSquare className="mx-auto mb-4 h-12 w-12 text-slate-400" />
+                        <MessageSquare className="mx-auto mb-4 size-12 text-slate-400" />
                         <p className="text-slate-500">
                             {search ? 'Không tìm thấy phiên chat phù hợp' : 'Chưa có phiên chat nào. Hãy bắt đầu trò chuyện!'}
                         </p>

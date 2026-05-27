@@ -28,9 +28,9 @@ export default function JournalGrid({ journals, isLoading, onSelect, onDelete }:
 
     if (journals.length === 0) {
         return (
-            <div className="col-span-full flex flex-col items-center justify-center py-16 px-4 bg-muted/20 border-2 border-dashed border-muted rounded-3xl">
-                <div className="w-20 h-20 bg-amber-500/10 rounded-2xl flex items-center justify-center shadow-sm mb-6 rotate-3">
-                    <Book className="w-10 h-10 text-amber-500" />
+            <div suppressHydrationWarning className="col-span-full flex flex-col items-center justify-center py-16 px-4 bg-muted/20 border-2 border-dashed border-muted rounded-3xl">
+                <div className="size-20 bg-amber-500/10 rounded-2xl flex items-center justify-center shadow-sm mb-6 rotate-3">
+                    <Book className="size-10 text-amber-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                     Trang giấy còn trống
@@ -58,7 +58,7 @@ export default function JournalGrid({ journals, isLoading, onSelect, onDelete }:
 
                         <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                                <Calendar className="w-3.5 h-3.5" />
+                                <Calendar className="size-3.5" />
                                 {date.toLocaleDateString('vi-VN', {
                                     weekday: 'short',
                                     day: 'numeric',
@@ -73,16 +73,16 @@ export default function JournalGrid({ journals, isLoading, onSelect, onDelete }:
                                 }}
                                 className="p-1.5 -mr-1.5 text-black/20 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all opacity-0 group-hover:opacity-100"
                             >
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="size-4" />
                             </button>
                         </div>
 
-                        <h3 className="text-lg font-bold text-foreground line-clamp-2 mb-3 leading-snug group-hover:text-amber-500 transition-colors">
+                        <h3 className="text-lg font-semibold text-foreground line-clamp-2 mb-3 leading-snug group-hover:text-amber-500 transition-colors">
                             {journal.title}
                         </h3>
 
                         {journal.mood && (
-                            <div className="mb-4">
+                            <div suppressHydrationWarning className="mb-4">
                                 <span className={cn(
                                     "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border",
                                     moodColors[journal.mood] || 'bg-amber-500/10 text-amber-500 border-amber-500/20'

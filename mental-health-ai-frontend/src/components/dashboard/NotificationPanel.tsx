@@ -24,13 +24,13 @@ export function NotificationPanel() {
     const getTypeIcon = (type: string) => {
         switch (type) {
             case 'REMINDER':
-                return <Clock className="w-4 h-4 text-blue-500" />;
+                return <Clock className="size-4 text-blue-500" />;
             case 'WARNING':
-                return <AlertTriangle className="w-4 h-4 text-amber-500" />;
+                return <AlertTriangle className="size-4 text-amber-500" />;
             case 'SYSTEM':
-                return <Bell className="w-4 h-4 text-purple-500" />;
+                return <Bell className="size-4 text-purple-500" />;
             default:
-                return <Info className="w-4 h-4 text-sky-500" />;
+                return <Info className="size-4 text-sky-500" />;
         }
     };
 
@@ -54,7 +54,7 @@ export function NotificationPanel() {
                         className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
                         title="Đánh dấu tất cả đã đọc"
                     >
-                        <CheckCheck className="w-3.5 h-3.5" />
+                        <CheckCheck className="size-3.5" />
                         <span>Đọc tất cả</span>
                     </button>
                 )}
@@ -64,11 +64,11 @@ export function NotificationPanel() {
             <div className="max-h-80 overflow-y-auto">
                 {isLoading ? (
                     <div className="flex items-center justify-center py-8">
-                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                        <div className="size-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
                     </div>
                 ) : notifications.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
-                        <BellOff className="w-8 h-8 mb-2 opacity-50" />
+                        <BellOff className="size-8 mb-2 opacity-50" />
                         <p className="text-sm">Không có thông báo nào</p>
                     </div>
                 ) : (
@@ -99,7 +99,7 @@ export function NotificationPanel() {
                                         className="shrink-0 p-1 rounded-md text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-colors"
                                         title="Xóa thông báo"
                                     >
-                                        <Trash2 className="w-3.5 h-3.5" />
+                                        <Trash2 className="size-3.5" />
                                     </button>
                                 </div>
                                 <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
@@ -110,7 +110,7 @@ export function NotificationPanel() {
                                 </p>
                             </div>
                             {!notification.isRead && (
-                                <div className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1.5" />
+                                <div className="size-2 rounded-full bg-primary shrink-0 mt-1.5" />
                             )}
                         </div>
                     ))

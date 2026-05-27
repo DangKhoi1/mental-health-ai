@@ -30,7 +30,7 @@ function MarkdownLink({ href, children }: { href?: string; children?: React.Reac
 
     if (!href) return <span>{children}</span>;
 
-    // External link — open in new tab
+    // External link ,  open in new tab
     if (href.startsWith('http://') || href.startsWith('https://')) {
         return (
             <a
@@ -62,7 +62,7 @@ function MarkdownLink({ href, children }: { href?: string; children?: React.Reac
         );
     }
 
-    // Internal link — close chatbot and navigate
+    // Internal link ,  close chatbot and navigate
     const handleClick = () => {
         closeChat();
         router.push(href);
@@ -92,7 +92,7 @@ export function ChatMessage({ content, role }: ChatMessageProps) {
         >
             <div
                 className={cn(
-                    "flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-full border shadow-sm",
+                    "flex size-8 shrink-0 select-none items-center justify-center rounded-full border shadow-sm",
                     isBot ? "bg-white text-primary border-primary/20" : "bg-primary/5 text-primary"
                 )}
             >

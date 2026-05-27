@@ -68,7 +68,7 @@ function ResourcesContent() {
         <div className="space-y-8">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold bg-linear-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
                     Thư viện chữa lành
                 </h1>
                 <p className="text-muted-foreground mt-2 text-lg">
@@ -91,7 +91,7 @@ function ResourcesContent() {
                                 }}
                                 className={`gap-2 rounded-full ${selectedCategory === cat.id ? 'shadow-md' : ''}`}
                             >
-                                <Icon className="w-4 h-4" />
+                                <Icon className="size-4" />
                                 {cat.label}
                             </Button>
                         );
@@ -99,7 +99,7 @@ function ResourcesContent() {
                 </div>
 
                 <div className="relative w-full md:w-80">
-                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground z-10" />
+                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground z-10" />
                     <Input
                         placeholder="Tìm kiếm tài liệu..."
                         value={searchQuery}
@@ -139,8 +139,8 @@ function ResourcesContent() {
                         ))
                     ) : (
                         <div className="col-span-full py-12 text-muted-foreground flex flex-col items-center text-center">
-                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4 opacity-50">
-                                <SearchIcon className="w-8 h-8" />
+                            <div className="inline-flex items-center justify-center size-16 rounded-full bg-muted mb-4 opacity-50">
+                                <SearchIcon className="size-8" />
                             </div>
                             <p className="w-full max-w-md mx-auto text-center">
                                 Không tìm thấy tài liệu nào phù hợp.

@@ -165,7 +165,7 @@ function StatCardItem({ stat, isLoading }: { stat: StatCard; isLoading: boolean 
                         trend === 'up' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300' :
                         'bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300'
                     )}>
-                        {trend === 'up' ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                        {trend === 'up' ? <TrendingUp className="size-3" /> : <TrendingDown className="size-3" />}
                         {trend === 'up' ? 'Tốt' : 'Cần cải thiện'}
                     </div>
                 )}
@@ -247,14 +247,14 @@ export default function StatsGrid({ stats, isLoading = false }: StatsGridProps) 
                 <div className="flex items-center gap-3">
                     <div className="relative">
                         <div className="absolute inset-0 bg-primary/20 rounded-xl blur-md opacity-0 group-hover/stats:opacity-100 transition-opacity duration-500" />
-                        <div className="relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-emerald-400/10 border border-primary/20">
-                            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="relative inline-flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-emerald-400/10 border border-primary/20">
+                            <svg className="size-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
                         </div>
                     </div>
                     <div>
-                        <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                             Tổng quan hoạt động
                         </h3>
                         <p className="text-xs text-muted-foreground mt-0.5">
@@ -270,7 +270,7 @@ export default function StatsGrid({ stats, isLoading = false }: StatsGridProps) 
                         <span className="text-[10px] text-muted-foreground">7 ngày</span>
                     </div>
                     <ChevronDown className={cn(
-                        "w-5 h-5 text-muted-foreground transition-transform duration-300",
+                        "size-5 text-muted-foreground transition-transform duration-300",
                         isExpanded && "rotate-180"
                     )} />
                 </div>

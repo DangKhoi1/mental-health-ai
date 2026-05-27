@@ -200,7 +200,7 @@ export default function AssessmentTemplatePage() {
                             <div className="space-y-1.5">
                                 <label className="ml-1 block text-sm font-medium text-foreground">Tìm kiếm</label>
                                 <div className="relative">
-                                    <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                    <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                                     <Input
                                         className="pl-11"
                                         placeholder="Tìm theo tiêu đề, mã hoặc mô tả..."
@@ -234,11 +234,11 @@ export default function AssessmentTemplatePage() {
                                 onClick={clearFilters}
                                 disabled={!search && statusFilter === 'all'}
                             >
-                                <X className="h-4 w-4" />
+                                <X className="size-4" />
                                 Xóa lọc
                             </Button>
                             <Button onClick={() => handleOpenModal()}>
-                                <Plus className="h-4 w-4" />
+                                <Plus className="size-4" />
                                 Thêm bài đánh giá
                             </Button>
                         </div>
@@ -269,7 +269,7 @@ export default function AssessmentTemplatePage() {
                     <Card className="col-span-full border-dashed border-border/80 bg-muted/20">
                         <CardContent className="flex min-h-55 flex-col items-center justify-center py-16 text-center">
                             <div className="rounded-full bg-white p-3 shadow-sm">
-                                <Search className="h-5 w-5 text-muted-foreground" />
+                                <Search className="size-5 text-muted-foreground" />
                             </div>
                             <h3 className="mt-4 text-lg font-semibold text-foreground">Không tìm thấy bài đánh giá phù hợp</h3>
                             <p className="mt-1 max-w-md text-sm text-muted-foreground">
@@ -307,14 +307,14 @@ export default function AssessmentTemplatePage() {
                                             onClick={() => router.push('/assessment-questions')}
                                             title="Quản lý câu hỏi"
                                         >
-                                            <Settings className="w-4 h-4" />
+                                            <Settings className="size-4" />
                                         </Button>
                                         <Button
                                             size="sm"
                                             variant="outline"
                                             onClick={() => handleOpenModal(template)}
                                         >
-                                            <Edit2 className="w-4 h-4" />
+                                            <Edit2 className="size-4" />
                                         </Button>
                                         <Button
                                             size="sm"
@@ -322,14 +322,14 @@ export default function AssessmentTemplatePage() {
                                             className="bg-amber-400 text-amber-950 border-amber-500 hover:bg-amber-400"
                                             onClick={() => toggleStatus(template)}
                                         >
-                                            {template.isActive ? <LockIcon className="w-4 h-4" /> : <Unlock className="w-4 h-4" />}
+                                            {template.isActive ? <LockIcon className="size-4" /> : <Unlock className="size-4" />}
                                         </Button>
                                         <Button
                                             size="sm"
                                             variant="danger"
                                             onClick={() => handleDelete(template)}
                                         >
-                                            <Trash2 className="w-4 h-4" />
+                                            <Trash2 className="size-4" />
                                         </Button>
                                     </div>
                                 </div>
@@ -388,7 +388,7 @@ export default function AssessmentTemplatePage() {
                                 <input
                                     type="checkbox"
                                     id="isActive"
-                                    className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                    className="size-4 rounded border-gray-300 text-primary focus:ring-primary"
                                     checked={formData.isActive}
                                     onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
                                 />

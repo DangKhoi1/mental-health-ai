@@ -68,12 +68,12 @@ export default function AvatarUpload({
     return (
         <div className="flex flex-col items-center gap-4">
             <div className="relative group">
-                <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl font-bold overflow-hidden border-4 border-background shadow-lg">
+                <div className="size-32 rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl font-bold overflow-hidden border-4 border-background shadow-lg">
                     {displayUrl ? (
                         <img
                             src={displayUrl}
                             alt="Avatar"
-                            className="w-full h-full object-cover"
+                            className="size-full object-cover"
                         />
                     ) : (
                         userInitial
@@ -88,9 +88,9 @@ export default function AvatarUpload({
                     className="absolute inset-0 rounded-full bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:cursor-not-allowed"
                 >
                     {isUploading ? (
-                        <Loader2 className="w-8 h-8 text-white animate-spin" />
+                        <Loader2 className="size-8 text-white animate-spin" />
                     ) : (
-                        <Camera className="w-8 h-8 text-white" />
+                        <Camera className="size-8 text-white" />
                     )}
                 </button>
 
@@ -110,7 +110,7 @@ export default function AvatarUpload({
                     disabled={isUploading}
                     className="text-sm text-primary hover:underline disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                 >
-                    {isUploading ? 'Đang tải lên...' : 'Thay đổi ảnh đại diện'}
+                    {isUploading ? 'Đang tải lên…' : 'Thay đổi ảnh đại diện'}
                 </button>
                 <p className="text-xs text-muted-foreground mt-1">
                     PNG, JPG, JPEG (tối đa 5MB)

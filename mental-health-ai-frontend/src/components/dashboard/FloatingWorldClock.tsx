@@ -67,7 +67,7 @@ export default function FloatingWorldClock() {
                 className="h-10 rounded-full shadow-md hover:shadow-lg transition-all duration-300 bg-background/80 backdrop-blur-sm border-border hover:bg-background flex items-center gap-2 px-4"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <Clock className="h-4 w-4 text-primary" />
+                <Clock className="size-4 text-primary" />
                 <span className="font-medium tabular-nums text-foreground">
                     {time.tz(selectedCity.timezone).format("HH:mm")}
                 </span>
@@ -81,16 +81,16 @@ export default function FloatingWorldClock() {
                 <Card className="absolute top-full right-0 w-80 shadow-2xl border-border animate-in fade-in slide-in-from-top-2 duration-200 mt-2 z-[100]">
                     <div className="p-3 border-b border-border flex items-center justify-between bg-muted/30 rounded-t-lg">
                         <div className="flex items-center gap-2 font-medium text-foreground text-sm">
-                            <Globe className="h-3.5 w-3.5 text-primary" />
+                            <Globe className="size-3.5 text-primary" />
                             <span>Giờ thế giới</span>
                         </div>
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="h-6 w-6 rounded-full hover:bg-background/80"
+                            className="size-6 rounded-full hover:bg-background/80"
                             onClick={() => setIsOpen(false)}
                         >
-                            <X className="h-3 w-3" />
+                            <X className="size-3" />
                         </Button>
                     </div>
                     <CardContent className="p-2 max-h-[400px] overflow-y-auto">
@@ -105,7 +105,7 @@ export default function FloatingWorldClock() {
                                     }}
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${selectedCity.name === city.name ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>
+                                        <div className={`size-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${selectedCity.name === city.name ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>
                                             {city.label}
                                         </div>
                                         <div className="flex flex-col">

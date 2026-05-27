@@ -106,7 +106,7 @@ export default function VoiceInput({
                     className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-not-allowed"
                     title="Trình duyệt không hỗ trợ"
                 >
-                    <MicOff className="w-5 h-5" />
+                    <MicOff className="size-5" />
                 </button>
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
                     Trình duyệt không hỗ trợ nhập liệu bằng giọng nói
@@ -125,7 +125,7 @@ export default function VoiceInput({
                 className={`p-2 rounded-lg bg-primary hover:bg-primary text-white transition-all cursor-pointer ${buttonClassName}`}
                 title="Nhấn để nói"
             >
-                <Mic className="w-5 h-5" />
+                <Mic className="size-5" />
             </button>
 
             {isOpen && isMounted && createPortal(
@@ -137,7 +137,7 @@ export default function VoiceInput({
                         className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-sm w-full mx-4 text-center"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="flex flex-col items-center space-y-6">
+                        <div className="flex flex-col items-center gap-y-6">
                             <div className="relative">
                                 {listening && (
                                     <div className="absolute inset-0 rounded-full bg-red-500 opacity-40 animate-ping"></div>
@@ -145,9 +145,9 @@ export default function VoiceInput({
 
                                 <div className="p-6 rounded-full bg-red-500 relative z-10">
                                     {listening ? (
-                                        <Mic className="w-12 h-12 text-white" />
+                                        <Mic className="size-12 text-white" />
                                     ) : (
-                                        <MicOff className="w-12 h-12 text-white" />
+                                        <MicOff className="size-12 text-white" />
                                     )}
                                 </div>
                             </div>
@@ -156,7 +156,7 @@ export default function VoiceInput({
                                 <p className="text-lg text-gray-900 dark:text-gray-100 font-medium">
                                     {transcript !== ""
                                         ? transcript
-                                        : "Đang nghe... hãy nói điều gì đó"}
+                                        : "Đang nghe… hãy nói điều gì đó"}
                                 </p>
                                 {voiceError && (
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">
@@ -167,7 +167,7 @@ export default function VoiceInput({
 
                             <div className="flex flex-col items-center gap-2">
                                 <span className="text-sm text-gray-500 dark:text-gray-400">
-                                    {listening ? "Đang ghi âm..." : "Đã dừng"}
+                                    {listening ? "Đang ghi âm…" : "Đã dừng"}
                                 </span>
                                 <span className="text-xs text-gray-400 dark:text-gray-500">
                                     {language === "vi-VN" ? "🇻🇳 Tiếng Việt" : "🇺🇸 Tiếng Anh"}

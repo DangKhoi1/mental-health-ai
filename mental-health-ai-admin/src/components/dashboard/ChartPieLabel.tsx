@@ -74,7 +74,7 @@ export function ChartPieLabel() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium text-foreground">
-          Tăng trưởng 5.2% trong tháng này <TrendingUp className="h-4 w-4 text-primary" />
+          Tăng trưởng 5.2% trong tháng này <TrendingUp className="size-4 text-primary" />
         </div>
         <div className="leading-none text-muted-foreground">
           Hiển thị tổng khách truy cập trong 6 tháng qua

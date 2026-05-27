@@ -149,7 +149,7 @@ export default function ImageUploader({
                                         className="absolute top-2 right-2 p-1.5 bg-destructive/90 hover:bg-destructive rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-20"
                                         title="Xóa ảnh"
                                     >
-                                        <X className="w-3.5 h-3.5 text-white" />
+                                        <X className="size-3.5 text-white" />
                                     </button>
 
                                     {/* Tape effect indicator on hover */}
@@ -162,8 +162,8 @@ export default function ImageUploader({
                 {/* Loading State */}
                 {isUploading && uploadingImageId && (
                     <div className="flex items-center justify-center gap-2 py-4 text-sm text-muted-foreground">
-                        <Loader className="w-4 h-4 animate-spin" />
-                        Đang tải lên ảnh...
+                        <Loader className="size-4 animate-spin" />
+                        Đang tải lên ảnh…
                     </div>
                 )}
 
@@ -209,7 +209,7 @@ export default function ImageUploader({
 
                 <div className="flex flex-col items-center justify-center gap-3">
                     <div className="p-3 bg-amber-500/10 rounded-xl">
-                        <Upload className="w-6 h-6 text-amber-500" />
+                        <Upload className="size-6 text-amber-500" />
                     </div>
                     <div className="text-center">
                         <p className="font-semibold text-foreground">
@@ -251,7 +251,7 @@ export default function ImageUploader({
                                         className="absolute top-1 right-1 p-1.5 bg-destructive/90 hover:bg-destructive rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
                                         title="Xóa ảnh"
                                     >
-                                        <X className="w-4 h-4 text-white" />
+                                        <X className="size-4 text-white" />
                                     </button>
 
                                     {/* File Info on Hover */}
@@ -269,8 +269,8 @@ export default function ImageUploader({
             {/* Loading State */}
             {isUploading && uploadingImageId && (
                 <div className="flex items-center justify-center gap-2 py-4 text-sm text-muted-foreground">
-                    <Loader className="w-4 h-4 animate-spin" />
-                    Đang tải lên ảnh...
+                    <Loader className="size-4 animate-spin" />
+                    Đang tải lên ảnh…
                 </div>
             )}
 

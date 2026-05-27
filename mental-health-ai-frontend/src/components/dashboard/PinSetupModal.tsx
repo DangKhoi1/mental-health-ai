@@ -114,11 +114,11 @@ export default function PinSetupModal() {
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="bg-linear-to-br from-sky-500 via-cyan-500 to-emerald-500 p-6 pb-5 text-white text-center relative shrink-0">
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <ShieldAlert className="w-6 h-6" />
+                    <div className="size-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <ShieldAlert className="size-6" />
                     </div>
 
-                    <h2 className="text-xl font-bold mb-1">
+                    <h2 className="text-xl font-semibold mb-1">
                         Bảo mật thông tin của bạn
                     </h2>
                     <p className="text-white/85 text-[13px] leading-relaxed">
@@ -133,7 +133,7 @@ export default function PinSetupModal() {
                                 Mã PIN mới
                             </label>
                             <div className="relative">
-                                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                                 <input
                                     type="password"
                                     inputMode="numeric"
@@ -152,7 +152,7 @@ export default function PinSetupModal() {
                                 Xác nhận mã PIN
                             </label>
                             <div className="relative">
-                                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                                 <input
                                     type="password"
                                     inputMode="numeric"
@@ -182,7 +182,7 @@ export default function PinSetupModal() {
                                 disabled={isLoading || !pin || !confirmPin}
                                 className="w-full py-2.5 px-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Cài đặt mã PIN'}
+                                {isLoading ? <Loader2 className="size-4 animate-spin" /> : 'Cài đặt mã PIN'}
                             </button>
                             <button
                                 type="button"

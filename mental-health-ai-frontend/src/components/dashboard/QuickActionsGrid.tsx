@@ -103,7 +103,7 @@ export default function QuickActionsGrid({ actions }: QuickActionsGridProps) {
                         style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'both' }}
                     >
                         <div className={cn(
-                            'w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center mb-4',
+                            'size-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center mb-4',
                             'group-hover/item:scale-110 group-hover/item:-translate-y-0.5',
                             'transition-all duration-500 shadow-sm',
                             colors.iconBg

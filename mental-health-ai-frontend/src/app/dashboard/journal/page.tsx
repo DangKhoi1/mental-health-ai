@@ -224,7 +224,7 @@ function JournalContent() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pr-0 sm:pr-20 lg:pr-32">
                 <div className="relative">
-                    <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
+                    <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight flex items-center gap-3">
                         <span className="w-2 h-8 bg-amber-500 rounded-full" />
                         Nhật ký cảm xúc
                     </h1>
@@ -237,11 +237,11 @@ function JournalContent() {
             <Tabs defaultValue="active" className="w-full">
                 <TabsList className="mb-4">
                     <TabsTrigger value="active" className="flex items-center gap-2">
-                        <BookOpen className="w-4 h-4" />
+                        <BookOpen className="size-4" />
                         Nhật ký
                     </TabsTrigger>
                     <TabsTrigger value="trash" className="flex items-center gap-2">
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="size-4" />
                         Đã xóa
                     </TabsTrigger>
                 </TabsList>
@@ -249,9 +249,9 @@ function JournalContent() {
                 <TabsContent value="active" className="space-y-6 mt-0">
                     {/* Filter & Action Section */}
                     <div className="bg-amber-500/5 dark:bg-amber-500/10 p-4 md:p-6 rounded-2xl border border-amber-500/20 shadow-sm flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-end backdrop-blur-sm">
-                        <div className="w-full md:flex-1 space-y-2">
+                        <div className="w-full md:flex-1 gap-y-2">
                             <label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                                <Search className="w-4 h-4" />
+                                <Search className="size-4" />
                                 Tìm kiếm
                             </label>
                             <Input
@@ -265,9 +265,9 @@ function JournalContent() {
                                 className="w-full"
                             />
                         </div>
-                        <div className="w-full md:flex-1 space-y-2">
+                        <div className="w-full md:flex-1 gap-y-2">
                             <label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                                <Filter className="w-4 h-4" />
+                                <Filter className="size-4" />
                                 Lọc theo cảm xúc
                             </label>
                             <Select 
@@ -303,7 +303,7 @@ function JournalContent() {
                                     }}
                                     className="flex items-center gap-2 w-full sm:w-auto text-muted-foreground hover:text-amber-500 hover:bg-amber-500/10"
                                 >
-                                    <X className="w-4 h-4" />
+                                    <X className="size-4" />
                                     Xóa bộ lọc
                                 </Button>
                             )}
@@ -320,12 +320,12 @@ function JournalContent() {
                             >
                                 {showForm ? (
                                     <>
-                                        <X className="w-4 h-4" />
+                                        <X className="size-4" />
                                         Đóng
                                     </>
                                 ) : (
                                     <>
-                                        <PenTool className="w-4 h-4" />
+                                        <PenTool className="size-4" />
                                         Viết mới
                                     </>
                                 )}

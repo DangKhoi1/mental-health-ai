@@ -67,13 +67,13 @@ export default function AssessmentResultModal({ result, onClose }: AssessmentRes
     const Icon = resultInfo.icon;
 
     const modalContent = (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
+        <div suppressHydrationWarning className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
             <div className="bg-card rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-300 border border-border">
                 <div className={`${resultInfo.bgColor} ${resultInfo.borderColor} border-b-2 p-6`}>
                     <div className="flex items-center gap-3">
-                        <Icon className={`w-8 h-8 ${resultInfo.color}`} />
+                        <Icon className={`size-8 ${resultInfo.color}`} />
                         <div>
-                            <h2 className="text-2xl font-bold text-foreground">
+                            <h2 className="text-2xl font-semibold text-foreground">
                                 Kết quả đánh giá
                             </h2>
                             <p className={`text-sm font-medium ${resultInfo.color}`}>
@@ -85,7 +85,7 @@ export default function AssessmentResultModal({ result, onClose }: AssessmentRes
 
                 <div className="p-6 space-y-4">
                     <div className="text-center py-4">
-                        <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-linear-to-br from-primary via-primary/80 to-sky-500 text-white shadow-lg">
+                        <div className="inline-flex items-center justify-center size-24 rounded-full bg-linear-to-br from-primary via-primary/80 to-sky-500 text-white shadow-lg">
                             <div className="text-center">
                                 <div className="text-3xl font-bold">{totalScore}</div>
                                 <div className="text-xs opacity-90">điểm</div>

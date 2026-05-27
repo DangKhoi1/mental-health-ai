@@ -27,7 +27,7 @@ export default function RoleManagementPage() {
             : 'text-muted-foreground hover:text-foreground'
             }`}
         >
-          <Shield className="w-4 h-4" />
+          <Shield className="size-4" />
           Vai trò
         </button>
         <button
@@ -37,7 +37,7 @@ export default function RoleManagementPage() {
             : 'text-muted-foreground hover:text-foreground'
             }`}
         >
-          <Lock className="w-4 h-4" />
+          <Lock className="size-4" />
           Quyền hạn
         </button>
       </div>

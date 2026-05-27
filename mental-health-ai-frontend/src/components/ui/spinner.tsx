@@ -8,9 +8,9 @@ interface SpinnerProps {
 
 export function Spinner({ className, size = 'default' }: SpinnerProps) {
   const sizeClasses = {
-    sm: 'h-4 w-4',
-    default: 'h-8 w-8',
-    lg: 'h-12 w-12',
+    sm: 'size-4',
+    default: 'size-8',
+    lg: 'size-12',
   };
 
   return (

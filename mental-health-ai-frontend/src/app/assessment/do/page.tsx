@@ -99,8 +99,8 @@ function DoPublicAssessmentContent() {
         return (
             <div className="min-h-screen flex items-center justify-center px-4">
                 <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white/85 p-8 sm:p-10 flex flex-col items-center gap-4 shadow-sm">
-                    <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                    <p className="text-muted-foreground">Đang chuẩn bị bài đánh giá...</p>
+                    <div className="size-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-muted-foreground">Đang chuẩn bị bài đánh giá…</p>
                 </div>
             </div>
         );
@@ -147,7 +147,7 @@ export default function DoPublicAssessmentPage() {
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center px-4">
                 <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white/85 p-8 sm:p-10 flex items-center justify-center shadow-sm">
-                    <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                    <div className="size-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                 </div>
             </div>
         }>

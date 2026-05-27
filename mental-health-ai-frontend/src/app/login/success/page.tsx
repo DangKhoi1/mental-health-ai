@@ -68,8 +68,8 @@ export default function LoginSuccessPage() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 gap-4">
-            <Loader2 className="w-10 h-10 animate-spin text-primary" />
-            <p className="text-stone-600 font-medium text-lg">Đang thiết lập phiên đăng nhập...</p>
+            <Loader2 className="size-10 animate-spin text-primary" />
+            <p className="text-stone-600 font-medium text-lg">Đang thiết lập phiên đăng nhập…</p>
         </div>
     );
 }

@@ -200,8 +200,8 @@ function DoAssessmentContent() {
         return (
             <div className="min-h-screen flex items-center justify-center bg-background">
                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                    <p className="text-muted-foreground animate-pulse">Đang chuẩn bị bài đánh giá...</p>
+                    <div className="size-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-muted-foreground animate-pulse">Đang chuẩn bị bài đánh giá…</p>
                 </div>
             </div>
         );
@@ -241,7 +241,7 @@ export default function DoAssessmentPage() {
     return (
         <Suspense fallback={
             <div className="flex justify-center py-20">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                <div className="size-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
             </div>
         }>
             <DoAssessmentContent />

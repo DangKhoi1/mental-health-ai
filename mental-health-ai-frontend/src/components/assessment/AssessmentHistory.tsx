@@ -66,9 +66,9 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
 
     if (history.length === 0) {
         return (
-            <div className="text-center py-16 bg-card rounded-2xl border-2 border-dashed border-border">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-                    <TrendingUp className="w-10 h-10 text-muted-foreground" />
+            <div suppressHydrationWarning className="text-center py-16 bg-card rounded-2xl border-2 border-dashed border-border">
+                <div className="size-20 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
+                    <TrendingUp className="size-10 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
                     Chưa có lịch sử
@@ -84,7 +84,7 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                     <input
                         type="text"
                         placeholder="Tìm kiếm bài đánh giá..."
@@ -94,7 +94,7 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
                     />
                 </div>
                 <div className="relative min-w-37.5">
-                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground z-10" />
+                    <Filter className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground z-10" />
                     <Select value={statusFilter} onValueChange={(val) => setStatusFilter(val as 'ALL' | 'PENDING' | 'COMPLETED' | 'EXPIRED')}>
                         <SelectTrigger className="w-[#180px] pl-9 h-10 rounded-xl bg-background border-input focus:ring-ring focus:border-transparent">
                             <SelectValue placeholder="Lọc trạng thái" />
@@ -135,17 +135,17 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
                                                 }`}>
                                                 {isCompleted ? (
                                                     <>
-                                                        <CheckCircle2 className="w-3.5 h-3.5" />
+                                                        <CheckCircle2 className="size-3.5" />
                                                         Hoàn thành
                                                     </>
                                                 ) : expired ? (
                                                     <>
-                                                        <AlertCircle className="w-3.5 h-3.5" />
+                                                        <AlertCircle className="size-3.5" />
                                                         Quá hạn
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <Clock className="w-3.5 h-3.5" />
+                                                        <Clock className="size-3.5" />
                                                         Đang làm
                                                     </>
                                                 )}
@@ -161,7 +161,7 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
                                             </span>
                                         </div>
 
-                                        <h3 className="font-bold text-foreground text-lg mb-1">
+                                        <h3 className="font-semibold text-foreground text-lg mb-1">
                                             {session.template?.title || `Bài đánh giá #${session.assessmentSessionId.slice(-6)}`}
                                         </h3>
 
@@ -179,7 +179,7 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
                                                     disabled
                                                     className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-muted text-muted-foreground rounded-xl font-medium cursor-not-allowed"
                                                 >
-                                                    <AlertCircle className="w-4 h-4" />
+                                                    <AlertCircle className="size-4" />
                                                     Đã quá hạn
                                                 </button>
                                             ) : (
@@ -188,7 +188,7 @@ export default function AssessmentHistory({ history }: AssessmentHistoryProps) {
                                                     className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl font-medium transition-colors shadow-md shadow-yellow-500/20"
                                                 >
                                                     Tiếp tục
-                                                    <ArrowRight className="w-4 h-4" />
+                                                    <ArrowRight className="size-4" />
                                                 </button>
                                             )
                                         ) : (

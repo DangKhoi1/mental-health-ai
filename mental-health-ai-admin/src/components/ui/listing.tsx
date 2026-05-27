@@ -38,7 +38,7 @@ export function ListToolbar({
                         {searchLabel}
                     </label>
                     <div className="relative">
-                        <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                         <input
                             id={searchInputId}
                             type="text"
@@ -69,7 +69,7 @@ export function ListToolbar({
                 ))}
                 {hasActiveFilters && onClearFilters && (
                     <Button variant="outline" size="sm" onClick={onClearFilters} className="h-7 rounded-full px-3 text-xs">
-                        <X className="h-3.5 w-3.5" />
+                        <X className="size-3.5" />
                         Xóa bộ lọc
                     </Button>
                 )}
@@ -102,21 +102,21 @@ export function PaginationControls({ page, totalPages, onPageChange, summary, sh
             <div className="flex items-center gap-1">
                 <button
                     type="button"
-                    className="h-8 w-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
+                    className="size-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
                     onClick={() => onPageChange(1)}
                     disabled={safePage === 1}
                     title="Trang đầu"
                 >
-                    <ChevronsLeft className="mx-auto h-4 w-4" />
+                    <ChevronsLeft className="mx-auto size-4" />
                 </button>
                 <button
                     type="button"
-                    className="h-8 w-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
+                    className="size-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
                     onClick={() => onPageChange(safePage - 1)}
                     disabled={safePage === 1}
                     title="Trang trước"
                 >
-                    <ChevronLeft className="mx-auto h-4 w-4" />
+                    <ChevronLeft className="mx-auto size-4" />
                 </button>
                 {pages.map((p) => (
                     <button
@@ -133,21 +133,21 @@ export function PaginationControls({ page, totalPages, onPageChange, summary, sh
                 ))}
                 <button
                     type="button"
-                    className="h-8 w-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
+                    className="size-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
                     onClick={() => onPageChange(safePage + 1)}
                     disabled={safePage === safeTotalPages}
                     title="Trang sau"
                 >
-                    <ChevronRight className="mx-auto h-4 w-4" />
+                    <ChevronRight className="mx-auto size-4" />
                 </button>
                 <button
                     type="button"
-                    className="h-8 w-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
+                    className="size-8 rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
                     onClick={() => onPageChange(safeTotalPages)}
                     disabled={safePage === safeTotalPages}
                     title="Trang cuối"
                 >
-                    <ChevronsRight className="mx-auto h-4 w-4" />
+                    <ChevronsRight className="mx-auto size-4" />
                 </button>
             </div>
         </div>

@@ -72,7 +72,7 @@ export function ChatWindow({
         <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-[2px] animate-in fade-in duration-300">
             <div className="absolute inset-0" onClick={onClose} />
             <Card className="relative z-50 w-[95vw] md:w-275 h-[85vh] md:h-162.5 shadow-2xl border-white/20 flex flex-col animate-in zoom-in-95 duration-300 overflow-hidden rounded-2xl ring-1 ring-black/5">
-                <CardHeader className="flex flex-row items-center justify-between p-4 sm:px-6 border-b bg-linear-to-r from-primary to-primary/80 text-primary-foreground space-y-0 shrink-0">
+                <CardHeader className="flex flex-row items-center justify-between p-4 sm:px-6 border-b bg-linear-to-r from-primary to-primary/80 text-primary-foreground gap-y-0 shrink-0">
                     <div className="flex items-center gap-3">
                         {isAuthenticated && (
                             <Button
@@ -84,7 +84,7 @@ export function ChatWindow({
                                 <Menu size={20} />
                             </Button>
                         )}
-                        <div className="flex items-center justify-center w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full ring-2 ring-white/20">
+                        <div className="flex items-center justify-center size-10 bg-white/10 backdrop-blur-sm rounded-full ring-2 ring-white/20">
                             <Bot size={22} className="text-white drop-shadow-md" />
                         </div>
                         <div>
@@ -96,7 +96,7 @@ export function ChatWindow({
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="h-9 w-9 rounded-full hover:bg-white/20 text-primary-foreground transition-colors"
+                            className="size-9 rounded-full hover:bg-white/20 text-primary-foreground transition-colors"
                             onClick={onRefresh}
                             title="Làm mới cuộc trò chuyện"
                         >
@@ -105,7 +105,7 @@ export function ChatWindow({
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="h-9 w-9 rounded-full hover:bg-white/20 text-primary-foreground transition-colors"
+                            className="size-9 rounded-full hover:bg-white/20 text-primary-foreground transition-colors"
                             onClick={onClose}
                         >
                             <X size={20} />
@@ -127,7 +127,7 @@ export function ChatWindow({
                             showSidebar ? 'translate-x-0' : '-translate-x-full'
                         )}>
                             <div className="flex h-full flex-col">
-                                <div className="flex items-center justify-between border-b border-border/40 px-3 py-3">
+                                <div className="flex items-center justify-between border-b border-border/40 p-3">
                                     <div>
                                         <p className="text-sm font-semibold text-foreground">Lịch sử chat</p>
                                         <p className="text-xs text-muted-foreground">Cuộn để chọn phiên trò chuyện</p>
@@ -135,7 +135,7 @@ export function ChatWindow({
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="h-9 w-9 rounded-full text-muted-foreground hover:bg-background/80 hover:text-foreground"
+                                        className="size-9 rounded-full text-muted-foreground hover:bg-background/80 hover:text-foreground"
                                         onClick={() => setShowSidebar(false)}
                                         aria-label="Thu sidebar"
                                         title="Thu sidebar"
@@ -184,9 +184,9 @@ export function ChatWindow({
                     )}
 
                     <div className="flex flex-col flex-1 min-w-0 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-                        <CardContent className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+                        <CardContent className="flex-1 overflow-y-auto p-4 sm:p-6 gap-y-6">
                             {messages.length === 0 && (
-                                <div className="flex flex-col items-center justify-center h-full text-center space-y-8 p-4 sm:p-8 opacity-90 pb-20">
+                                <div className="flex flex-col items-center justify-center h-full text-center gap-y-8 p-4 sm:p-8 opacity-90 pb-20">
                                     <div className="relative">
                                         <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
                                         <div className="relative p-6 bg-white dark:bg-zinc-800 rounded-2xl shadow-sm border border-border/50">
@@ -194,7 +194,7 @@ export function ChatWindow({
                                         </div>
                                     </div>
                                     <div className="space-y-3 max-w-md">
-                                        <h3 className="font-bold text-2xl text-foreground">Xin chào!</h3>
+                                        <h3 className="font-semibold text-2xl text-foreground">Xin chào!</h3>
                                         <p className="text-muted-foreground text-base leading-relaxed">
                                             Tôi là trợ lý AI sức khỏe tinh thần của bạn.<br />
                                             Hãy chia sẻ bất cứ điều gì bạn đang cảm thấy nhé.
@@ -232,9 +232,9 @@ export function ChatWindow({
                             {isLoading && (
                                 <div className="flex justify-start">
                                     <div className="flex items-center gap-1 bg-muted px-3 py-2 rounded-lg">
-                                        <div className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                                        <div className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                                        <div className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-bounce" />
+                                        <div className="size-1.5 bg-primary/50 rounded-full animate-[pulse_2s_ease-in-out_infinite] [animation-delay:-0.3s]" />
+                                        <div className="size-1.5 bg-primary/50 rounded-full animate-[pulse_2s_ease-in-out_infinite] [animation-delay:-0.15s]" />
+                                        <div className="size-1.5 bg-primary/50 rounded-full animate-[pulse_2s_ease-in-out_infinite]" />
                                     </div>
                                 </div>
                             )}

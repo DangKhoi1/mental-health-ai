@@ -144,7 +144,7 @@ export function PermissionsTable() {
         )}
         actionSlot={(
           <Button variant="primary" onClick={() => setCreateOpen(true)} className="w-full whitespace-nowrap sm:w-auto">
-            <Plus className="mr-1.5 h-4 w-4" />
+            <Plus className="mr-1.5 size-4" />
             Thêm quyền hạn
           </Button>
         )}
@@ -242,9 +242,9 @@ export function PermissionsTable() {
                               );
                             }}
                             title="Thao tác"
-                            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                            className="inline-flex size-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                           >
-                            <MoreVertical className="h-4 w-4" />
+                            <MoreVertical className="size-4" />
                           </button>
 
                           {openActionMenuId === perm.permissionId && (
@@ -257,7 +257,7 @@ export function PermissionsTable() {
                                 }}
                                 className="flex w-full items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm text-sky-600 transition-colors hover:bg-sky-50"
                               >
-                                <Edit2 className="h-4 w-4" />
+                                <Edit2 className="size-4" />
                                 Chỉnh sửa
                               </button>
                               <button
@@ -268,7 +268,7 @@ export function PermissionsTable() {
                                 }}
                                 className="flex w-full items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
                               >
-                                <Trash2 className="h-4 w-4" />
+                                <Trash2 className="size-4" />
                                 Xóa
                               </button>
                             </div>

@@ -44,9 +44,9 @@ export function Modal({ open, onClose, title, children, maxWidth = 'max-w-2xl', 
                     <button
                         type="button"
                         onClick={onClose}
-                        className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                        className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                     >
-                        <X className="h-4 w-4" />
+                        <X className="size-4" />
                     </button>
                 </div>
 

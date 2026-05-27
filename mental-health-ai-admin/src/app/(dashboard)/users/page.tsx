@@ -221,7 +221,7 @@ export default function UsersPage() {
             filterSlot={null}
             actionSlot={(
               <Button variant="primary" onClick={() => setCreateOpen(true)}>
-                <Plus className="h-4 w-4" />
+                <Plus className="size-4" />
                 Thêm người dùng
               </Button>
             )}
@@ -277,7 +277,7 @@ export default function UsersPage() {
                               <span title={user.email} className="block max-w-64 truncate">{user.email}</span>
                               {getProvider(user.provider) === 'LOCAL' ? (
                                 <span title="Tài khoản LOCAL có thể sửa email">
-                                  <SquarePen className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                                  <SquarePen className="size-3.5 shrink-0 text-muted-foreground" />
                                 </span>
                               ) : null}
                             </div>
@@ -299,7 +299,7 @@ export default function UsersPage() {
                               </Badge>
                             )}
                           </TableCell>
-                          <TableCell>{new Date(user.createdAt).toLocaleDateString('vi-VN')}</TableCell>
+                          <TableCell suppressHydrationWarning>{new Date(user.createdAt).toLocaleDateString('vi-VN')}</TableCell>
                           <TableCell className="text-right">
                             <div
                               className="relative inline-flex"
@@ -311,10 +311,10 @@ export default function UsersPage() {
                                 size="sm"
                                 variant="outline"
                                 title="Thao tác"
-                                className="h-10 w-10 p-0"
+                                className="size-10 p-0"
                                 onClick={() => toggleActionMenu(user.userId)}
                               >
-                                <MoreVertical className="w-4 h-4" />
+                                <MoreVertical className="size-4" />
                               </Button>
 
                               {openActionMenuId === user.userId && (
@@ -327,7 +327,7 @@ export default function UsersPage() {
                                       closeActionMenu();
                                     }}
                                   >
-                                    <Eye className="h-4 w-4" />
+                                    <Eye className="size-4" />
                                     Xem chi tiết
                                   </button>
                                   {!user.isDeleted && (
@@ -340,7 +340,7 @@ export default function UsersPage() {
                                           closeActionMenu();
                                         }}
                                       >
-                                        <SquarePen className="h-4 w-4" />
+                                        <SquarePen className="size-4" />
                                         Chỉnh sửa
                                       </button>
                                       <button
@@ -351,7 +351,7 @@ export default function UsersPage() {
                                           closeActionMenu();
                                         }}
                                       >
-                                        {user.isActive ? <Lock className="h-4 w-4" /> : <Unlock className="h-4 w-4" />}
+                                        {user.isActive ? <Lock className="size-4" /> : <Unlock className="size-4" />}
                                         {user.isActive ? 'Khóa tài khoản' : 'Mở khóa tài khoản'}
                                       </button>
                                       <button
@@ -362,7 +362,7 @@ export default function UsersPage() {
                                           closeActionMenu();
                                         }}
                                       >
-                                        <Trash2 className="h-4 w-4" />
+                                        <Trash2 className="size-4" />
                                         Xóa tài khoản
                                       </button>
                                     </>

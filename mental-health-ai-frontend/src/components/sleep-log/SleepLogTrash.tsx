@@ -47,15 +47,15 @@ export default function SleepLogTrash() {
     };
 
     return (
-        <div className="border rounded-xl overflow-hidden bg-card mt-6">
+        <div suppressHydrationWarning className="border rounded-xl overflow-hidden bg-card mt-6">
             {isLoading ? (
                 <div className="p-16 text-center text-muted-foreground flex flex-col items-center justify-center gap-3">
-                    <span className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500"></span>
-                    Đang tải thùng rác...
+                    <span className="animate-spin rounded-full size-8 border-b-2 border-indigo-500"></span>
+                    Đang tải thùng rác…
                 </div>
             ) : items.length === 0 ? (
                 <div className="p-16 min-h-65 flex flex-col items-center justify-center text-center">
-                    <Trash2 className="w-12 h-12 text-center text-muted-foreground/30 mx-auto mb-4" />
+                    <Trash2 className="size-12 text-center text-muted-foreground/30 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-foreground">Đã xóa gần đây</h3>
                     <p className="text-muted-foreground mt-1">Không có nhật ký giấc ngủ nào bị xóa gần đây.</p>
                 </div>
@@ -67,7 +67,7 @@ export default function SleepLogTrash() {
                                 <h4 className="font-medium text-foreground truncate">
                                     Giấc ngủ: {new Date(item.sleepDate).toLocaleDateString('vi-VN')}
                                 </h4>
-                                <p className="text-sm text-muted-foreground mt-1">
+                                <p suppressHydrationWarning className="text-sm text-muted-foreground mt-1">
                                     Đã xóa lúc: {new Date(item.deletedAt).toLocaleString('vi-VN')}
                                 </p>
                             </div>
@@ -77,7 +77,7 @@ export default function SleepLogTrash() {
                                 onClick={() => handleRestore(item.sleepLogId)}
                                 className="gap-2 text-indigo-500 border-indigo-500/20 hover:bg-indigo-500/5 hover:text-indigo-500 transition-colors shrink-0 basis-auto"
                             >
-                                <RotateCcw className="w-4 h-4" />
+                                <RotateCcw className="size-4" />
                                 <span className="hidden sm:inline">Khôi phục</span>
                             </Button>
                         </div>

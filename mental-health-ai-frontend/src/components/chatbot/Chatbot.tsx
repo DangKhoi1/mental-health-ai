@@ -288,7 +288,7 @@ export function Chatbot() {
             setSessions(mapped);
             setSessionsLoaded(true);
 
-            // Don't auto-select old session — user starts fresh each time
+            // Don't auto-select old session ,  user starts fresh each time
             // Sessions are loaded for sidebar display only
         } catch (error) {
             console.error('Failed to load sessions:', error);

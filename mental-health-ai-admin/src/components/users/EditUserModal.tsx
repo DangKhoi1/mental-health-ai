@@ -184,61 +184,49 @@ export function EditUserModal({ open, userId, onClose, onSuccess, roles }: EditU
                         </div>
                     )}
 
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Email</label>
+                    <div>
                         <Input
+                            label="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             disabled={!isLocalAccount || isDeleted}
                             placeholder={isLocalAccount ? 'Nhập email hợp lệ' : 'Tài khoản GOOGLE không cho đổi email'}
                         />
                         {!isLocalAccount && (
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-xs text-muted-foreground ml-1 mt-1">
                                 Email của tài khoản GOOGLE được đồng bộ từ nhà cung cấp đăng nhập.
                             </p>
                         )}
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Họ và tên</label>
-                        <Input value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isDeleted} />
+                    <Input label="Họ và tên" value={fullName} onChange={(e) => setFullName(e.target.value)} disabled={isDeleted} />
+
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <Input label="Số điện thoại" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} disabled={isDeleted} />
+                        <DatePicker 
+                            label="Ngày sinh"
+                            value={dateOfBirth} 
+                            onChange={setDateOfBirth} 
+                            disableFutureDates 
+                            className={isDeleted ? 'opacity-50 pointer-events-none' : ''} 
+                        />
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">Số điện thoại</label>
-                            <Input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} disabled={isDeleted} />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">Ngày sinh</label>
-                            <DatePicker 
-                                value={dateOfBirth} 
-                                onChange={setDateOfBirth} 
-                                disableFutureDates 
-                                className={isDeleted ? 'opacity-50 pointer-events-none' : ''} 
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">Giới tính</label>
-                            <Select
-                                value={genderCode}
-                                onChange={(e) => setGenderCode(e.target.value)}
-                                options={GENDER_OPTIONS}
-                                disabled={isDeleted}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-foreground">Vai trò</label>
-                            <Select
-                                value={roleId}
-                                onChange={(e) => setRoleId(e.target.value)}
-                                options={activeRoles.map((role) => ({ value: String(role.roleId), label: role.roleName }))}
-                                disabled={isDeleted}
-                            />
-                        </div>
+                        <Select
+                            label="Giới tính"
+                            value={genderCode}
+                            onChange={(e) => setGenderCode(e.target.value)}
+                            options={GENDER_OPTIONS}
+                            disabled={isDeleted}
+                        />
+                        <Select
+                            label="Vai trò"
+                            value={roleId}
+                            onChange={(e) => setRoleId(e.target.value)}
+                            options={activeRoles.map((role) => ({ value: String(role.roleId), label: role.roleName }))}
+                            disabled={isDeleted}
+                        />
                     </div>
 
                     <div className="flex items-center justify-between rounded-xl border border-border bg-muted/40 px-4 py-3">

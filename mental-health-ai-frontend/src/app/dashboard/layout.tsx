@@ -84,8 +84,8 @@ export default function DashboardLayout({
         return (
             <div className="min-h-screen bg-linear-to-br from-[#eaf2e8] via-[#f0f4ea] to-[#f5ece6] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-12 h-12 border-4 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
-                    <p className="text-slate-600 font-medium">Đang tải...</p>
+                    <div className="size-12 border-4 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-slate-600 font-medium">Đang tải…</p>
                 </div>
             </div>
         );
@@ -140,13 +140,13 @@ export default function DashboardLayout({
                             }
                         }}
                         title="Chatbot"
-                        className={`cursor-pointer flex items-center justify-center w-8 h-8 rounded-lg transition-all ${
+                        className={`cursor-pointer flex items-center justify-center size-8 rounded-lg transition-all ${
                             isChatOpen
                                 ? 'bg-primary text-primary-foreground'
                                 : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                         }`}
                     >
-                        <Bot className="w-5 h-5" />
+                        <Bot className="size-5" />
                     </button>
                     <NotificationBell />
                 </div>
@@ -156,7 +156,7 @@ export default function DashboardLayout({
                 </div>
             </main>
 
-            {/* Mobile only: FloatingWorldClock — ẩn trên mobile nhỏ, hiện từ md trở lên */}
+            {/* Mobile only: FloatingWorldClock ,  ẩn trên mobile nhỏ, hiện từ md trở lên */}
             <div className="hidden md:block lg:hidden">
                 <FloatingWorldClock />
             </div>

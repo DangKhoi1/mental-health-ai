@@ -112,15 +112,15 @@ function StatisticsContent() {
     }, [filteredMoods, filteredSleep, filteredJournals, history]);
 
     const getMoodIcon = (score: number) => {
-        if (score >= 7) return <Smile className="w-7 h-7 text-emerald-500" />;
-        if (score >= 4) return <Meh className="w-7 h-7 text-amber-500" />;
-        return <Frown className="w-7 h-7 text-rose-500" />;
+        if (score >= 7) return <Smile className="size-7 text-emerald-500" />;
+        if (score >= 4) return <Meh className="size-7 text-amber-500" />;
+        return <Frown className="size-7 text-rose-500" />;
     };
 
     const getTrendIcon = (trend: 'up' | 'down' | 'stable') => {
-        if (trend === 'up') return <TrendingUp className="w-4 h-4 text-emerald-500" />;
-        if (trend === 'down') return <TrendingDown className="w-4 h-4 text-rose-500" />;
-        return <Minus className="w-4 h-4 text-muted-foreground" />;
+        if (trend === 'up') return <TrendingUp className="size-4 text-emerald-500" />;
+        if (trend === 'down') return <TrendingDown className="size-4 text-rose-500" />;
+        return <Minus className="size-4 text-muted-foreground" />;
     };
 
     const getTrendText = (trend: 'up' | 'down' | 'stable') => {
@@ -182,7 +182,7 @@ function StatisticsContent() {
             <section className="rounded-2xl border border-border/70 bg-card/70 p-4 sm:p-5 lg:p-6 shadow-sm">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl font-bold text-foreground">
+                        <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
                             Thống kê sức khỏe tinh thần
                         </h1>
                         <p className="text-muted-foreground mt-0.5">
@@ -223,8 +223,8 @@ function StatisticsContent() {
                     <CardContent className="pt-5 pb-4 px-4">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Tâm trạng TB</span>
-                            <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                                <Smile className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                            <div className="size-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                                <Smile className="size-4 text-amber-600 dark:text-amber-400" />
                             </div>
                         </div>
                         <div className="flex items-end gap-2">
@@ -248,8 +248,8 @@ function StatisticsContent() {
                     <CardContent className="pt-5 pb-4 px-4">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Căng thẳng</span>
-                            <div className="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center">
-                                <Activity className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+                            <div className="size-8 rounded-lg bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center">
+                                <Activity className="size-4 text-sky-600 dark:text-sky-400" />
                             </div>
                         </div>
                         <p className={`text-2xl font-bold ${stressInfo.color}`}>
@@ -267,8 +267,8 @@ function StatisticsContent() {
                     <CardContent className="pt-5 pb-4 px-4">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Giấc ngủ</span>
-                            <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
-                                <Moon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                            <div className="size-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                                <Moon className="size-4 text-indigo-600 dark:text-indigo-400" />
                             </div>
                         </div>
                         {sleepLogs.length > 0 ? (
@@ -280,7 +280,7 @@ function StatisticsContent() {
                                     {sleepInfo.text}
                                 </p>
                                 <div className="flex items-center gap-1 mt-1">
-                                    <Clock className="w-3 h-3 text-muted-foreground" />
+                                    <Clock className="size-3 text-muted-foreground" />
                                     <span className="text-[11px] text-muted-foreground">TB {formatDuration(stats.avgSleepDuration)}</span>
                                 </div>
                             </>
@@ -298,8 +298,8 @@ function StatisticsContent() {
                     <CardContent className="pt-5 pb-4 px-4">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Rủi ro</span>
-                            <div className={`w-8 h-8 rounded-lg ${riskInfo.bg} flex items-center justify-center`}>
-                                <Brain className={`w-4 h-4 ${riskInfo.color}`} />
+                            <div className={`size-8 rounded-lg ${riskInfo.bg} flex items-center justify-center`}>
+                                <Brain className={`size-4 ${riskInfo.color}`} />
                             </div>
                         </div>
                         <p className={`text-xl font-bold ${riskInfo.color}`}>
@@ -328,15 +328,15 @@ function StatisticsContent() {
                 <Card className="border-border/50 shadow-sm xl:col-span-2">
                     <CardHeader className="pb-3">
                         <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-primary" />
+                            <Calendar className="size-4 text-primary" />
                             Hoạt động {PERIOD_OPTIONS.find(o => o.days === period)?.label || ''} qua
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                         <Link href="/dashboard/daily-mood" className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-muted/60 transition-colors group">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
-                                    <Smile className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                                <div className="size-9 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <Smile className="size-4 text-amber-600 dark:text-amber-400" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-foreground">Ghi nhận tâm trạng</p>
@@ -351,8 +351,8 @@ function StatisticsContent() {
 
                         <Link href="/dashboard/journal" className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-muted/60 transition-colors group">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
-                                    <BookOpen className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                                <div className="size-9 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <BookOpen className="size-4 text-teal-600 dark:text-teal-400" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-foreground">Nhật ký cảm xúc</p>
@@ -367,8 +367,8 @@ function StatisticsContent() {
 
                         <Link href="/dashboard/sleep-log" className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-muted/60 transition-colors group">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
-                                    <Moon className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                                <div className="size-9 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <Moon className="size-4 text-indigo-600 dark:text-indigo-400" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-foreground">Ghi nhận giấc ngủ</p>
@@ -383,8 +383,8 @@ function StatisticsContent() {
 
                         <Link href="/dashboard/assessment" className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-muted/60 transition-colors group">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
-                                    <ClipboardCheck className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+                                <div className="size-9 rounded-lg bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <ClipboardCheck className="size-4 text-rose-600 dark:text-rose-400" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-foreground">Bài đánh giá</p>

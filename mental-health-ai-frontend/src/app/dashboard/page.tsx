@@ -102,7 +102,7 @@ function DashboardContent() {
             href: '/dashboard/daily-mood',
             color: 'emerald' as const,
             icon: (
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
             ),
@@ -113,7 +113,7 @@ function DashboardContent() {
             href: '/dashboard/journal',
             color: 'amber' as const,
             icon: (
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
             ),
@@ -124,7 +124,7 @@ function DashboardContent() {
             href: '/dashboard/sleep-log',
             color: 'indigo' as const,
             icon: (
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                 </svg>
             ),
@@ -135,7 +135,7 @@ function DashboardContent() {
             href: '/dashboard/assessment',
             color: 'teal' as const,
             icon: (
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
             ),
@@ -185,11 +185,11 @@ function DashboardContent() {
                 <div className="p-5 sm:p-6">
                     {/* Header */}
                     <div className="flex items-center gap-3 mb-4">
-                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-violet-500/20 flex items-center justify-center shadow-sm">
-                            <Sparkles className="w-4 h-4 text-primary" />
+                        <div className="size-9 rounded-xl bg-gradient-to-br from-primary/20 to-violet-500/20 flex items-center justify-center shadow-sm">
+                            <Sparkles className="size-4 text-primary" />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold text-foreground">
+                            <h2 className="text-lg font-semibold text-foreground">
                                 Gợi ý dành cho bạn
                             </h2>
                             <p className="text-xs text-muted-foreground/70">
@@ -204,8 +204,8 @@ function DashboardContent() {
             {/* Quick Actions */}
             <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-300" style={{ animationFillMode: 'both' }}>
                 <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Heart className="w-4 h-4 text-primary" />
+                    <div className="size-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Heart className="size-4 text-primary" />
                     </div>
                     <h2 className="text-lg font-semibold text-foreground">
                         Hành động nhanh

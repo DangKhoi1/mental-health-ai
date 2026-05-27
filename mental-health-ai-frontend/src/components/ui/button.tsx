@@ -18,7 +18,7 @@ const buttonVariants = cva(
         default: 'h-10 px-4 py-2 text-sm',
         sm: 'h-8 px-3 text-xs rounded-md',
         lg: 'h-12 px-8 text-base',
-        icon: 'h-10 w-10',
+        icon: 'size-10',
       },
     },
     defaultVariants: {
@@ -46,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading ? (
           <>
             <svg
-              className="mr-2 h-4 w-4 animate-spin"
+              className="mr-2 size-4 animate-spin"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
               />
             </svg>
-            Đang xử lý...
+            Đang xử lý…
           </>
         ) : (
           children

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Play, Pause, Music, Volume2, VolumeX, ListMusic, X, SkipBack, SkipForward } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useMusicStore } from '@/stores/musicStore';
@@ -39,7 +39,7 @@ export function MusicPlayer() {
     
     const [isMuted, setIsMuted] = useState(false);
     const [showPlaylist, setShowPlaylist] = useState(false);
-    const [audioReady, setAudioReady] = useState(false);
+    const audioReadyRef = useRef(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -81,13 +81,13 @@ export function MusicPlayer() {
         audio.loop = true;
         audio.volume = volume;
         audioRef.current = audio;
-        setAudioReady(true);
+        audioReadyRef.current = true;
 
         return () => {
             audio.pause();
             audio.src = '';
             audioRef.current = null;
-            setAudioReady(false);
+            audioReadyRef.current = false;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Only run once on mount
@@ -115,7 +115,9 @@ export function MusicPlayer() {
 
     // Handle play/pause - runs whenever isPlaying changes
     useEffect(() => {
-        if (!audioRef.current || !audioReady) return;
+        if (!audioRef.current || !audioReadyRef.current) return;
+
+        let handleInteract: (() => void) | null = null;
 
         if (isPlaying) {
             const tryPlay = async () => {
@@ -123,20 +125,28 @@ export function MusicPlayer() {
                     await audioRef.current?.play();
                 } catch (e) {
                     // If play blocked, listen for user interaction and try again
-                    const handleInteract = () => {
+                    handleInteract = () => {
                         audioRef.current?.play().catch(() => {});
-                        document.removeEventListener('click', handleInteract);
-                        document.removeEventListener('touchstart', handleInteract);
+                        document.removeEventListener('click', handleInteract!);
+                        document.removeEventListener('touchstart', handleInteract!);
+                        handleInteract = null;
                     };
                     document.addEventListener('click', handleInteract);
-                    document.addEventListener('touchstart', handleInteract);
+                    document.addEventListener('touchstart', handleInteract, { passive: true });
                 }
             };
             tryPlay();
         } else {
             audioRef.current.pause();
         }
-    }, [isPlaying, audioReady]);
+
+        return () => {
+            if (handleInteract) {
+                document.removeEventListener('click', handleInteract);
+                document.removeEventListener('touchstart', handleInteract);
+            }
+        };
+    }, [isPlaying]);
 
     const handleTogglePlay = () => {
         if (!audioRef.current) return;
@@ -190,11 +200,11 @@ export function MusicPlayer() {
         )}>
             <div className="p-4 bg-primary/5 flex items-center justify-between border-b border-border/50">
                         <div className="flex items-center gap-2">
-                            <Music className="w-4 h-4 text-primary" />
+                            <Music className="size-4 text-primary" />
                             <h3 className="text-sm font-medium text-foreground">Góc Thư Giãn</h3>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground">
-                            <X className="w-4 h-4" />
+                            <X className="size-4" />
                         </button>
                     </div>
 
@@ -208,7 +218,7 @@ export function MusicPlayer() {
                                     <div className="w-1 bg-primary/80 animate-[bounce_1s_infinite_300ms] h-2/3" />
                                 </div>
                             ) : (
-                                <Music className="w-6 h-6 text-primary mb-2 opacity-50" />
+                                <Music className="size-6 text-primary mb-2 opacity-50" />
                             )}
                             <p className="text-sm font-medium text-foreground truncate w-full">{currentTrack.title}</p>
                             <p className="text-xs text-muted-foreground mt-0.5">Nhạc nền thả lỏng tâm trí</p>
@@ -220,28 +230,28 @@ export function MusicPlayer() {
                                     onClick={playPrev}
                                     className="p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-colors"
                                 >
-                                    <SkipBack className="w-5 h-5" fill="currentColor" />
+                                    <SkipBack className="size-5" fill="currentColor" />
                                 </button>
 
                                 <button
                                     onClick={handleTogglePlay}
-                                    className="w-12 h-12 flex items-center justify-center shadow-md rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
+                                    className="size-12 flex items-center justify-center shadow-md rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all active:scale-95"
                                 >
-                                    {isPlaying ? <Pause className="w-5 h-5" fill="currentColor" /> : <Play className="w-5 h-5 ml-1" fill="currentColor" />}
+                                    {isPlaying ? <Pause className="size-5" fill="currentColor" /> : <Play className="size-5 ml-1" fill="currentColor" />}
                                 </button>
 
                                 <button
                                     onClick={playNext}
                                     className="p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-colors"
                                 >
-                                    <SkipForward className="w-5 h-5" fill="currentColor" />
+                                    <SkipForward className="size-5" fill="currentColor" />
                                 </button>
                             </div>
 
                             {/* Volume Control */}
                             <div className="flex items-center gap-2 mt-1 px-1">
                                 <button onClick={toggleMute} className="text-muted-foreground hover:text-foreground transition-colors shrink-0">
-                                    {isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                                    {isMuted || volume === 0 ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
                                 </button>
                                 <input
                                     type="range"
@@ -261,11 +271,11 @@ export function MusicPlayer() {
                                 <button
                                     onClick={() => setShowPlaylist(!showPlaylist)}
                                     className={cn(
-                                        "w-8 h-8 flex items-center justify-center rounded-full transition-colors",
+                                        "size-8 flex items-center justify-center rounded-full transition-colors",
                                         showPlaylist ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                                     )}
                                 >
-                                    <ListMusic className="w-4 h-4" />
+                                    <ListMusic className="size-4" />
                                 </button>
                             </div>
                         </div>
@@ -276,7 +286,7 @@ export function MusicPlayer() {
                                 <div className="flex items-center justify-between px-1 pb-1.5">
                                     <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Chọn nhạc</p>
                                     <button onClick={() => setShowPlaylist(false)} className="text-muted-foreground hover:text-foreground p-0.5 rounded">
-                                        <X className="w-3.5 h-3.5" />
+                                        <X className="size-3.5" />
                                     </button>
                                 </div>
 
@@ -299,11 +309,21 @@ export function MusicPlayer() {
                                         {TRACKS.map(track => (
                                             <div
                                                 key={track.id}
+                                                role="button"
+                                                tabIndex={0}
                                                 style={{ scrollSnapAlign: 'center', scrollSnapStop: 'always', height: 36 }}
                                                 onClick={() => {
                                                     setCurrentTrack(track);
                                                     if (!isPlaying) setIsPlaying(true);
                                                     setShowPlaylist(false);
+                                                }}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter' || e.key === ' ') {
+                                                        e.preventDefault();
+                                                        setCurrentTrack(track);
+                                                        if (!isPlaying) setIsPlaying(true);
+                                                        setShowPlaylist(false);
+                                                    }
                                                 }}
                                                 className={cn(
                                                     'flex items-center gap-2 px-3 cursor-pointer rounded-xl transition-all duration-200 select-none',
@@ -314,7 +334,7 @@ export function MusicPlayer() {
                                             >
                                                 <div className="w-4 flex justify-center shrink-0">
                                                     {currentTrack.id === track.id
-                                                        ? <Music className="w-3.5 h-3.5 text-primary" />
+                                                        ? <Music className="size-3.5 text-primary" />
                                                         : <span className="text-[10px] opacity-50">{track.id}</span>
                                                     }
                                                 </div>

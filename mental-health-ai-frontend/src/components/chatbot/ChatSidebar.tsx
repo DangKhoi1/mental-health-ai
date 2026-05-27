@@ -26,7 +26,7 @@ export function ChatSidebar({
     onDeleteSession
 }: ChatSidebarProps) {
     return (
-        <div className="w-full h-full flex flex-col overflow-hidden">
+        <div className="size-full flex flex-col overflow-hidden">
             <div className="p-3 border-b border-border/40">
                 <Button
                     onClick={onNewChat}
@@ -75,7 +75,7 @@ export function ChatSidebar({
 
                                 {/* Delete button - always visible */}
                                 <button
-                                    className="shrink-0 w-7 h-7 flex items-center justify-center rounded-md mr-1 text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-all opacity-0 group-hover:opacity-100"
+                                    className="shrink-0 size-7 flex items-center justify-center rounded-md mr-1 text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 transition-all opacity-0 group-hover:opacity-100"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         onDeleteSession(session.id);

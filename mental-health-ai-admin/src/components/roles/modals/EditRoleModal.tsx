@@ -65,8 +65,9 @@ export function EditRoleModal({ open, role, onClose, onSuccess }: Props) {
     <Modal open={open} onClose={onClose} title="Chỉnh sửa vai trò" maxWidth="max-w-lg">
       <div className="space-y-5">
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-foreground">Tên vai trò</label>
+          <label htmlFor="edit-roleName" className="text-sm font-medium text-foreground">Tên vai trò</label>
           <input
+            id="edit-roleName"
             type="text"
             value={roleName}
             onChange={(e) => setRoleName(e.target.value)}
@@ -74,8 +75,9 @@ export function EditRoleModal({ open, role, onClose, onSuccess }: Props) {
           />
         </div>
         <div className="space-y-1.5">
-          <label className="text-sm font-medium text-foreground">Mô tả</label>
+          <label htmlFor="edit-description" className="text-sm font-medium text-foreground">Mô tả</label>
           <textarea
+            id="edit-description"
             rows={4}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -92,7 +94,7 @@ export function EditRoleModal({ open, role, onClose, onSuccess }: Props) {
             onClick={() => setIsActive((prev) => !prev)}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isActive ? 'bg-primary' : 'bg-border'}`}
           >
-            <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${isActive ? 'translate-x-6' : 'translate-x-1'}`} />
+            <span className={`inline-block size-4 transform rounded-full bg-white shadow transition-transform ${isActive ?'translate-x-6' : 'translate-x-1'}`} />
           </button>
         </div>
         <div className="flex justify-end gap-3 border-t border-border pt-3">

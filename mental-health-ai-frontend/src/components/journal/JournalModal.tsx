@@ -177,7 +177,7 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
 
     const modalContent = (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-sm transition-all"
+            suppressHydrationWarning className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-sm transition-all"
             onClick={onClose}
         >
             <div
@@ -189,20 +189,20 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                     <div className="flex items-start justify-between gap-4">
                         <div className="flex items-start gap-5">
                             <div className={cn(
-                                "w-11 h-11 sm:w-14 sm:h-14 rounded-2xl backdrop-blur-md border shadow-sm flex items-center justify-center shrink-0",
+                                "size-11 sm:w-14 sm:h-14 rounded-2xl backdrop-blur-md border shadow-sm flex items-center justify-center shrink-0",
                                 theme.iconBg,
                                 theme.iconBorder,
                                 theme.iconText,
                             )}>
-                                <BookOpen className="w-7 h-7" />
+                                <BookOpen className="size-7" />
                             </div>
                             <div className="flex-1 mt-1">
-                                <h2 className="text-lg sm:text-xl font-bold text-foreground line-clamp-2">
+                                <h2 className="text-lg sm:text-xl font-semibold text-foreground line-clamp-2">
                                     {journal.title}
                                 </h2>
                                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-sm font-medium text-muted-foreground">
                                     <div className={cn("flex items-center gap-1.5 px-2.5 py-1 rounded-md border", theme.iconBg, theme.iconBorder)}>
-                                        <Calendar className={cn("w-4 h-4", theme.iconText)} />
+                                        <Calendar className={cn("size-4", theme.iconText)} />
                                         <span className={theme.iconText}>
                                             {date.toLocaleDateString('vi-VN', {
                                                 weekday: 'long',
@@ -212,14 +212,14 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                                             })}
                                         </span>
                                     </div>
-                                    <div className={cn("flex items-center gap-1.5 px-2.5 py-1 rounded-md border", theme.iconBg, theme.iconBorder)}>
-                                        <Clock className={cn("w-4 h-4", theme.iconText)} />
+                                    <div suppressHydrationWarning className={cn("flex items-center gap-1.5 px-2.5 py-1 rounded-md border", theme.iconBg, theme.iconBorder)}>
+                                        <Clock className={cn("size-4", theme.iconText)} />
                                         <span className={theme.iconText}>
                                             {date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                                         </span>
                                     </div>
                                     {journal.mood && (
-                                        <div className={cn("flex items-center gap-1.5 px-3 py-1 rounded-full border", theme.iconBg, theme.iconBorder)}>
+                                        <div suppressHydrationWarning className={cn("flex items-center gap-1.5 px-3 py-1 rounded-full border", theme.iconBg, theme.iconBorder)}>
                                             <span className={theme.iconText}>{journal.mood}</span>
                                         </div>
                                     )}
@@ -231,7 +231,7 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                             className="p-2.5 bg-background/50 hover:bg-muted text-muted-foreground hover:text-foreground rounded-xl transition-all shadow-sm backdrop-blur-sm self-start border border-border/50"
                             aria-label="Đóng"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="size-5" />
                         </button>
                     </div>
                 </div>
@@ -245,7 +245,7 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                             <div className="rounded-3xl border border-border/60 bg-secondary/20 p-4 sm:p-5">
                                 <div className="flex items-center justify-between gap-3 mb-4">
                                     <div className={cn("flex items-center gap-2 text-sm font-semibold", theme.iconText)}>
-                                        <ImageIcon className={cn("w-4 h-4", theme.iconText)} />
+                                        <ImageIcon className={cn("size-4", theme.iconText)} />
                                         <span>Ảnh kỷ niệm ({images.length})</span>
                                     </div>
                                     <div className={cn(
@@ -255,7 +255,7 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                                         theme.iconText,
                                         "hover:opacity-80"
                                     )}>
-                                        <Camera className={cn("w-4 h-4", theme.iconText)} />
+                                        <Camera className={cn("size-4", theme.iconText)} />
                                         <button onClick={() => setShowImageUploader((prev) => !prev)}>
                                             {showImageUploader ? ' Ẩn tải ảnh' : 'Thêm ảnh'}
                                         </button>
@@ -319,11 +319,11 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                                 <div className="mb-4">
                                     <div className="flex items-center gap-3">
                                         <div className={cn(
-                                            "w-10 h-10 rounded-full flex items-center justify-center",
+                                            "size-10 rounded-full flex items-center justify-center",
                                             theme.iconBg,
                                             theme.iconText,
                                         )}>
-                                            <Sparkles className="w-5 h-5 animate-pulse" />
+                                            <Sparkles className="size-5 animate-pulse" />
                                         </div>
                                         <h3 className={cn(
                                             "text-lg font-bold leading-tight bg-linear-to-r bg-clip-text text-transparent",
@@ -350,11 +350,11 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
                                         )}
                                     >
                                         {isGeneratingLetter ? (
-                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                            <Loader2 className="size-4 animate-spin" />
                                         ) : (
-                                            <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                                            <Sparkles className="size-4 group-hover:rotate-12 transition-transform" />
                                         )}
-                                        {isGeneratingLetter ? 'Đang viết thư...' : 'Nhận lá thư'}
+                                        {isGeneratingLetter ? 'Đang viết thư…' : 'Nhận lá thư'}
                                     </button>
                                 )}
 
@@ -372,9 +372,9 @@ export default function JournalModal({ journal, onClose }: JournalModalProps) {
 
                 {/* Footer */}
                 <div className="relative z-10 p-4 backdrop-blur-md border-t border-border/50 mt-auto flex items-center justify-center gap-2">
-                    <Sparkles className="w-3 h-3 text-muted-foreground/40" />
+                    <Sparkles className="size-3 text-muted-foreground/40" />
                     <p className="text-[10px] sm:text-xs text-muted-foreground font-medium uppercase tracking-[0.2em]">Sống tích cực mỗi ngày</p>
-                    <Sparkles className="w-3 h-3 text-muted-foreground/40" />
+                    <Sparkles className="size-3 text-muted-foreground/40" />
                 </div>
             </div>
         </div>

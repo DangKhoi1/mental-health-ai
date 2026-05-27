@@ -37,8 +37,8 @@ export default function ExperienceSection() {
 
     return (
         <section id="features" className="relative overflow-hidden bg-background py-16 px-4 sm:px-6 lg:px-8">
-            <div className="absolute left-10 top-10 h-48 w-48 rounded-full bg-sky-300/20 blur-3xl animate-pulse-soft" aria-hidden />
-            <div className="absolute right-8 bottom-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl animate-float" aria-hidden />
+            <div className="absolute left-10 top-10 size-48 rounded-full bg-sky-300/20 blur-3xl animate-pulse-soft" aria-hidden />
+            <div className="absolute right-8 bottom-10 size-64 rounded-full bg-primary/10 blur-3xl animate-float" aria-hidden />
 
             <div className="mx-auto max-w-7xl space-y-12">
                 <div
@@ -63,13 +63,13 @@ export default function ExperienceSection() {
                             >
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4">
-                                        <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-sky-600 shadow-sm border border-sky-100 animate-pulse-soft">
-                                            <Icon className="h-5 w-5" />
+                                        <span className="flex size-12 items-center justify-center rounded-2xl bg-sky-50 text-sky-600 shadow-sm border border-sky-100 animate-pulse-soft">
+                                            <Icon className="size-5" />
                                         </span>
                                         <p className="text-sm font-bold text-sky-700 uppercase tracking-widest">Nhẹ nhàng từng bước</p>
                                     </div>
                                     <div className="space-y-4">
-                                        <h3 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight tracking-tight">{item.title}</h3>
+                                        <h3 className="text-3xl sm:text-4xl font-semibold text-foreground leading-tight tracking-tight">{item.title}</h3>
                                         <p className="text-lg text-muted-foreground leading-relaxed font-medium">{item.description}</p>
                                     </div>
                                     <div className="inline-block rounded-3xl border border-sky-100/50 bg-sky-50/40 p-5 shadow-sm backdrop-blur-md">

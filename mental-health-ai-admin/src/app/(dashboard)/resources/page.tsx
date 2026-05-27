@@ -308,7 +308,7 @@ export default function ResourcesPage() {
             )}
             actionSlot={(
               <Button variant="primary" onClick={openCreate} className="w-full sm:w-auto">
-                <Plus className="w-4 h-4" /> Thêm tài liệu
+                <Plus className="size-4" /> Thêm tài liệu
               </Button>
             )}
             resultsLabel={`${total} tài liệu`}
@@ -375,14 +375,14 @@ export default function ResourcesPage() {
                         <button
                           type="button"
                           onClick={clearThumbnail}
-                          className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/80"
+                          className="absolute right-1 top-1 flex size-6 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/80"
                         >
-                          <X className="h-3.5 w-3.5" />
+                          <X className="size-3.5" />
                         </button>
                       </>
                     ) : (
                       <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                        <ImagePlus className="h-8 w-8 opacity-40" />
+                        <ImagePlus className="size-8 opacity-40" />
                         <span className="text-xs">Chưa có ảnh</span>
                       </div>
                     )}
@@ -402,7 +402,7 @@ export default function ResourcesPage() {
                         size="sm"
                         onClick={() => fileInputRef.current?.click()}
                       >
-                        <ImagePlus className="h-4 w-4" /> Chọn ảnh
+                        <ImagePlus className="size-4" /> Chọn ảnh
                       </Button>
                       {thumbnailFile && !uploadingThumbnail && (
                         <Button
@@ -416,7 +416,7 @@ export default function ResourcesPage() {
                       )}
                       {uploadingThumbnail && (
                         <Button type="button" variant="primary" size="sm" disabled>
-                          <Loader2 className="h-4 w-4 animate-spin" /> Đang tải...
+                          <Loader2 className="size-4 animate-spin" /> Đang tải...
                         </Button>
                       )}
                     </div>
@@ -493,10 +493,10 @@ export default function ResourcesPage() {
                     </div>
                     <div className="grid grid-cols-2 gap-2 pt-1">
                       <Button type="button" variant="secondary" size="sm" onClick={() => openEdit(item)}>
-                        <Edit2 className="w-4 h-4" /> Sửa
+                        <Edit2 className="size-4" /> Sửa
                       </Button>
                       <Button type="button" variant="danger" size="sm" onClick={() => deleteResource(item.resourceId)}>
-                        <Trash2 className="w-4 h-4" /> Xóa
+                        <Trash2 className="size-4" /> Xóa
                       </Button>
                       <Button type="button" className="col-span-2" variant="ghost" size="sm" onClick={() => toggleActive(item)}>
                         {item.isActive ? 'Khóa tài liệu' : 'Mở tài liệu'}

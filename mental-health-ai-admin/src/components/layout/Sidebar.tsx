@@ -43,17 +43,17 @@ const NAV_SECTIONS: NavSection[] = [
   {
     label: 'Tổng quan',
     items: [
-      { label: 'Tổng quan', href: '/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+      { label: 'Tổng quan', href: '/dashboard', icon: <LayoutDashboard className="size-4" /> },
     ],
   },
   {
     label: 'Quản lý nội dung',
     items: [
-      { label: 'Người dùng', href: '/users', icon: <Users className="h-4 w-4" /> },
-      { label: 'Bài đánh giá', href: '/assessment-templates', icon: <ClipboardList className="h-4 w-4" /> },
-      { label: 'Câu hỏi đánh giá', href: '/assessment-questions', icon: <CircleHelp className="h-4 w-4" /> },
-      { label: 'Quản lý thư viện', href: '/resources', icon: <BookOpen className="h-4 w-4" /> },
-      { label: 'Quyền và vai trò', href: '/role-management', icon: <ShieldAlert className="h-4 w-4" /> },
+      { label: 'Người dùng', href: '/users', icon: <Users className="size-4" /> },
+      { label: 'Bài đánh giá', href: '/assessment-templates', icon: <ClipboardList className="size-4" /> },
+      { label: 'Câu hỏi đánh giá', href: '/assessment-questions', icon: <CircleHelp className="size-4" /> },
+      { label: 'Quản lý thư viện', href: '/resources', icon: <BookOpen className="size-4" /> },
+      { label: 'Quyền và vai trò', href: '/role-management', icon: <ShieldAlert className="size-4" /> },
     ],
   },
 ];
@@ -88,7 +88,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         )}
       >
         <div className="flex h-20 shrink-0 items-center gap-3 border-b border-border/70 bg-linear-to-r from-primary/10 via-transparent to-accent/40 px-5">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/25 ring-4 ring-primary/10">
+          <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/25 ring-4 ring-primary/10">
             <Image
               src="/mental_health.png"
               alt="Logo"
@@ -108,7 +108,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             onClick={onClose}
             className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground lg:hidden"
           >
-            <X className="h-4 w-4" />
+            <X className="size-4" />
           </button>
         </div>
 
@@ -145,7 +145,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                       </span>
                       <span className="truncate leading-snug">{item.label}</span>
                       {isActive ? (
-                        <ChevronRight className="ml-auto h-3.5 w-3.5 shrink-0 text-primary" />
+                        <ChevronRight className="ml-auto size-3.5 shrink-0 text-primary" />
                       ) : null}
                     </Link>
                   );
@@ -158,7 +158,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         <div className="shrink-0 space-y-2 border-t border-border/70 p-3">
           <div className="rounded-2xl bg-linear-to-br from-primary/12 via-white to-accent/45 p-3 ring-1 ring-border/60">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20">
                 {initial}
               </div>
               <div className="min-w-0 flex-1">
@@ -177,7 +177,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             onClick={handleLogout}
             className="flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/80 hover:text-foreground"
           >
-            <LogOut className="h-4 w-4 shrink-0" />
+            <LogOut className="size-4 shrink-0" />
             <span>Đăng xuất</span>
           </button>
         </div>
@@ -198,9 +198,9 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
         <button
           type="button"
           onClick={onMenuClick}
-          className="flex h-10 w-10 items-center justify-center rounded-2xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground lg:hidden"
+          className="flex size-10 items-center justify-center rounded-2xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground lg:hidden"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="size-5" />
         </button>
 
         <h1 className="text-base font-semibold leading-none text-foreground">

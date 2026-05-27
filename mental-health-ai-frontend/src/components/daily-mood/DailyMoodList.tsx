@@ -69,9 +69,9 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
 
     if (moods.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center py-16 px-4 text-center bg-card rounded-3xl border border-border shadow-sm">
-                <div className="w-20 h-20 mb-6 rounded-full bg-emerald-500/10 flex items-center justify-center animate-pulse">
-                    <Smile className="w-10 h-10 text-emerald-500" />
+            <div suppressHydrationWarning className="flex flex-col items-center justify-center py-16 px-4 text-center bg-card rounded-3xl border border-border shadow-sm">
+                <div className="size-20 mb-6 rounded-full bg-emerald-500/10 flex items-center justify-center animate-pulse">
+                    <Smile className="size-10 text-emerald-500" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                     Chưa có nhật ký tâm trạng
@@ -99,18 +99,18 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                         onClick={() => onSelect(mood)}
                     >
                         <div className={cn('absolute inset-0 bg-linear-to-br pointer-events-none', config.theme.gradient)} />
-                        <div className={cn("absolute -top-14 -right-14 h-48 w-48 rounded-full blur-3xl pointer-events-none", config.theme.glow)} />
+                        <div className={cn("absolute -top-14 -right-14 size-48 rounded-full blur-3xl pointer-events-none", config.theme.glow)} />
 
                         <div className="relative p-5 md:p-6">
                             <div className="flex items-start justify-between gap-3">
                                 <div className="flex items-center gap-3">
-                                    <div className={cn('h-14 w-14 rounded-2xl border flex items-center justify-center text-2xl shrink-0', config.theme.badge.split(' ').slice(0,2).join(' '))} style={{ border: 'none' }}>
+                                    <div className={cn('size-14 rounded-2xl border flex items-center justify-center text-2xl shrink-0', config.theme.badge.split(' ').slice(0,2).join(' '))} style={{ border: 'none' }}>
                                         {config.emoji}
                                     </div>
                                     <div>
                                         <p className="text-sm text-muted-foreground">{date.toLocaleDateString('vi-VN', { weekday: 'long' })}</p>
-                                        <p className="text-base font-semibold">{date.toLocaleDateString('vi-VN')}</p>
-                                        <div className="mt-1 flex items-center gap-2">
+                                        <p suppressHydrationWarning className="text-base font-semibold">{date.toLocaleDateString('vi-VN')}</p>
+                                        <div suppressHydrationWarning className="mt-1 flex items-center gap-2">
                                             <span className={cn('inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-bold', config.theme.badge)}>
                                                 {config.label} · {mood.moodScore}/10
                                             </span>
@@ -123,7 +123,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
 
                                 <div className="flex items-center gap-2">
                                     <span className={cn("inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold", config.theme.subBadge)}>
-                                        <Clock3 className="w-3.5 h-3.5" />
+                                        <Clock3 className="size-3.5" />
                                         {date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                                     </span>
                                     {isToday ? (
@@ -135,7 +135,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                                             className={cn("rounded-xl border p-2 transition", config.theme.button)}
                                             title="Sửa bản ghi (Chỉ trong ngày)"
                                         >
-                                            <Pencil className="w-4 h-4" />
+                                            <Pencil className="size-4" />
                                         </button>
                                     ) : (
                                         <button
@@ -146,7 +146,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                                             className={cn("rounded-xl border p-2 transition", config.theme.button)}
                                             title="Xóa bản ghi"
                                         >
-                                            <Trash2 className="w-4 h-4" />
+                                            <Trash2 className="size-4" />
                                         </button>
                                     )}
                                 </div>
@@ -154,7 +154,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
 
                             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                                 <div className={cn("rounded-2xl border p-3", config.theme.card)}>
-                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Flame className={cn("w-3.5 h-3.5", config.theme.icon)} />Stress</p>
+                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Flame className={cn("size-3.5", config.theme.icon)} />Stress</p>
                                     <div className="mt-1 flex items-center gap-2">
                                         <span className={cn('inline-flex rounded-full border px-2 py-0.5 text-xs font-bold', getStressTone(mood.stressLevel))}>
                                             {mood.stressLevel}/10 · {getStressLabel(mood.stressLevel)}
@@ -163,12 +163,12 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                                 </div>
 
                                 <div className={cn("rounded-2xl border p-3", config.theme.card)}>
-                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Briefcase className={cn("w-3.5 h-3.5", config.theme.icon)} />Khối lượng công việc</p>
+                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Briefcase className={cn("size-3.5", config.theme.icon)} />Khối lượng công việc</p>
                                     <p className="mt-1 text-sm font-semibold text-foreground">{mood.workloadLevel ? workloadLabels[mood.workloadLevel] : 'Không có'}</p>
                                 </div>
 
                                 <div className={cn("rounded-2xl border p-3", config.theme.card)}>
-                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><HeartPulse className={cn("w-3.5 h-3.5", config.theme.icon)} />Tổng quan</p>
+                                    <p className="text-[11px] text-muted-foreground flex items-center gap-1.5"><HeartPulse className={cn("size-3.5", config.theme.icon)} />Tổng quan</p>
                                     <p className="mt-1 text-sm font-semibold text-foreground">{config.label}</p>
                                 </div>
                             </div>

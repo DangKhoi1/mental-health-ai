@@ -74,14 +74,14 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-linear-to-b from-background via-background to-secondary/35 flex items-center justify-center px-4 py-8 relative overflow-hidden">
       {/* Decorative blobs */}
-      <div className="absolute top-0 right-0 -mr-24 -mt-24 h-96 w-96 rounded-full bg-accent/50 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-24 -mb-24 h-96 w-96 rounded-full bg-primary/18 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 -mr-24 -mt-24 size-96 rounded-full bg-accent/50 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -ml-24 -mb-24 size-96 rounded-full bg-primary/18 blur-3xl pointer-events-none" />
 
       <div className="w-full max-w-sm relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2.5">
-            <div className="w-11 h-11 rounded-xl bg-primary flex items-center justify-center">
+            <div className="size-11 rounded-xl bg-primary flex items-center justify-center">
               <Image src="/mental_health.png" alt="Logo" width={28} height={28} className="brightness-0 invert" />
             </div>
             <span className="text-xl font-semibold text-foreground">Mental Health AI</span>
@@ -141,7 +141,7 @@ export default function LoginPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                 </button>
               </div>
               {errors.password && <p className="text-red-500 text-xs ml-1">{errors.password}</p>}

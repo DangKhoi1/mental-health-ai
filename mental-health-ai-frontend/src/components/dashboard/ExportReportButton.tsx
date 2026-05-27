@@ -58,13 +58,13 @@ const ReportTemplate = ({
         >
             {/* Header */}
             <div className="text-center mb-10">
-                <h1 className="text-2xl font-bold text-[#1f4e79] mb-2 uppercase">Báo cáo sức khỏe tinh thần</h1>
+                <h1 className="text-2xl font-semibold text-[#1f4e79] mb-2 uppercase">Báo cáo sức khỏe tinh thần</h1>
                 <p className="text-sm text-gray-500">Ngày tạo: {dayjs().format('DD/MM/YYYY HH:mm')}</p>
             </div>
 
             {/* User Profile */}
             <div className="mb-10">
-                <h2 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">THÔNG TIN CÁ NHÂN</h2>
+                <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">THÔNG TIN CÁ NHÂN</h2>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                     <div><span className="font-semibold text-gray-600 w-32 inline-block">Họ và tên:</span> {userProfile?.fullName || '--'}</div>
                     <div><span className="font-semibold text-gray-600 w-32 inline-block">Tên đăng nhập:</span> {userProfile?.username || '--'}</div>
@@ -75,7 +75,7 @@ const ReportTemplate = ({
 
             {/* Summary Statistics */}
             <div className="mb-10">
-                <h2 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">THỐNG KÊ TỔNG QUAN</h2>
+                <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">THỐNG KÊ TỔNG QUAN</h2>
                 <div className="grid grid-cols-4 gap-4">
                     {summaryData.map((item, i: number) => (
                         <div key={i} className="bg-gray-50 p-4 rounded-lg text-center border border-gray-100">
@@ -89,7 +89,7 @@ const ReportTemplate = ({
             {/* Mood Chart */}
             {moodChartData?.length > 0 && (
                 <div className="mb-10">
-                    <h2 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">BIỂU ĐỒ TÂM TRẠNG (30 ngày qua)</h2>
+                    <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">BIỂU ĐỒ TÂM TRẠNG (30 ngày qua)</h2>
                     <div className="h-[250px] w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={moodChartData}>
@@ -106,7 +106,7 @@ const ReportTemplate = ({
             {/* Assessment Chart */}
             {assessmentChartData?.length > 0 && (
                 <div className="mb-10" style={{ pageBreakBefore: 'always' }}>
-                    <h2 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">BIỂU ĐỒ ĐÁNH GIÁ GẦN ĐÂY</h2>
+                    <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">BIỂU ĐỒ ĐÁNH GIÁ GẦN ĐÂY</h2>
                     <div className="h-[250px] w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={assessmentChartData}>
@@ -123,7 +123,7 @@ const ReportTemplate = ({
             {/* Recent Assessments Table */}
             {assessmentData?.length > 0 && (
                 <div className="mb-10">
-                    <h2 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">LỊCH SỬ ĐÁNH GIÁ (10 lần gần nhất)</h2>
+                    <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">LỊCH SỬ ĐÁNH GIÁ (10 lần gần nhất)</h2>
                     <table className="w-full text-sm text-left border-collapse">
                         <thead className="bg-emerald-50 text-emerald-800">
                             <tr>
@@ -152,7 +152,7 @@ const ReportTemplate = ({
             {/* Recent Moods Table */}
             {moodData?.length > 0 && (
                 <div className="mb-10">
-                    <h2 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">CẢNH BÁO TÂM TRẠNG & STRESS (10 ngày gần nhất)</h2>
+                    <h2 className="text-lg font-semibold border-b border-gray-200 pb-2 mb-4">CẢNH BÁO TÂM TRẠNG & STRESS (10 ngày gần nhất)</h2>
                     <table className="w-full text-sm text-left border-collapse">
                         <thead className="bg-blue-50 text-blue-800">
                             <tr>
@@ -191,7 +191,7 @@ export default function ExportReportButton() {
     const handleGenerateData = async () => {
         try {
             setIsLoading(true);
-            toast.info('Đang tổng hợp dữ liệu báo cáo...');
+            toast.info('Đang tổng hợp dữ liệu báo cáo…');
 
             const [userProfile, moods, journals, _sleepLogs, assessments] = await Promise.all([
                 userService.getProfile(),
@@ -277,7 +277,7 @@ export default function ExportReportButton() {
 
     const captureAndDownloadPDF = async () => {
         try {
-            toast.loading('Đang vẽ và xuất file PDF... Vui lòng đợi!', { id: 'pdf-toast' });
+            toast.loading('Đang vẽ và xuất file PDF… Vui lòng đợi!', { id: 'pdf-toast' });
 
             const element = document.getElementById('pdf-report-container');
             if (!element) throw new Error('Cannot find report template');
@@ -338,9 +338,9 @@ export default function ExportReportButton() {
                 className="flex items-center gap-2 border-primary/20 hover:bg-primary/5 text-primary"
             >
                 {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="size-4 animate-spin" />
                 ) : (
-                    <FileDown className="w-4 h-4" />
+                    <FileDown className="size-4" />
                 )}
                 Xuất báo cáo PDF
             </Button>

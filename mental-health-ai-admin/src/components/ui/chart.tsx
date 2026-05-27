@@ -34,15 +34,12 @@ function useChart() {
   return context
 }
 
-const ChartContainer = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div"> & {
+type ChartContainerProps = React.ComponentProps<"div"> & {
     config: ChartConfig
-    children: React.ComponentProps<
-      typeof RechartsPrimitive.ResponsiveContainer
-    >["children"]
-  }
->(({ id, className, children, config, ...props }, ref) => {
+    children: React.ComponentProps<typeof RechartsPrimitive.ResponsiveContainer>["children"]
+}
+
+const ChartContainer = ({ id, className, children, config, ref, ...props }: ChartContainerProps & { ref?: React.Ref<HTMLDivElement> }) => {
   const uniqueId = React.useId()
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`
 
@@ -64,7 +61,7 @@ const ChartContainer = React.forwardRef<
       </div>
     </ChartContext.Provider>
   )
-})
+}
 ChartContainer.displayName = "ChartContainer"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
@@ -77,9 +74,8 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   }
 
   return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
+    <style>
+      {Object.entries(THEMES)
           .map(
             ([theme, prefix]) => `
 ${prefix} [data-chart="${id}"] {
@@ -92,17 +88,14 @@ ${colorConfig
 }
 `
           )
-          .join("\n"),
-      }}
-    />
+          .join("\n")}
+    </style>
   )
 }
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
-const ChartTooltipContent = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
+type ChartTooltipContentProps = React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
   React.ComponentProps<"div"> & {
     hideLabel?: boolean
     hideIndicator?: boolean
@@ -110,9 +103,9 @@ const ChartTooltipContent = React.forwardRef<
     nameKey?: string
     labelKey?: string
   }
->(
-  (
-    {
+
+const ChartTooltipContent = ({
+
       active,
       payload,
       className,
@@ -126,8 +119,9 @@ const ChartTooltipContent = React.forwardRef<
       color,
       nameKey,
       labelKey,
-    },
-    ref
+      ref,
+      ...props
+    }: ChartTooltipContentProps & { ref?: React.Ref<HTMLDivElement> }
   ) => {
     const { config } = useChart()
 
@@ -252,19 +246,17 @@ const ChartTooltipContent = React.forwardRef<
       </div>
     )
   }
-)
 ChartTooltipContent.displayName = "ChartTooltip"
 
 const ChartLegend = RechartsPrimitive.Legend
 
-const ChartLegendContent = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div"> &
+type ChartLegendContentProps = React.ComponentProps<"div"> &
   React.ComponentProps<typeof RechartsPrimitive.Legend> & {
     hideIcon?: boolean
     nameKey?: string
   }
->(({ className, hideIcon = false, payload, verticalAlign, nameKey }, ref) => {
+
+const ChartLegendContent = ({ className, hideIcon = false, payload, verticalAlign, nameKey, ref, ...props }: ChartLegendContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
   const { config } = useChart()
 
   if (!payload?.length) {
@@ -295,7 +287,7 @@ const ChartLegendContent = React.forwardRef<
               <itemConfig.icon />
             ) : (
               <div
-                className="h-2 w-2 shrink-0 rounded-[2px]"
+                className="size-2 shrink-0 rounded-[2px]"
                 style={{
                   backgroundColor: item.color,
                 }}
@@ -307,7 +299,7 @@ const ChartLegendContent = React.forwardRef<
       })}
     </div>
   )
-})
+}
 ChartLegendContent.displayName = "ChartLegend"
 
 // Helper to extract item config from a payload.

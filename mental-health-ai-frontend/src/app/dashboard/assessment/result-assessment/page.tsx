@@ -119,10 +119,10 @@ function ResultAssessmentContent() {
     };
 
     return (
-        <div className="relative min-h-screen overflow-hidden bg-background px-4 pb-24 pt-8">
+        <div suppressHydrationWarning className="relative min-h-screen overflow-hidden bg-background px-4 pb-24 pt-8">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-linear-to-b from-primary/10 via-secondary/20 to-transparent" />
-            <div className="pointer-events-none absolute -left-20 top-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-            <div className="pointer-events-none absolute -right-24 top-40 h-96 w-96 rounded-full bg-secondary/25 blur-3xl" />
+            <div className="pointer-events-none absolute -left-20 top-24 size-80 rounded-full bg-primary/10 blur-3xl" />
+            <div className="pointer-events-none absolute -right-24 top-40 size-96 rounded-full bg-secondary/25 blur-3xl" />
 
             <div
                 className={cn(
@@ -147,8 +147,8 @@ function ResultAssessmentContent() {
                     </div>
 
                     <div className="mt-6 flex justify-center">
-                        <div className="relative h-52 w-52">
-                            <svg className="h-full w-full -rotate-90" viewBox="0 0 120 120">
+                        <div className="relative size-52">
+                            <svg className="size-full -rotate-90" viewBox="0 0 120 120">
                                 <circle cx="60" cy="60" r="54" fill="none" strokeWidth="8" className="stroke-muted/20" />
                                 <circle
                                     cx="60"
@@ -191,8 +191,8 @@ function ResultAssessmentContent() {
                     {isBaselineAssessment && (
                         <div className="mt-4 rounded-2xl border border-primary/15 bg-primary/5 p-4">
                             <div className="flex items-start gap-3">
-                                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                                    <Sparkles className="h-4 w-4" />
+                                <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                    <Sparkles className="size-4" />
                                 </div>
                                 <div>
                                     <p className="text-sm font-semibold text-foreground">
@@ -229,7 +229,7 @@ function ResultAssessmentContent() {
                                         resultInfo.color,
                                     )}
                                 >
-                                    <Icon className="h-4 w-4" />
+                                    <Icon className="size-4" />
                                     {resultInfo.highlight}
                                 </div>
                             </div>
@@ -251,7 +251,7 @@ function ResultAssessmentContent() {
                         <div className="rounded-[28px] border border-border/80 bg-card p-6 shadow-sm">
                             <div className="mb-5 flex items-center gap-3">
                                 <div className={cn('rounded-2xl p-2.5', resultInfo.bgColor)}>
-                                    <ClipboardList className={cn('h-4 w-4', resultInfo.color)} />
+                                    <ClipboardList className={cn('size-4', resultInfo.color)} />
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-semibold text-foreground">Lời khuyên phù hợp</h2>
@@ -264,7 +264,7 @@ function ResultAssessmentContent() {
                                     return (
                                         <div key={`${item.text}-${index}`} className="flex items-start gap-3 rounded-2xl border border-border/60 bg-secondary/20 p-4">
                                             <div className={cn('mt-0.5 rounded-xl p-2', resultInfo.bgColor)}>
-                                                <ItemIcon className={cn('h-3.5 w-3.5', resultInfo.color)} />
+                                                <ItemIcon className={cn('size-3.5', resultInfo.color)} />
                                             </div>
                                             <p className="text-sm leading-relaxed text-foreground/85">{item.text}</p>
                                         </div>
@@ -276,7 +276,7 @@ function ResultAssessmentContent() {
                         <div className="rounded-[28px] border border-border/80 bg-card p-6 shadow-sm">
                             <div className="mb-5 flex items-center gap-3">
                                 <div className={cn('rounded-2xl p-2.5', resultInfo.bgColor)}>
-                                    <ArrowRight className={cn('h-4 w-4', resultInfo.color)} />
+                                    <ArrowRight className={cn('size-4', resultInfo.color)} />
                                 </div>
                                 <div>
                                     <h2 className="text-lg font-semibold text-foreground">Bước tiếp theo</h2>
@@ -288,7 +288,7 @@ function ResultAssessmentContent() {
                                     <div key={`${step}-${index}`} className="flex items-center gap-3 rounded-2xl border border-border/70 bg-background/80 p-4">
                                         <span
                                             className={cn(
-                                                'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold',
+                                                'flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold',
                                                 resultInfo.badgeBg,
                                                 resultInfo.color,
                                             )}
@@ -305,8 +305,8 @@ function ResultAssessmentContent() {
                     {resultInfo.safetyNotice && (
                         <div className="rounded-[28px] border border-rose-200 bg-rose-50/80 p-6 shadow-sm dark:border-rose-800 dark:bg-rose-950/25 sm:p-7">
                             <div className="flex items-start gap-3">
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300">
-                                    <AlertTriangle className="h-4 w-4" />
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300">
+                                    <AlertTriangle className="size-4" />
                                 </div>
                                 <div className="space-y-3">
                                     <p className="text-base font-semibold text-rose-700 dark:text-rose-300">
@@ -347,7 +347,7 @@ function ResultAssessmentContent() {
                                             href="/auth/register?reason=save_result"
                                             className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:opacity-90"
                                         >
-                                            <UserPlus className="h-4 w-4" />
+                                            <UserPlus className="size-4" />
                                             Tạo tài khoản
                                         </Link>
                                     </>
@@ -359,14 +359,14 @@ function ResultAssessmentContent() {
                                                     onClick={() => router.push('/dashboard')}
                                                     className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:opacity-90"
                                                 >
-                                                    <LayoutDashboard className="h-4 w-4" />
+                                                    <LayoutDashboard className="size-4" />
                                                     Xem dashboard của tôi
                                                 </button>
                                                 <button
                                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-primary/20 bg-background px-5 py-3 text-sm font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5"
                                                     onClick={openAiAnalysis}
                                                 >
-                                                    <Bot className="h-4 w-4 text-primary" />
+                                                    <Bot className="size-4 text-primary" />
                                                     Phân tích AI
                                                 </button>
                                             </>
@@ -376,21 +376,21 @@ function ResultAssessmentContent() {
                                                     onClick={() => router.push('/dashboard/assessment/start-assessment')}
                                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-5 py-3 text-sm font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:bg-secondary/60"
                                                 >
-                                                    <RotateCcw className="h-4 w-4" />
+                                                    <RotateCcw className="size-4" />
                                                     Làm lại
                                                 </button>
                                                 <button
                                                     onClick={() => router.push('/dashboard')}
                                                     className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:opacity-90"
                                                 >
-                                                    <Home className="h-4 w-4" />
+                                                    <Home className="size-4" />
                                                     Trang chủ
                                                 </button>
                                                 <button
                                                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-primary/20 bg-background px-5 py-3 text-sm font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5"
                                                     onClick={openAiAnalysis}
                                                 >
-                                                    <Bot className="h-4 w-4 text-primary" />
+                                                    <Bot className="size-4 text-primary" />
                                                     Phân tích AI
                                                 </button>
                                             </>
@@ -413,8 +413,8 @@ export default function ResultAssessmentPage() {
                 fallback={
                     <div className="min-h-screen flex items-center justify-center bg-background">
                         <div className="flex flex-col items-center gap-4">
-                            <div className="w-10 h-10 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-                            <p className="text-sm text-muted-foreground animate-pulse">Đang phân tích kết quả...</p>
+                            <div className="size-10 border-3 border-primary border-t-transparent rounded-full animate-spin" />
+                            <p className="text-sm text-muted-foreground animate-pulse">Đang phân tích kết quả…</p>
                         </div>
                     </div>
                 }

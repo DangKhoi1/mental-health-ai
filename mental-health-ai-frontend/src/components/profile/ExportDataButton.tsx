@@ -11,7 +11,7 @@ export default function ExportDataButton() {
 
     const handleExport = async () => {
         setIsExporting(true);
-        toast.info('Đang chuẩn bị dữ liệu...');
+        toast.info('Đang chuẩn bị dữ liệu…');
 
         try {
             const [profileRes, moodRes, journalRes, sleepRes] = await Promise.all([
@@ -57,7 +57,7 @@ export default function ExportDataButton() {
             disabled={isExporting}
             className="gap-2 border-primary/20 hover:bg-primary/5 text-primary"
         >
-            {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+            {isExporting ? <Loader2 className="size-4 animate-spin" /> : <Download className="size-4" />}
             Xuất dữ liệu cá nhân
         </Button>
     );

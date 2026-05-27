@@ -10,8 +10,8 @@ export default function AssessmentTemplates({ templates, onStart }: AssessmentTe
     if (templates.length === 0) {
         return (
             <div className="col-span-full text-center py-12 bg-card rounded-2xl border border-border">
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
-                    <FileCheck className="w-10 h-10 text-muted-foreground" />
+                <div className="size-20 mx-auto mb-4 rounded-full bg-muted flex items-center justify-center">
+                    <FileCheck className="size-10 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">
                     Chưa có bài đánh giá nào

@@ -266,7 +266,7 @@ export default function MentalHealthCharts({ data, sleepLogs = [] }: MentalHealt
         }
     };
 
-    // Prepare sleep chart data — sorted by date
+    // Prepare sleep chart data ,  sorted by date
     const sleepChartData = [...sleepLogs]
         .sort((a, b) => new Date(a.sleepDate).getTime() - new Date(b.sleepDate).getTime())
         .slice(-7) // last 14 entries
@@ -398,7 +398,7 @@ export default function MentalHealthCharts({ data, sleepLogs = [] }: MentalHealt
                             <div className="h-3 w-full animate-pulse rounded bg-primary/15" />
                             <div className="h-3 w-[92%] animate-pulse rounded bg-primary/15" />
                             <div className="h-3 w-[76%] animate-pulse rounded bg-primary/15" />
-                            <p className="pt-1 text-xs text-muted-foreground">AI đang phân tích dữ liệu...</p>
+                            <p className="pt-1 text-xs text-muted-foreground">AI đang phân tích dữ liệu…</p>
                         </div>
                     )}
 
@@ -494,7 +494,7 @@ export default function MentalHealthCharts({ data, sleepLogs = [] }: MentalHealt
                             isLoading={isAnalyzingMood}
                             className="w-full sm:w-auto sm:shrink-0 border-primary/20 text-primary hover:bg-primary/5 hover:text-primary"
                         >
-                            {!isAnalyzingMood && <Sparkles className="w-4 h-4 mr-1.5" />}
+                            {!isAnalyzingMood && <Sparkles className="size-4 mr-1.5" />}
                             {moodAnalysis ? 'Phân tích lại AI' : 'Phân tích AI'}
                         </Button>
                     </CardHeader>
@@ -582,7 +582,7 @@ export default function MentalHealthCharts({ data, sleepLogs = [] }: MentalHealt
                             isLoading={isAnalyzingStress}
                             className="w-full sm:w-auto sm:shrink-0 border-primary/20 text-primary hover:bg-primary/5 hover:text-primary"
                         >
-                            {!isAnalyzingStress && <Sparkles className="w-4 h-4 mr-1.5" />}
+                            {!isAnalyzingStress && <Sparkles className="size-4 mr-1.5" />}
                             {stressAnalysis ? 'Phân tích lại AI' : 'Phân tích AI'}
                         </Button>
                     </CardHeader>
@@ -662,7 +662,7 @@ export default function MentalHealthCharts({ data, sleepLogs = [] }: MentalHealt
                             isLoading={isAnalyzingSleep}
                             className="w-full sm:w-auto sm:shrink-0 border-primary/20 text-primary hover:bg-primary/5 hover:text-primary"
                         >
-                            {!isAnalyzingSleep && <Sparkles className="w-4 h-4 mr-1.5" />}
+                            {!isAnalyzingSleep && <Sparkles className="size-4 mr-1.5" />}
                             {sleepAnalysis ? 'Phân tích lại AI' : 'Phân tích AI'}
                         </Button>
                     </CardHeader>

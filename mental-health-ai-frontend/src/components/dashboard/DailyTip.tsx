@@ -27,16 +27,18 @@ interface AiRec {
 }
 
 const CATEGORY_ICON: Record<string, React.ReactNode> = {
-    SLEEP: <Moon className="w-4 h-4" />,
-    MEDITATION: <Brain className="w-4 h-4" />,
-    BREATHING: <Wind className="w-4 h-4" />,
-    EXERCISE: <Dumbbell className="w-4 h-4" />,
-    SOCIAL: <Users className="w-4 h-4" />,
-    JOURNALING: <BookOpen className="w-4 h-4" />,
-    RELAXATION: <Coffee className="w-4 h-4" />,
-    NUTRITION: <Apple className="w-4 h-4" />,
-    PROFESSIONAL: <Stethoscope className="w-4 h-4" />,
+    SLEEP: <Moon className="size-4" />,
+    MEDITATION: <Brain className="size-4" />,
+    BREATHING: <Wind className="size-4" />,
+    EXERCISE: <Dumbbell className="size-4" />,
+    SOCIAL: <Users className="size-4" />,
+    JOURNALING: <BookOpen className="size-4" />,
+    RELAXATION: <Coffee className="size-4" />,
+    NUTRITION: <Apple className="size-4" />,
+    PROFESSIONAL: <Stethoscope className="size-4" />,
 };
+
+const CATEGORY_KEYS = new Set(Object.keys(CATEGORY_ICON));
 
 function isToday(dateStr: string): boolean {
     const d = new Date(dateStr);
@@ -65,7 +67,7 @@ export default function DailyTip({ summary: propSummary, className }: DailyTipPr
                 );
                 setAiRecs(daily.slice(0, 3));
             } catch {
-                // silent — will fall back to static tip
+                // silent ,  will fall back to static tip
             } finally {
                 setLoadingRecs(false);
             }
@@ -110,10 +112,10 @@ export default function DailyTip({ summary: propSummary, className }: DailyTipPr
     // Derive category key from title (AI saves category name as part of title)
     const getCategoryIcon = (title: string) => {
         const upper = title.toUpperCase();
-        for (const key of Object.keys(CATEGORY_ICON)) {
+        for (const key of CATEGORY_KEYS) {
             if (upper.includes(key)) return CATEGORY_ICON[key];
         }
-        return <Sparkles className="w-4 h-4" />;
+        return <Sparkles className="size-4" />;
     };
 
     const hasAiRecs = aiRecs.length > 0;
@@ -124,13 +126,13 @@ export default function DailyTip({ summary: propSummary, className }: DailyTipPr
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-8 bg-gradient-to-t from-emerald-50/50 to-transparent block" />
             
             <div className="absolute top-0 right-0 p-3 opacity-10 pointer-events-none">
-                <Lightbulb className="w-32 h-32 text-primary" />
+                <Lightbulb className="size-32 text-primary" />
             </div>
 
             <CardHeader className="pb-4 pt-6 px-6 sm:px-8">
                 <CardTitle className="flex items-center gap-2 text-foreground text-lg font-medium">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary animate-pulse-soft">
-                        <Sparkles className="w-4 h-4" />
+                    <span className="inline-flex size-8 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary animate-pulse-soft">
+                        <Sparkles className="size-4" />
                     </span>
                     Lời khuyên hôm nay
                 </CardTitle>
@@ -139,8 +141,8 @@ export default function DailyTip({ summary: propSummary, className }: DailyTipPr
             <CardContent className="relative z-10 px-6 pb-6 sm:px-8 sm:pb-8">
                 {loadingRecs ? (
                     <div className="space-y-3">
-                        {[1, 2].map((i) => (
-                            <div key={i} className="h-16 rounded-2xl bg-emerald-50/50 animate-pulse border border-emerald-100/50" />
+                        {[1, 2].map((item) => (
+                            <div key={`skeleton-${item}`} className="h-16 rounded-2xl bg-emerald-50/50 animate-pulse border border-emerald-100/50" />
                         ))}
                     </div>
                 ) : hasAiRecs ? (
@@ -156,7 +158,7 @@ export default function DailyTip({ summary: propSummary, className }: DailyTipPr
                                 <div className="absolute inset-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-700 pointer-events-none">
                                     <div className="absolute inset-0 animate-shimmer" />
                                 </div>
-                                <span className="mt-0.5 shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary group-hover/item:scale-110 group-hover/item:animate-pulse-soft transition-all duration-500">
+                                <span className="mt-0.5 shrink-0 inline-flex size-10 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-primary group-hover/item:scale-110 group-hover/item:animate-pulse-soft transition-all duration-500">
                                     {getCategoryIcon(rec.title)}
                                 </span>
                                 <div className="min-w-0 relative z-10">

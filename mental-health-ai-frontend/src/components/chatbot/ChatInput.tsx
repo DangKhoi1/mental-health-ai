@@ -79,7 +79,7 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
             <div className="mt-1.5 flex items-center justify-between gap-2 px-0.5">
                 <p className={isTooLong ? "text-xs text-red-500" : "text-xs text-muted-foreground"}>
                     {isTooLong
-                        ? `Bạn đang vượt ${MAX_WORDS} từ — hãy tóm gọn lại một chút nhé.`
+                        ? `Bạn đang vượt ${MAX_WORDS} từ ,  hãy tóm gọn lại một chút nhé.`
                         : "Bạn có thể chia nhỏ ý nếu muốn trợ lý trả lời chi tiết hơn."}
                 </p>
                 <span className={isTooLong ? "text-xs font-medium text-red-500 tabular-nums" : "text-xs text-muted-foreground tabular-nums"}>

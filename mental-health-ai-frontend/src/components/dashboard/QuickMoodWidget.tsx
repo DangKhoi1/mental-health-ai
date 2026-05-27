@@ -107,15 +107,15 @@ export default function QuickMoodWidget() {
             'animate-in fade-in slide-in-from-bottom-2 duration-500'
         )}>
             {/* Subtle background glow */}
-            <div className={cn('absolute -top-8 -right-8 w-32 h-32 rounded-full blur-2xl opacity-30 pointer-events-none', gradient.split(' ')[1])} />
-            <div className={cn('absolute -bottom-6 -left-6 w-24 h-24 rounded-full blur-2xl opacity-20 pointer-events-none', gradient.split(' ')[3])} />
+            <div className={cn('absolute -top-8 -right-8 size-32 rounded-full blur-2xl opacity-30 pointer-events-none', gradient.split(' ')[1])} />
+            <div className={cn('absolute -bottom-6 -left-6 size-24 rounded-full blur-2xl opacity-20 pointer-events-none', gradient.split(' ')[3])} />
             {/* Header */}
             <div className="flex items-center gap-3 mb-5 relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-white/80 dark:bg-slate-800 flex items-center justify-center shadow-sm border border-black/5 dark:border-white/10">
-                    <Leaf className="w-5 h-5 text-primary" />
+                <div className="size-10 rounded-xl bg-white/80 dark:bg-slate-800 flex items-center justify-center shadow-sm border border-black/5 dark:border-white/10">
+                    <Leaf className="size-5 text-primary" />
                 </div>
                 <div>
-                    <h2 className="text-base font-bold text-foreground leading-tight">
+                    <h2 className="text-lg font-semibold text-foreground leading-tight">
                         {submitted ? 'Tâm trạng hôm nay' : 'Hôm nay bạn thế nào?'}
                     </h2>
                     <p className="text-xs text-muted-foreground">
@@ -129,7 +129,7 @@ export default function QuickMoodWidget() {
                 <div className="flex flex-col items-center gap-3 py-2">
                     <span className="text-5xl leading-none select-none">{selectedOption?.emoji}</span>
                     <div className={cn('flex items-center gap-1.5 font-semibold', getMoodColor(displayScore))}>
-                        <CheckCircle2 className="h-4 w-4 shrink-0" />
+                        <CheckCircle2 className="size-4 shrink-0" />
                         <span className="text-sm">{selectedOption?.label}</span>
                     </div>
                     {(todayMood?.note || '').trim() && (
@@ -183,14 +183,14 @@ export default function QuickMoodWidget() {
                                             : 'bg-white/60 dark:bg-slate-800/60 border-border/80 text-foreground hover:bg-white/80 dark:hover:bg-slate-800/80'
                                     )}
                                 >
-                                    <MessageSquarePlus className="h-3.5 w-3.5 shrink-0" />
+                                    <MessageSquarePlus className="size-3.5 shrink-0" />
                                     Ghi chú
                                 </button>
 
                                 {/* Stress Badge */}
                                 <div className="flex items-center justify-between gap-2 rounded-xl border border-border/80 bg-white/60 dark:bg-slate-800/60 px-3 py-2">
                                     <div className="flex items-center gap-1.5">
-                                        <Activity className="h-3.5 w-3.5 text-orange-500 shrink-0" />
+                                        <Activity className="size-3.5 text-orange-500 shrink-0" />
                                         <span className="text-xs font-medium text-foreground">Stress</span>
                                     </div>
                                     <span className="rounded-full bg-orange-100 dark:bg-orange-900/40 px-2 py-0.5 text-xs font-bold text-orange-600 dark:text-orange-300">
@@ -207,7 +207,7 @@ export default function QuickMoodWidget() {
                                     rows={1}
                                     maxLength={120}
                                     className="w-full resize-none rounded-xl border border-border/80 bg-white/80 dark:bg-slate-800/80 px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary/30 focus:ring-2 focus:ring-primary/10 placeholder:text-muted-foreground/50"
-                                    placeholder="Ghi chú ngắn về cảm xúc của bạn..."
+                                    placeholder="Ghi chú ngắn về cảm xúc của bạn…"
                                 />
                             )}
 
@@ -231,7 +231,7 @@ export default function QuickMoodWidget() {
                             {/* Workload */}
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2">
-                                    <Briefcase className="h-3.5 w-3.5 text-blue-500 shrink-0" />
+                                    <Briefcase className="size-3.5 text-blue-500 shrink-0" />
                                     <span className="text-xs font-medium text-foreground">Công việc</span>
                                 </div>
                                 <div className="grid grid-cols-3 gap-2">
@@ -262,8 +262,8 @@ export default function QuickMoodWidget() {
                         disabled={isSubmitting || localSelected === null}
                         className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 disabled:cursor-not-allowed disabled:opacity-60 active:scale-[0.98]"
                     >
-                        <Sparkles className="h-4 w-4" />
-                        {isSubmitting ? 'Đang lưu...' : 'Check-in tâm trạng'}
+                        <Sparkles className="size-4" />
+                        {isSubmitting ? 'Đang lưu…' : 'Check-in tâm trạng'}
                     </button>
                 </div>
             )}

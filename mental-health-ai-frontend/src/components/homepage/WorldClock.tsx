@@ -63,7 +63,7 @@ export default function WorldClock() {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div className="space-y-2">
                         <div className="inline-flex items-center gap-2 rounded-full bg-background px-3 py-1 text-xs font-medium text-muted-foreground border border-border shadow-sm">
-                            <Globe className="h-3.5 w-3.5" />
+                            <Globe className="size-3.5" />
                             <span>Kết nối toàn cầu</span>
                         </div>
                         <h2 className="text-3xl font-medium text-foreground tracking-tight">Nhịp sống thế giới</h2>
@@ -76,9 +76,9 @@ export default function WorldClock() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {cities.map((city) => (
                         <Card key={city.name} className="group overflow-hidden border-border/50 bg-background/50 hover:bg-background hover:shadow-xl hover:shadow-sky-900/5 transition-all duration-300">
-                            <CardContent className="p-5 flex flex-col items-center justify-center text-center space-y-3">
-                                <div className="h-10 w-10 rounded-full bg-sky-50/50 flex items-center justify-center text-sky-600 group-hover:text-primary group-hover:bg-primary/10 transition-colors">
-                                    <Clock className="h-5 w-5" />
+                            <CardContent className="p-5 flex flex-col items-center justify-center text-center gap-y-3">
+                                <div className="size-10 rounded-full bg-sky-50/50 flex items-center justify-center text-sky-600 group-hover:text-primary group-hover:bg-primary/10 transition-colors">
+                                    <Clock className="size-5" />
                                 </div>
                                 <div className="space-y-1">
                                     <h3 className="font-medium text-foreground">{city.name}</h3>

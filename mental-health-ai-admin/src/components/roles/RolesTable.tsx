@@ -71,7 +71,7 @@ export function RolesTable() {
         filterSlot={null}
         actionSlot={(
           <Button variant="primary" onClick={() => setCreateOpen(true)} className="w-full sm:w-auto whitespace-nowrap">
-            <Plus className="w-4 h-4 mr-1.5" />
+            <Plus className="size-4 mr-1.5" />
             Thêm vai trò
           </Button>
         )}
@@ -139,23 +139,23 @@ export function RolesTable() {
                         <button
                           onClick={() => setEditRole(role)}
                           title="Chỉnh sửa vai trò"
-                          className="w-10 h-10 flex items-center justify-center rounded-lg text-sky-600 hover:bg-sky-50 transition-colors"
+                          className="size-10 flex items-center justify-center rounded-lg text-sky-600 hover:bg-sky-50 transition-colors"
                         >
-                          <Edit2 className="w-4 h-4" />
+                          <Edit2 className="size-4" />
                         </button>
                         <button
                           onClick={() => setManageRole(role)}
                           title="Quản lý quyền"
-                          className="w-10 h-10 flex items-center justify-center rounded-lg text-primary hover:bg-primary/10 transition-colors"
+                          className="size-10 flex items-center justify-center rounded-lg text-primary hover:bg-primary/10 transition-colors"
                         >
-                          <Settings className="w-4 h-4" />
+                          <Settings className="size-4" />
                         </button>
                         <button
                           onClick={() => setDeleteRole(role)}
                           title="Xóa"
-                          className="w-10 h-10 flex items-center justify-center rounded-lg text-red-500 hover:bg-red-50 transition-colors"
+                          className="size-10 flex items-center justify-center rounded-lg text-red-500 hover:bg-red-50 transition-colors"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="size-4" />
                         </button>
                       </div>
                     </td>

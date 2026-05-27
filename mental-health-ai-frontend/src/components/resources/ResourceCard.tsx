@@ -46,10 +46,10 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
 
     const getIcon = () => {
         switch (resource.typeCode) {
-            case 'TYPE_VIDEO': return <Play className="w-4 h-4" />;
-            case 'TYPE_ARTICLE': return <FileText className="w-4 h-4" />;
-            case 'TYPE_AUDIO': return <Headphones className="w-4 h-4" />;
-            default: return <FileText className="w-4 h-4" />;
+            case 'TYPE_VIDEO': return <Play className="size-4" />;
+            case 'TYPE_ARTICLE': return <FileText className="size-4" />;
+            case 'TYPE_AUDIO': return <Headphones className="size-4" />;
+            default: return <FileText className="size-4" />;
         }
     };
 
@@ -88,10 +88,10 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
                         <img
                             src={resource.thumbnailUrl}
                             alt={resource.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                     ) : (
-                        <div className="w-full h-full bg-linear-to-br from-primary/10 to-purple-500/10 flex items-center justify-center">
+                        <div className="size-full bg-linear-to-br from-primary/10 to-purple-500/10 flex items-center justify-center">
                             <div className="p-4 rounded-full bg-primary/10">
                                 {getIcon()}
                             </div>
@@ -105,7 +105,7 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
                     {(resource.typeCode === 'TYPE_VIDEO' || resource.typeCode === 'TYPE_AUDIO') && (
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
                             <div className="bg-white/90 p-3 rounded-full shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
-                                <Play className="w-5 h-5 text-primary fill-primary" />
+                                <Play className="size-5 text-primary fill-primary" />
                             </div>
                         </div>
                     )}
@@ -118,7 +118,7 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
                         </span>
                         {resource.duration && (
                             <span className="text-xs text-muted-foreground flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
+                                <Clock className="size-3" />
                                 {resource.duration}
                             </span>
                         )}
@@ -142,12 +142,12 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
                     >
                         {resource.typeCode === 'TYPE_ARTICLE' ? (
                             <>
-                                <FileText className="w-4 h-4" />
+                                <FileText className="size-4" />
                                 Đọc ngay
                             </>
                         ) : (
                             <>
-                                <Play className="w-4 h-4" />
+                                <Play className="size-4" />
                                 Bắt đầu
                             </>
                         )}
@@ -174,7 +174,7 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
                             className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-white/20 text-white rounded-full transition-colors z-20 focus:outline-none focus:ring-2 focus:ring-white"
                             aria-label="Đóng"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="size-5" />
                         </button>
 
                         {/* Iframe wrapper */}
@@ -182,7 +182,7 @@ export default function ResourceCard({ resource, isActive = false, onClose }: Re
                             <iframe
                                 src={getYoutubeEmbedUrl(resource.contentUrl ?? '')}
                                 title={resource.title}
-                                className="absolute inset-0 w-full h-full border-0"
+                                className="absolute inset-0 size-full border-0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
                             />

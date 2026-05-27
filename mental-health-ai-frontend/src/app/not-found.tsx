@@ -9,13 +9,13 @@ export default function NotFound() {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 px-4">
       <div className="relative mb-8">
-        <h1 className="text-[150px] font-black text-gray-200 dark:text-gray-800 leading-none select-none">
+        <h1 className="text-[150px] font-semibold text-gray-200 dark:text-gray-800 leading-none select-none">
           404
         </h1>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-24 flex items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/30">
+          <div className="size-24 flex items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-900/30">
             <svg
-              className="w-12 h-12 text-yellow-500"
+              className="size-12 text-yellow-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -31,7 +31,7 @@ export default function NotFound() {
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center">
+      <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 text-center">
         Trang không tồn tại
       </h2>
 

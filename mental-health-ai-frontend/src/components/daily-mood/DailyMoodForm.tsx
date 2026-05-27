@@ -33,17 +33,17 @@ export default function DailyMoodForm({ formData, setFormData, onSubmit, isSubmi
             <div className={cn("px-6 md:px-8 pt-8 pb-6 bg-linear-to-br", moodConfig.bgFrom, moodConfig.bgTo, "transition-colors duration-500")}>
                 <div className="flex items-center gap-4 mb-2">
                     <div className="p-2.5 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm">
-                        <Smile className="w-5 h-5 text-emerald-500" />
+                        <Smile className="size-5 text-emerald-500" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-foreground">Nhật ký cảm xúc</h2>
+                        <h2 className="text-xl font-semibold text-foreground">Nhật ký cảm xúc</h2>
                         <p className="text-sm text-muted-foreground">Hãy lắng nghe bản thân hôm nay</p>
                     </div>
                 </div>
             </div>
 
             <form onSubmit={onSubmit} className="p-6 md:p-8 space-y-8">
-                {/* Mood Score — Large emoji + slider */}
+                {/* Mood Score ,  Large emoji + slider */}
                 <div className="text-center space-y-5">
                     <div className="inline-flex flex-col items-center gap-2">
                         <span className="text-6xl transition-all duration-300 drop-shadow-sm">{moodConfig.emoji}</span>
@@ -69,13 +69,13 @@ export default function DailyMoodForm({ formData, setFormData, onSubmit, isSubmi
                     </div>
                 </div>
 
-                {/* Stress + Workload — Side by side cards */}
+                {/* Stress + Workload ,  Side by side cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {/* Stress */}
                     <div className="bg-emerald-500/5 rounded-2xl p-5 space-y-4 border border-emerald-500/10">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                                <Activity className="w-4 h-4 text-emerald-500" />
+                                <Activity className="size-4 text-emerald-500" />
                                 <span className="text-sm font-semibold text-foreground">Căng thẳng</span>
                             </div>
                             <span className="text-xs font-bold bg-emerald-500/10 text-emerald-500 px-2.5 py-1 rounded-full border border-emerald-500/20">
@@ -90,10 +90,10 @@ export default function DailyMoodForm({ formData, setFormData, onSubmit, isSubmi
                         />
                     </div>
 
-                    {/* Workload — Pill buttons */}
+                    {/* Workload ,  Pill buttons */}
                     <div className="bg-emerald-500/5 rounded-2xl p-5 space-y-4 border border-emerald-500/10">
                         <div className="flex items-center gap-2">
-                            <Briefcase className="w-4 h-4 text-emerald-500" />
+                            <Briefcase className="size-4 text-emerald-500" />
                             <span className="text-sm font-semibold text-foreground">Công việc</span>
                         </div>
                         <div className="flex gap-2">
@@ -120,10 +120,11 @@ export default function DailyMoodForm({ formData, setFormData, onSubmit, isSubmi
                 {/* Note */}
                 <div className="space-y-3">
                     <div className="flex items-center gap-2">
-                        <FileText className="w-4 h-4 text-emerald-500" />
-                        <label className="text-sm font-semibold text-foreground">Ghi chú thêm</label>
+                        <FileText className="size-4 text-emerald-500" />
+                        <label htmlFor="mood-note" className="text-sm font-semibold text-foreground">Ghi chú thêm</label>
                     </div>
                     <textarea
+                        id="mood-note"
                         value={formData.note || ''}
                         onChange={(e) => setFormData({ ...formData, note: e.target.value })}
                         rows={3}
@@ -144,12 +145,12 @@ export default function DailyMoodForm({ formData, setFormData, onSubmit, isSubmi
                 >
                     {isSubmitting ? (
                         <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            Đang lưu...
+                            <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Đang lưu…
                         </>
                     ) : (
                         <>
-                            <Send className="w-4 h-4" />
+                            <Send className="size-4" />
                             Lưu tâm trạng
                         </>
                     )}

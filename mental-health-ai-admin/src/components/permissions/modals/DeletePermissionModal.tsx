@@ -45,7 +45,7 @@ export function DeletePermissionModal({ open, permission, onClose, onSuccess }: 
     <Modal open={open} onClose={onClose} title="Xác nhận xóa quyền hạn" maxWidth="max-w-md">
       <div className="space-y-5">
         <div className="flex items-start gap-4 p-4 bg-red-50 border border-red-200 rounded-xl">
-          <AlertTriangle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+          <AlertTriangle className="size-5 text-red-500 shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-medium text-red-800">
               Bạn có chắc muốn xóa quyền hạn <strong>&quot;{permission?.permissionName}&quot;</strong>?

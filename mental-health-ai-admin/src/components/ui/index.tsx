@@ -47,8 +47,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, className, ...props }, ref) => (
+export const Input = ({ label, error, className, ref, ...props }: InputProps & { ref?: React.Ref<HTMLInputElement> }) => (
     <div className="space-y-1.5">
       {label && (
         <label className="block text-sm font-medium text-foreground ml-1">
@@ -66,9 +65,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       />
       {error && <p className="text-destructive text-xs ml-1">{error}</p>}
     </div>
-  )
-);
-Input.displayName = 'Input';
+  );
+
 
 import { ChevronDown, Check } from 'lucide-react';
 import * as SelectPrimitive from '@radix-ui/react-select';
@@ -82,8 +80,7 @@ interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>
   triggerClassName?: string;
 }
 
-export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
-  ({ label, error, options, className, value, onChange, triggerClassName, disabled }, ref) => {
+export const Select = ({ label, error, options, className, value, onChange, triggerClassName, disabled, ref }: SelectProps & { ref?: React.Ref<HTMLButtonElement> }) => {
     const hasEmptyOption = options.some((opt) => opt.value === '');
     const stringValue = value !== undefined && value !== null ? String(value) : undefined;
     const radixValue = stringValue === '' ? '_empty_value' : stringValue;
@@ -117,7 +114,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
               {selectedLabel}
             </SelectPrimitive.Value>
             <SelectPrimitive.Icon asChild>
-              <ChevronDown className="h-4 w-4 text-muted-foreground/60 transition-transform duration-200" />
+              <ChevronDown className="size-4 text-muted-foreground/60 transition-transform duration-200" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
@@ -145,9 +142,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
                       value={itemVal}
                       className="relative flex w-full cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50"
                     >
-                      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+                      <span className="absolute left-2 flex size-3.5 items-center justify-center">
                         <SelectPrimitive.ItemIndicator asChild>
-                          <Check className="h-4 w-4" />
+                          <Check className="size-4" />
                         </SelectPrimitive.ItemIndicator>
                       </span>
                       <SelectPrimitive.ItemText>{opt.label}</SelectPrimitive.ItemText>
@@ -161,17 +158,15 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         {error && <p className="text-destructive text-xs ml-1">{error}</p>}
       </div>
     );
-  }
-);
-Select.displayName = 'Select';
+  };
+
 
 interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
 }
 
-export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ label, error, className, ...props }, ref) => (
+export const TextArea = ({ label, error, className, ref, ...props }: TextAreaProps & { ref?: React.Ref<HTMLTextAreaElement> }) => (
     <div className="space-y-1.5">
       {label && (
         <label className="block text-sm font-medium text-foreground ml-1">
@@ -189,9 +184,8 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       />
       {error && <p className="text-destructive text-xs ml-1">{error}</p>}
     </div>
-  )
-);
-TextArea.displayName = 'TextArea';
+  );
+
 
 // ─── Badge ────────────────────────────────────────────────────────────────────
 

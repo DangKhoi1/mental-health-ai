@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { authService } from '@/services/auth';
 import { clearLegacyOnboardingFlags, getOnboardingPendingFlagKey } from '@/constants/onboardingAssessment';
@@ -199,26 +200,26 @@ export default function RegisterPage() {
 
     return (
         <div className="h-screen bg-linear-to-br from-[#eaf2e8] via-[#f0f4ea] to-[#f5ece6] flex items-center justify-center px-4 sm:px-6 py-8 sm:py-10 relative overflow-y-auto overflow-x-hidden">
-            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-96 h-96 bg-sky-100/60 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 -mr-16 -mt-16 size-96 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 -ml-16 -mb-16 size-96 bg-sky-100/60 rounded-full blur-3xl" />
 
             <Link href="/" className="absolute left-4 top-4 sm:left-6 sm:top-5 z-20 text-stone-500 hover:text-stone-700 transition-colors text-sm font-medium inline-flex items-center gap-1.5">
-                <ArrowLeftIcon className="w-4 h-4" /> Trang chủ
+                <ArrowLeftIcon className="size-4" /> Trang chủ
             </Link>
 
             <div className="w-full max-w-5xl relative z-10 mx-auto">
                 <div className="text-center mb-5 sm:mb-6">
                     <Link href="/" className="inline-flex items-center gap-2 group shrink-0">
-                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
+                        <div className="size-10 sm:w-11 sm:h-11 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
                             {logoError ? (
                                 <span className="text-white text-xs font-bold">MH</span>
                             ) : (
-                                <img
+                                <Image
                                     src="/mental_health.png"
                                     alt="Logo"
                                     width={32}
                                     height={32}
-                                    className="w-8 h-8 object-contain brightness-0 invert"
+                                    className="size-8 object-contain brightness-0 invert"
                                     onError={() => setLogoError(true)}
                                 />
                             )}
@@ -389,7 +390,7 @@ export default function RegisterPage() {
                                         className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 transition-colors p-1"
                                         aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
                                     >
-                                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                        {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                                     </button>
                                 </div>
                                 {errors.password && <p className="ml-1 text-xs text-red-500">{errors.password}</p>}
@@ -419,7 +420,7 @@ export default function RegisterPage() {
                                         className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 transition-colors p-1"
                                         aria-label={showConfirmPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
                                     >
-                                        {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                        {showConfirmPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                                     </button>
                                 </div>
                                 {errors.confirmPassword && <p className="ml-1 text-xs text-red-500">{errors.confirmPassword}</p>}
@@ -433,11 +434,11 @@ export default function RegisterPage() {
                         >
                             {isLoading ? (
                                 <span className="flex items-center justify-center gap-2">
-                                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                                    <svg className="animate-spin size-5" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                                     </svg>
-                                    Đang tạo tài khoản...
+                                    Đang tạo tài khoản…
                                 </span>
                             ) : (
                                 'Đăng ký'
@@ -459,7 +460,7 @@ export default function RegisterPage() {
                         onClick={() => window.location.href = 'http://localhost:8080/api/v1/auth/google'}
                         className="w-full h-12 flex items-center justify-center gap-2 bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 rounded-xl font-medium transition-all duration-300 shadow-sm"
                     >
-                        <svg className="w-5 h-5" viewBox="0 0 24 24">
+                        <svg className="size-5" viewBox="0 0 24 24">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
                             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />

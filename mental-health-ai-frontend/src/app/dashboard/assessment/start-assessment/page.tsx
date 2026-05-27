@@ -110,7 +110,7 @@ function StartAssessmentContent() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-2xl font-bold text-foreground">
+                <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
                     Đánh giá sức khỏe tinh thần
                 </h1>
                 <p className="text-muted-foreground mt-1">
@@ -120,7 +120,7 @@ function StartAssessmentContent() {
 
             <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm space-y-4">
                 <div className="flex items-center justify-between gap-3">
-                    <h2 className="text-base sm:text-lg font-bold text-foreground">Gợi ý theo dõi nhanh</h2>
+                    <h2 className="text-base sm:text-lg font-semibold text-foreground">Gợi ý theo dõi nhanh</h2>
                     <span className="text-xs sm:text-sm text-primary bg-primary/10 px-3 py-1 rounded-full">Dành cho bạn</span>
                 </div>
 
@@ -132,8 +132,8 @@ function StartAssessmentContent() {
                             onClick={() => router.push(href)}
                             className="cursor-pointer text-left rounded-2xl border border-border bg-background p-4 hover:border-primary/40 hover:shadow-sm transition-all"
                         >
-                            <div className="w-9 h-9 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3">
-                                <Icon className="h-4 w-4" />
+                            <div className="size-9 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3">
+                                <Icon className="size-4" />
                             </div>
                             <p className="font-semibold text-foreground">{title}</p>
                             <p className="text-sm text-muted-foreground mt-1">{description}</p>
@@ -145,15 +145,15 @@ function StartAssessmentContent() {
             {onboardingRequested ? (
                 <div className="min-h-[60vh] flex items-center justify-center">
                     <div className="w-full max-w-2xl rounded-[28px] border border-border bg-card shadow-sm p-6 sm:p-8">
-                        <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5">
-                            <Brain className="w-7 h-7" />
+                        <div className="size-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+                            <Brain className="size-7" />
                         </div>
                         <div className="space-y-3">
                             <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                                <Sparkles className="w-4 h-4" />
+                                <Sparkles className="size-4" />
                                 Bài sàng lọc bắt buộc cho tài khoản mới
                             </span>
-                            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+                            <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
                                 Đang chuẩn bị bài đánh giá sơ lược tổng hợp
                             </h1>
                             <p className="text-muted-foreground leading-relaxed">
@@ -162,12 +162,12 @@ function StartAssessmentContent() {
                         </div>
 
                         {isLoading || onboardingTemplate ? (
-                            <div className="mt-6 flex items-center gap-3 rounded-2xl border border-primary/15 bg-primary/5 px-4 py-4 text-sm text-foreground">
-                                <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                                Đang mở bài sàng lọc bắt buộc...
+                            <div className="mt-6 flex items-center gap-3 rounded-2xl border border-primary/15 bg-primary/5 p-4 text-sm text-foreground">
+                                <div className="size-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                                Đang mở bài sàng lọc bắt buộc…
                             </div>
                         ) : (
-                            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-800">
+                            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
                                 Chưa tìm thấy bài sàng lọc ban đầu. Hãy seed lại assessment template ở backend để tiếp tục.
                             </div>
                         )}
@@ -239,7 +239,7 @@ export default function StartAssessmentPage() {
     return (
         <Suspense fallback={
             <div className="flex justify-center py-20">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                <div className="size-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
             </div>
         }>
             <StartAssessmentContent />

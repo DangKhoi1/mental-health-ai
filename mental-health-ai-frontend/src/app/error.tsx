@@ -17,9 +17,9 @@ export default function Error({ error, reset }: ErrorProps) {
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-orange-50 dark:from-gray-900 dark:to-gray-800 px-4">
-      <div className="w-20 h-20 mb-6 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+      <div className="size-20 mb-6 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
         <svg
-          className="w-10 h-10 text-red-500"
+          className="size-10 text-red-500"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -33,7 +33,7 @@ export default function Error({ error, reset }: ErrorProps) {
         </svg>
       </div>
 
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+      <h1 className="text-3xl font-semibold text-gray-900 dark:text-white mb-3">
         Đã xảy ra lỗi!
       </h1>
 

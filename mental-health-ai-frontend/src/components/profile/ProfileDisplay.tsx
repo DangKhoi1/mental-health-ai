@@ -33,7 +33,7 @@ export default function ProfileDisplay({ user, onEdit }: ProfileDisplayProps) {
             </div>
             <div className="flex justify-between items-center py-3 border-b border-border">
                 <span className="text-muted-foreground">User ID</span>
-                <span className="font-mono text-sm text-muted-foreground">{user?.userId?.slice(0, 8)}...</span>
+                <span className="font-mono text-sm text-muted-foreground">{user?.userId?.slice(0, 8)}…</span>
             </div>
 
             <button

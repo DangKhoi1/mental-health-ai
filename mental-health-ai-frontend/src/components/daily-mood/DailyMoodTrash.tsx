@@ -47,15 +47,15 @@ export default function DailyMoodTrash() {
     };
 
     return (
-        <div className="border rounded-xl overflow-hidden bg-card mt-6">
+        <div suppressHydrationWarning className="border rounded-xl overflow-hidden bg-card mt-6">
             {isLoading ? (
                 <div className="p-16 text-center text-muted-foreground flex flex-col items-center justify-center gap-3">
-                    <span className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></span>
-                    Đang tải thùng rác...
+                    <span className="animate-spin rounded-full size-8 border-b-2 border-emerald-500"></span>
+                    Đang tải thùng rác…
                 </div>
             ) : items.length === 0 ? (
                 <div className="p-16 min-h-65 flex flex-col items-center justify-center text-center">
-                    <Trash2 className="w-12 h-12 text-center text-muted-foreground/30 mx-auto mb-4" />
+                    <Trash2 className="size-12 text-center text-muted-foreground/30 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-foreground">Đã xóa gần đây</h3>
                     <p className="text-muted-foreground  mt-1">Không có nhật ký tâm trạng nào bị xóa gần đây.</p>
                 </div>
@@ -77,7 +77,7 @@ export default function DailyMoodTrash() {
                                 onClick={() => handleRestore(item.dailyMoodId)}
                                 className="gap-2 text-emerald-500 border-emerald-500/20 hover:bg-emerald-500/5 hover:text-emerald-500 transition-colors shrink-0"
                             >
-                                <RotateCcw className="w-4 h-4" />
+                                <RotateCcw className="size-4" />
                                 <span className="hidden sm:inline">Khôi phục</span>
                             </Button>
                         </div>

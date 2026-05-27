@@ -219,7 +219,7 @@ function getCategoryConfig(rec: Recommendation): CategoryConfig {
 function WrappedText({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
         <div
-            className={cn(
+            suppressHydrationWarning className={cn(
                 'flex-1 min-w-0 break-words',
                 className
             )}
@@ -249,16 +249,16 @@ function LoadingCard({ index }: { index: number }) {
             )}
         >
             {/* Icon skeleton */}
-            <div className="shrink-0 w-14 h-14 rounded-2xl bg-white/70 border border-slate-200/40" />
+            <div className="shrink-0 size-14 rounded-2xl bg-white/70 border border-slate-200/40" />
 
             {/* Content skeleton */}
-            <div className="flex-1 space-y-2">
+            <div className="flex-1 gap-y-2">
                 <div className="h-4 w-20 rounded-full bg-white/50" />
                 <div className="h-5 w-3/4 rounded-lg bg-white/40" />
             </div>
 
             {/* Arrow skeleton */}
-            <div className="shrink-0 w-5 h-5 rounded-full bg-white/40" />
+            <div className="shrink-0 size-5 rounded-full bg-white/40" />
         </div>
     );
 }
@@ -278,17 +278,17 @@ function LoadingSkeletons() {
 function EmptyState() {
     return (
         <div className="flex flex-col items-center justify-center py-16 px-8 rounded-3xl border-2 border-dashed border-border/40 dark:border-border/20 bg-gradient-to-br from-muted/20 to-muted/10">
-            <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-5 shadow-lg shadow-primary/10">
-                <Sparkles className="w-9 h-9 text-primary/70" />
+            <div className="size-20 rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-5 shadow-lg shadow-primary/10">
+                <Sparkles className="size-9 text-primary/70" />
             </div>
-            <h3 className="text-lg font-bold text-foreground/80 mb-2">
+            <h3 className="text-lg font-semibold text-foreground/80 mb-2">
                 Chưa có gợi ý nào
             </h3>
             <p className="text-sm text-muted-foreground/70 text-center max-w-sm leading-relaxed">
                 Hãy ghi nhật ký và theo dõi tâm trạng hàng ngày để nhận những gợi ý phù hợp dành riêng cho bạn từ AI nhé.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground/50">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <div className="size-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Đang chờ dữ liệu</span>
             </div>
         </div>
@@ -345,7 +345,7 @@ function RecCard({ rec, onClick, index }: RecCardProps) {
             {/* Icon container */}
             <div
                 className={cn(
-                    'relative shrink-0 w-14 h-14 sm:w-16 sm:h-16',
+                    'relative shrink-0 size-14 sm:w-16 sm:h-16',
                     'flex items-center justify-center',
                     'rounded-2xl sm:rounded-3xl',
                     'backdrop-blur-md shadow-lg',
@@ -400,7 +400,7 @@ function RecCard({ rec, onClick, index }: RecCardProps) {
             {/* Arrow indicator */}
             <div
                 className={cn(
-                    'shrink-0 w-8 h-8 sm:w-10 sm:h-10',
+                    'shrink-0 size-8 sm:w-10 sm:h-10',
                     'flex items-center justify-center rounded-full',
                     'bg-white/60 dark:bg-slate-800/60',
                     'border border-black/5 dark:border-white/10',
@@ -409,7 +409,7 @@ function RecCard({ rec, onClick, index }: RecCardProps) {
                     'group-hover:translate-x-0.5 transition-all duration-200'
                 )}
             >
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ChevronRight className="size-4 sm:w-5 sm:h-5" />
             </div>
         </button>
     );
@@ -455,7 +455,7 @@ function RecModal({ rec, onClose }: { rec: Recommendation; onClose: () => void }
                     <div className="flex items-start gap-4 sm:gap-5">
                         <div
                             className={cn(
-                                'shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center text-4xl sm:text-5xl',
+                                'shrink-0 size-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center text-4xl sm:text-5xl',
                                 'bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/50',
                                 'transition-transform duration-300 hover:scale-105'
                             )}
@@ -492,7 +492,7 @@ function RecModal({ rec, onClose }: { rec: Recommendation; onClose: () => void }
                                 'transition-colors duration-200'
                             )}
                         >
-                            <X className="w-5 h-5" />
+                            <X className="size-5" />
                         </button>
                     </div>
                 </div>
@@ -521,11 +521,11 @@ function RecModal({ rec, onClose }: { rec: Recommendation; onClose: () => void }
 
                     {/* Footer */}
                     <div className="mt-6 flex items-center justify-center gap-2">
-                        <Sparkles className="w-4 h-4 text-emerald-500/70" />
+                        <Sparkles className="size-4 text-emerald-500/70" />
                         <p className="text-[13px] sm:text-sm font-medium text-slate-400 dark:text-slate-500">
                             Gợi ý hỗ trợ sức khỏe tinh thần từ AI
                         </p>
-                        <Sparkles className="w-4 h-4 text-emerald-500/70" />
+                        <Sparkles className="size-4 text-emerald-500/70" />
                     </div>
                 </div>
             </div>
