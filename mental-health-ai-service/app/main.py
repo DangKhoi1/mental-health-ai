@@ -46,6 +46,12 @@ app = FastAPI(
 )
 
 
+@app.get("/health", tags=["System"])
+async def health_check():
+    """Health check endpoint cho Docker và load balancer."""
+    return {"status": "ok", "version": "2.1", "service": "mental-health-ai-service"}
+
+
 def _safe_hybrid_rerank(
     recommendations: List[Dict[str, Any]],
     message: str,
@@ -1087,5 +1093,3 @@ async def generate_reflection_letter(request: ChatRequest):
         raise
 
 
-if __name__ == "__main__":
-    uvicorn.run("app.main:app", reload=True, port=5001)

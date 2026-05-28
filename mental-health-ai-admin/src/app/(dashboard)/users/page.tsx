@@ -299,7 +299,7 @@ export default function UsersPage() {
                               </Badge>
                             )}
                           </TableCell>
-                          <TableCell suppressHydrationWarning>{new Date(user.createdAt).toLocaleDateString('vi-VN')}</TableCell>
+                          <TableCell><span suppressHydrationWarning>{new Date(user.createdAt).toLocaleDateString('vi-VN')}</span></TableCell>
                           <TableCell className="text-right">
                             <div
                               className="relative inline-flex"

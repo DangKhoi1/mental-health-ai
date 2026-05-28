@@ -1,0 +1,21 @@
+# Environment files — KHÔNG commit lên git!
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Docker volumes & logs
+postgres_data/
+uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

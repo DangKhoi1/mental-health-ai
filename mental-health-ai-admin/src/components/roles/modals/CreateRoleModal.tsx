@@ -62,7 +62,7 @@ export function CreateRoleModal({ open, onClose, onSuccess }: Props) {
         const roleId = res.role?.roleId;
         if (roleId && selectedPermissions.length > 0) {
           await Promise.all(
-            selectedPermissions.map((permissionId) =>
+            selectedPermissions.map((permissionId: number) =>
               rolePermissionService.createRolePermission({ roleId, permissionId })
             )
           );

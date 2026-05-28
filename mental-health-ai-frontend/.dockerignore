@@ -1,0 +1,12 @@
+node_modules
+.next
+.env
+.env.*
+!.env.example
+*.log
+.git
+.gitignore
+README.md
+fix-*.mjs
+react-doctor*.txt
+test_query.js

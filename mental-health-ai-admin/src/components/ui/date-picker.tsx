@@ -20,6 +20,7 @@ interface DatePickerProps {
   onChange: (date: string) => void;
   className?: string;
   placeholder?: string;
+  label?: string;
   disablePastDates?: boolean;
   disableFutureDates?: boolean;
 }
@@ -29,6 +30,7 @@ export function DatePicker({
   onChange,
   className,
   placeholder = "Chọn ngày",
+  label,
   disablePastDates = false,
   disableFutureDates = false,
 }: DatePickerProps) {
@@ -87,7 +89,11 @@ export function DatePicker({
   const selectClass = "h-9 px-2 rounded-lg bg-muted border border-border text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring/40 w-full";
 
   return (
-    <>
+    <div className="space-y-1.5">
+      {label && (
+        <label className="text-sm font-medium text-foreground">{label}</label>
+      )}
+      <>
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -174,6 +180,7 @@ export function DatePicker({
           document.body,
         )
         : null}
-    </>
+      </>
+    </div>
   )
 }

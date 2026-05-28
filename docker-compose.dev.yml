@@ -1,0 +1,57 @@
+# docker-compose.dev.yml — Local Development Override
+# Sử dụng: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# Khác biệt so với production:
+#  - Mount source code trực tiếp (hot-reload)
+#  - Expose tất cả ports ra ngoài để debug
+#  - Không dùng nginx (truy cập trực tiếp từng service)
+#  - PostgreSQL expose port 5432 để dùng pgAdmin / DBeaver
+
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  ai-service:
+    build:
+      context: ./mental-health-ai-service
+      dockerfile: Dockerfile
+    environment:
+      APP_ENV: development
+      WORKERS: "1"
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./mental-health-ai-service:/app
+    command: ["python", "main.py"]
+
+  backend:
+    build:
+      context: ./mental-health-ai-backend
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mental-health-ai-backend/src:/app/src
+      - ./mental-health-ai-backend/uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./mental-health-ai-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  admin:
+    build:
+      context: ./mental-health-ai-admin
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+
+  # Tắt nginx khi dev — truy cập trực tiếp từng service
+  nginx:
+    profiles:
+      - production-only
