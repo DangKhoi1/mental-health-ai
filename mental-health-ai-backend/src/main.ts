@@ -5,6 +5,8 @@ import { GlobalExceptionFilter } from './common/filters';
 import { TransformInterceptor } from './common/interceptors';
 import { JwtAuthGuard, PermissionGuard } from './common/guards';
 import cookieParser from 'cookie-parser';
+import { DataSource } from 'typeorm';
+import { runSeeds } from './database/seeds';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -65,6 +67,19 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: '1',
   });
+
+  // Auto-seed if database is empty
+  try {
+    const dataSource = app.get(DataSource);
+    const result = await dataSource.query('SELECT COUNT(*) FROM roles');
+    const count = parseInt(result[0]?.count || '0', 10);
+    if (count === 0) {
+      console.log('No roles found in database. Running seed script automatically...');
+      await runSeeds(dataSource);
+    }
+  } catch (err) {
+    console.warn('Auto-seeding check failed:', err);
+  }
 
   const port = process.env.PORT || 8080;
   await app.listen(port, '0.0.0.0');
