@@ -17,8 +17,16 @@ function isSensitivePrivacyUrl(url?: string): boolean {
   );
 }
 
+const getApiUrl = (envVal: string | undefined): string => {
+  const url = envVal || 'http://localhost:8080/api/v1';
+  if (!/\/api(\/v\d+)?\/?$/.test(url)) {
+    return url.replace(/\/$/, '') + '/api/v1';
+  }
+  return url;
+};
+
 const privateAxios = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1',
+  baseURL: getApiUrl(process.env.NEXT_PUBLIC_API_URL),
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

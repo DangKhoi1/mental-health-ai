@@ -1,7 +1,15 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { authStorage } from '@/lib/auth';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1';
+const getApiUrl = (envVal: string | undefined): string => {
+  const url = envVal || 'http://localhost:8080/api/v1';
+  if (!/\/api(\/v\d+)?\/?$/.test(url)) {
+    return url.replace(/\/$/, '') + '/api/v1';
+  }
+  return url;
+};
+
+const API_BASE_URL = getApiUrl(process.env.NEXT_PUBLIC_API_URL);
 
 interface BackendEnvelope {
   EC?: number;
