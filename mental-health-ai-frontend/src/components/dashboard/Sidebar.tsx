@@ -132,9 +132,9 @@ export default function Sidebar() {
     return (
         <>
             {/* Mobile top bar */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#eaf2e8]/85 dark:bg-[#1f2620]/85 backdrop-blur-xl border-b border-[#d2ded1]/60 dark:border-[#44403c]/60 shadow-[0_2px_16px_rgba(142,179,122,0.08)] px-4 py-3 flex items-center justify-between">
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/60 shadow-[0_2px_16px_rgba(142,179,122,0.08)] px-4 py-3 flex items-center justify-between">
                 <Link href="/dashboard" className="flex items-center gap-2 group">
-                    <div className="size-8 rounded-lg bg-[#8eb37a] dark:bg-[#9ca986] flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
+                    <div className="size-8 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
                         <Image src="/mental_health.png" alt="Logo" width={24} height={24} className="brightness-0 invert" />
                     </div>
                     <span className="text-base font-semibold text-foreground">
@@ -171,7 +171,7 @@ export default function Sidebar() {
                 <div
                     role="button"
                     tabIndex={0}
-                    className="lg:hidden fixed inset-0 z-40 bg-[#2d372e]/20 backdrop-blur-sm"
+                    className="lg:hidden fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm"
                     onClick={closeMobile}
                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') closeMobile(); }}
                 />
@@ -179,14 +179,16 @@ export default function Sidebar() {
 
             {/* Sidebar */}
             <aside className={cn(
-                'fixed left-0 top-0 z-40 h-screen bg-[#eaf2e8]/75 dark:bg-[#1f2620]/75 backdrop-blur-3xl border-r border-[#d2ded1]/50 dark:border-[#44403c]/50 shadow-[4px_0_24px_rgba(142,179,122,0.08)]',
+                'fixed left-0 top-0 z-40 h-screen backdrop-blur-3xl border-r shadow-[4px_0_24px_rgba(142,179,122,0.08)]',
+                'bg-background lg:bg-background/75',
+                'border-border/50',
                 'transition-all duration-500 ease-in-out',
                 'w-64', sidebarWidth,
                 isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
             )}>
                 <div className="flex flex-col h-full">
                     {/* Logo ,  desktop */}
-                    <div className={cn('hidden lg:flex items-center p-5 border-b border-[#d2ded1]/40 dark:border-[#44403c]/40 min-h-[72px]', isCollapsed ? 'justify-center' : 'justify-between')}>
+                    <div className={cn('hidden lg:flex items-center p-5 border-b border-border/40 min-h-[72px]', isCollapsed ? 'justify-center' : 'justify-between')}>
                         {!isCollapsed && (
                             <Link href="/dashboard" className="flex items-center gap-3 group min-w-0">
                                 <div className="size-9 rounded-xl bg-linear-to-br from-[#8eb37a] to-[#8eb37a]/80 dark:from-[#9ca986] dark:to-[#9ca986]/80 flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm shadow-[#8eb37a]/20 text-primary-foreground shrink-0">
@@ -212,9 +214,9 @@ export default function Sidebar() {
                     {/* Nav groups */}
                     <nav className="flex-1 px-3 py-4 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                         {navGroups.map((group, gi) => (
-                            <div key={group.label} className={cn('mb-4', gi > 0 && 'pt-2 border-t border-[#d2ded1]/60 dark:border-[#44403c]/60')}>
+                            <div key={group.label} className={cn('mb-4', gi > 0 && 'pt-2 border-t border-border/60')}>
                                 {!isCollapsed && (
-                                    <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 select-none">
+                                    <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground select-none">
                                         {group.label}
                                     </p>
                                 )}
@@ -240,13 +242,13 @@ export default function Sidebar() {
                                                     isCollapsed && 'justify-center px-2',
                                                     active
                                                         ? cn(variant.active, 'shadow-[0_4px_20px_rgba(0,0,0,0.03)]')
-                                                        : cn('text-muted-foreground/80', variant.hover),
+                                                        : cn('text-foreground/70', variant.hover),
                                                     loading && 'opacity-70 cursor-wait'
                                                 )}
                                             >
                                                 {loading
                                                     ? <Loader2 className="size-4 animate-spin shrink-0" />
-                                                    : <Icon className={cn("size-4 shrink-0 transition-colors", active ? variant.icon : "text-muted-foreground/60 group-hover:text-inherit")} />
+                                                    : <Icon className={cn("size-4 shrink-0 transition-colors", active ? variant.icon : "text-foreground/50 group-hover:text-inherit")} />
                                                 }
                                                 {!isCollapsed && <span className="truncate">{item.name}</span>}
                                             </Link>
@@ -258,9 +260,9 @@ export default function Sidebar() {
                     </nav>
 
                     {/* Footer: user + logout */}
-                    <div className={cn('p-3 border-t border-[#d2ded1]/60 dark:border-[#44403c]/60', isCollapsed && 'flex flex-col items-center gap-2')}>
+                    <div className={cn('p-3 border-t border-border/60', isCollapsed && 'flex flex-col items-center gap-2')}>
                         {!isCollapsed && (
-                            <div className="flex items-center gap-3 mb-3 p-3 rounded-2xl bg-[#f6f8f5]/60 dark:bg-[#2a322b]/60 border border-[#d2ded1]/60 dark:border-[#44403c]/60 shadow-sm">
+                            <div className="flex items-center gap-3 mb-3 p-3 rounded-2xl bg-card/60 border border-border/60 shadow-sm">
                                 <div className="size-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold border-2 border-white shrink-0 overflow-hidden">
                                     {user?.avatarUrl ? (
                                         <Image src={user.avatarUrl} alt="Avatar" width={36} height={36} className="size-full object-cover" />
@@ -311,8 +313,8 @@ export default function Sidebar() {
                 className={cn(
                     'hidden lg:flex fixed top-1/2 -translate-y-1/2 z-50',
                     'w-6 h-12 items-center justify-center',
-                    'bg-[#eaf2e8]/70 dark:bg-[#1f2620]/70 backdrop-blur-md border border-[#d2ded1]/60 dark:border-[#44403c]/60 rounded-r-xl',
-                    'text-muted-foreground hover:text-primary hover:bg-sky-50',
+                    'bg-background/70 backdrop-blur-md border border-border/60 rounded-r-xl',
+                    'text-muted-foreground hover:text-primary hover:bg-muted',
                     'shadow-[2px_0_12px_rgba(142,179,122,0.06)] transition-all duration-500',
                     isCollapsed ? 'left-20' : 'left-64'
                 )}
