@@ -129,9 +129,13 @@ export class AiAnalysisService {
     private readonly sentimentRepository: Repository<SentimentAnalysis>,
   ) {
     let url = this.configService.get<string>('AI_SERVICE_URL')?.trim() || 'http://localhost:5001';
+    const isInternal = /^(localhost|127\.0\.0\.1|0\.0\.0\.0|.*\.railway\.internal)(:\d+)?$/i.test(url.replace(/^https?:\/\//i, '').split('/')[0]);
     if (url && !/^https?:\/\//i.test(url)) {
-      const isLocal = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/i.test(url.split('/')[0]);
-      url = (isLocal ? 'http://' : 'https://') + url;
+      url = (isInternal ? 'http://' : 'https://') + url;
+    }
+    const hostPart = url.replace(/^https?:\/\//i, '').split('/')[0];
+    if (isInternal && !hostPart.includes(':')) {
+      url = url.replace(hostPart, `${hostPart}:5001`);
     }
     this.aiServiceUrl = url.replace(/\/$/, '');
     this.aiRequestTimeoutMs = Math.max(
