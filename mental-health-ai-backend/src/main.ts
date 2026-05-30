@@ -28,13 +28,32 @@ async function bootstrap() {
 
   app.use(cookieParser());
   const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim())
-    : '*';
+    ? process.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim().replace(/\/$/, ''))
+    : [];
 
   app.enableCors({
-    origin: allowedOrigins,
+    origin: (requestOrigin, callback) => {
+      if (!requestOrigin) {
+        callback(null, true);
+        return;
+      }
+      
+      const originWithoutSlash = requestOrigin.trim().replace(/\/$/, '');
+      const isAllowed =
+        allowedOrigins.length === 0 ||
+        allowedOrigins.includes('*') ||
+        allowedOrigins.includes(originWithoutSlash) ||
+        /vercel\.app$/i.test(originWithoutSlash) ||
+        /localhost(:\d+)?$/i.test(originWithoutSlash);
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type,Authorization,Accept',
+    allowedHeaders: 'Content-Type,Authorization,Accept,x-privacy-token,x-no-retry',
     credentials: true,
   });
 
