@@ -128,7 +128,7 @@ export default function PublicAssessmentPage() {
                     </div>
                 ) : templates.length === 0 ? (
                     <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 text-center py-16 px-6">
-                        <p className="text-muted-foreground">Hiện chưa có bài kiểm tra nào. Vui lòng thử lại sau.</p>
+                        <p className="text-muted-foreground items-center justify-center">Hiện chưa có bài kiểm tra nào. Vui lòng thử lại sau.</p>
                     </div>
                 ) : (
                     <div className="space-y-4">
