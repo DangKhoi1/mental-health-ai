@@ -68,20 +68,22 @@ async function bootstrap() {
     defaultVersion: '1',
   });
 
-  // Auto-seed if database is empty
-  try {
-    const dataSource = app.get(DataSource);
-    const result = await dataSource.query('SELECT COUNT(*) FROM roles');
-    const count = parseInt(result[0]?.count || '0', 10);
-    if (count === 0) {
-      console.log('No roles found in database. Running seed script automatically...');
-      await runSeeds(dataSource);
-    }
-  } catch (err) {
-    console.warn('Auto-seeding check failed:', err);
-  }
-
   const port = process.env.PORT || 8080;
   await app.listen(port, '0.0.0.0');
+
+  // Auto-seed if database is empty (run in background so health check / port binding is not blocked)
+  setTimeout(async () => {
+    try {
+      const dataSource = app.get(DataSource);
+      const result = await dataSource.query('SELECT COUNT(*) FROM roles');
+      const count = parseInt(result[0]?.count || '0', 10);
+      if (count === 0) {
+        console.log('No roles found in database. Running seed script automatically in background...');
+        await runSeeds(dataSource);
+      }
+    } catch (err) {
+      console.warn('Auto-seeding check failed:', err);
+    }
+  }, 1000);
 }
 void bootstrap();

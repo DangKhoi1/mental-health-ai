@@ -177,13 +177,17 @@ export class AiAnalysisService {
 
   private async postToAiService<T>(payload: unknown): Promise<T> {
     const { data } = await firstValueFrom(
-      this.httpService.post<T>(`${this.aiServiceUrl}/chat`, payload).pipe(
-        timeout(this.aiRequestTimeoutMs),
-        catchError((error) => {
-          console.error('Error connecting to AI Service:', error);
-          throw this.mapAiServiceError(error);
-        }),
-      ),
+      this.httpService
+        .post<T>(`${this.aiServiceUrl}/chat`, payload, {
+          timeout: this.aiRequestTimeoutMs,
+        })
+        .pipe(
+          timeout(this.aiRequestTimeoutMs),
+          catchError((error) => {
+            console.error('Error connecting to AI Service:', error);
+            throw this.mapAiServiceError(error);
+          }),
+        ),
     );
 
     return data;
@@ -193,14 +197,18 @@ export class AiAnalysisService {
     const startedAt = Date.now();
     try {
       const response = await firstValueFrom(
-        this.httpService.get(`${this.aiServiceUrl}/docs`).pipe(
-          timeout(this.aiHealthTimeoutMs),
-          retry(1),
-          catchError((error) => {
-            console.error('AI health check failed:', error);
-            throw error;
-          }),
-        ),
+        this.httpService
+          .get(`${this.aiServiceUrl}/docs`, {
+            timeout: this.aiHealthTimeoutMs,
+          })
+          .pipe(
+            timeout(this.aiHealthTimeoutMs),
+            retry(1),
+            catchError((error) => {
+              console.error('AI health check failed:', error);
+              throw error;
+            }),
+          ),
       );
 
       return {
