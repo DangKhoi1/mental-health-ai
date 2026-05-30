@@ -84,8 +84,8 @@ export default function DashboardLayout({
         return (
             <div className="min-h-screen bg-linear-to-br from-[#eaf2e8] via-[#f0f4ea] to-[#f5ece6] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4">
-                    <div className="size-12 border-4 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
-                    <p className="text-slate-600 font-medium">Đang tải…</p>
+                    <div className="size-12 border-4 border-[#8eb37a] border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-[#5e6d60] font-medium">Đang tải…</p>
                 </div>
             </div>
         );
