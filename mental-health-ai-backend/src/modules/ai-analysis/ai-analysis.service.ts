@@ -128,9 +128,12 @@ export class AiAnalysisService {
     @InjectRepository(SentimentAnalysis)
     private readonly sentimentRepository: Repository<SentimentAnalysis>,
   ) {
-    this.aiServiceUrl =
-      this.configService.get<string>('AI_SERVICE_URL')?.trim() ||
-      'http://localhost:5001';
+    let url = this.configService.get<string>('AI_SERVICE_URL')?.trim() || 'http://localhost:5001';
+    if (url && !/^https?:\/\//i.test(url)) {
+      const isLocal = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)(:\d+)?$/i.test(url.split('/')[0]);
+      url = (isLocal ? 'http://' : 'https://') + url;
+    }
+    this.aiServiceUrl = url.replace(/\/$/, '');
     this.aiRequestTimeoutMs = Math.max(
       1000,
       Number(this.configService.get<string>('AI_REQUEST_TIMEOUT_MS') || 120000),
