@@ -20,6 +20,8 @@ import { ResourceModule } from './modules/resource/resource.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ReportModule } from './modules/report/report.module';
 import { PermissionGuard } from './common/guards';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 import { ScheduleModule } from '@nestjs/schedule';
 
@@ -53,6 +55,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     DashboardModule,
     ReportModule,
   ],
-  providers: [PermissionGuard],
+  controllers: [AppController],
+  providers: [AppService, PermissionGuard],
 })
 export class AppModule {}
