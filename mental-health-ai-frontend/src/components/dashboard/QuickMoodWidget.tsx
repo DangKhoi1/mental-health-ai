@@ -1,5 +1,8 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
+import RecentMoodChoice from '@/components/daily-mood/RecentMoodChoice';
 import { useMemo, useState } from 'react';
 import { useDailyMoodStore } from '@/stores';
 import { WorkloadLevel } from '@/types';
@@ -53,7 +56,8 @@ function getMoodGradient(score: number | null) {
 }
 
 export default function QuickMoodWidget() {
-    const { moods, createMood, isSubmitting } = useDailyMoodStore();
+    const router = useRouter();
+    const { moods, createMood, isSubmitting, recentMood } = useDailyMoodStore();
 
     const todayMood = useMemo(() => {
         const today = toLocalDateKey(new Date());
@@ -73,10 +77,11 @@ export default function QuickMoodWidget() {
     const selectedOption = MOOD_OPTIONS.find((o) => o.score === displayScore);
     const optionalVisible = showOptionalSections && !submitted && localSelected !== null;
 
-    const handleSave = async () => {
+    const handleSave = async (confirmRecent = false) => {
         if (isSubmitting || submitted || localSelected === null) return;
 
         const success = await createMood({
+            confirmRecent,
             moodScore: localSelected,
             stressLevel,
             workloadLevel,
@@ -91,7 +96,7 @@ export default function QuickMoodWidget() {
             setShowNoteInput(false);
             setShowOptionalSections(false);
             toast.success('Đã ghi nhận tâm trạng của bạn!');
-        } else {
+        } else if (!useDailyMoodStore.getState().recentMood) {
             toast.error('Không thể lưu tâm trạng. Vui lòng thử lại.');
         }
     };
@@ -116,7 +121,7 @@ export default function QuickMoodWidget() {
                 </div>
                 <div>
                     <h2 className="text-lg font-semibold text-foreground leading-tight">
-                        {submitted ? 'Tâm trạng hôm nay' : 'Hôm nay bạn thế nào?'}
+                        {submitted ? 'Ghi nhận gần nhất hôm nay' : 'Hôm nay bạn thế nào?'}
                     </h2>
                     <p className="text-xs text-muted-foreground">
                         {submitted ? 'Cảm ơn bạn đã ghi nhận cảm xúc' : 'Chọn một biểu tượng phản ánh cảm xúc của bạn'}
@@ -137,6 +142,9 @@ export default function QuickMoodWidget() {
                             &ldquo;{todayMood?.note}&rdquo;
                         </div>
                     )}
+                    <Button type="button" size="sm" onClick={() => router.push('/dashboard/daily-mood')} className="mt-2 h-auto min-h-8 w-fit max-w-full whitespace-normal rounded-xl px-4 py-2">
+                        Ghi nhận mới hoặc sửa lần đã ghi
+                    </Button>
                 </div>
             ) : (
                 /* Mood Selection State */
@@ -255,10 +263,14 @@ export default function QuickMoodWidget() {
                         </div>
                     )}
 
+                    {recentMood && <RecentMoodChoice mood={recentMood} busy={isSubmitting}
+                        onCreate={() => void handleSave(true)}
+                        onEdit={() => { router.push('/dashboard/daily-mood'); }}
+                        onCancel={() => useDailyMoodStore.setState({ recentMood: null })} />}
                     {/* Check-in Button */}
                     <button
                         type="button"
-                        onClick={handleSave}
+                        onClick={() => void handleSave()}
                         disabled={isSubmitting || localSelected === null}
                         className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 disabled:cursor-not-allowed disabled:opacity-60 active:scale-[0.98]"
                     >

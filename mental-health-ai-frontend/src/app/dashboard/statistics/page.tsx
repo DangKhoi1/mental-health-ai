@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { dailyMoodService } from '@/services/dailyMood';
+import { DailyMood } from '@/types';
 import { healthService } from '@/services/health';
 import { HealthSummary } from '@/types/health.types';
-import { useDailyMoodStore, useSleepLogStore, useJournalStore, useAssessmentStore } from '@/stores';
+import { useSleepLogStore, useJournalStore, useAssessmentStore } from '@/stores';
 import MentalHealthCharts from '@/components/dashboard/MentalHealthCharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -27,7 +29,7 @@ function StatisticsContent() {
     const [healthLoading, setHealthLoading] = useState(true);
     const [period, setPeriod] = useState(30);
 
-    const { moods, fetchMoods } = useDailyMoodStore();
+    const [moods, setMoods] = useState<DailyMood[]>([]);
     const { sleepLogs, fetchSleepLogs } = useSleepLogStore();
     const { journals, fetchJournals } = useJournalStore();
     const { history, fetchHistory } = useAssessmentStore();
@@ -45,7 +47,7 @@ function StatisticsContent() {
             }
         };
         loadHealthSummary();
-        fetchMoods();
+        void dailyMoodService.getAllEntries().then(setMoods).catch(error => console.error('Failed to load mood history:', error));
         fetchSleepLogs();
         fetchJournals();
         fetchHistory();
@@ -72,7 +74,14 @@ function StatisticsContent() {
             : 0;
 
         // Mood trend: nửa đầu vs nửa sau trong period
-        const sortedMoods = [...filteredMoods].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        const daily = new Map<string, { createdAt: string; moodScore: number; count: number }>();
+        for (const mood of filteredMoods) {
+            const date = new Date(mood.recordedAt ?? mood.createdAt).toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
+            const day = daily.get(date) ?? { createdAt: date, moodScore: 0, count: 0 };
+            day.moodScore += mood.moodScore; day.count++;
+            daily.set(date, day);
+        }
+        const sortedMoods = [...daily.values()].map(day => ({ ...day, moodScore: day.moodScore / day.count })).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
         const half = Math.floor(sortedMoods.length / 2);
         const recent7 = sortedMoods.slice(0, half || 1);
         const prev7 = sortedMoods.slice(half);

@@ -1,5 +1,7 @@
 'use client';
 
+import { eventBus } from '@/lib/eventBus';
+
 import { useEffect, useMemo, useState } from 'react';
 import { aiAnalysisService } from '@/services/aiAnalysis';
 import { useAuthStore, useDailyMoodStore, useJournalStore, useSleepLogStore } from '@/stores';
@@ -89,8 +91,10 @@ function DashboardContent() {
         };
 
         loadSnapshot();
+        const unsubscribe = eventBus.on('mood:logged', () => { void loadSnapshot(); });
 
         return () => {
+            unsubscribe();
             isMounted = false;
         };
     }, []);

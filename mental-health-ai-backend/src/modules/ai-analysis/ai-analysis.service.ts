@@ -38,6 +38,7 @@ type DashboardSnapshot = {
     averageMood: number;
     averageStress: number;
     count: number;
+    recentEntries?: unknown;
   };
   journal: {
     totalCount: number;
@@ -535,6 +536,8 @@ export class AiAnalysisService {
         averageMood: this.getNumberField(moodStats, 'averageMood'),
         averageStress: this.getNumberField(moodStats, 'averageStress'),
         count: this.getNumberField(moodStats, 'count'),
+        recentEntries:
+          'recentEntries' in moodStats ? moodStats.recentEntries : [],
       },
       journal: {
         totalCount:
@@ -583,10 +586,20 @@ export class AiAnalysisService {
         take: 3,
       });
 
-      if (existingRecommendations.length > 0) {
+      const lastMoodChange = await this.dailyMoodService.getLastMoodChange(
+        user.userId,
+      );
+      if (
+        existingRecommendations.length > 0 &&
+        (!lastMoodChange ||
+          existingRecommendations.every(
+            (rec) => rec.createdAt >= lastMoodChange,
+          ))
+      ) {
         return existingRecommendations;
       }
 
+      const generationStartedAt = new Date();
       const snapshot = await this.buildDashboardSnapshot(user, 7);
       const payload = {
         message:
@@ -619,6 +632,7 @@ export class AiAnalysisService {
             title: rec.title || rec.category || 'Gợi ý Cải thiện',
             content: rec.content,
             typeCode: 'DAILY',
+            createdAt: generationStartedAt,
             user,
           }),
         );

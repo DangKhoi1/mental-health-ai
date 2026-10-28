@@ -1,5 +1,7 @@
 'use client';
 
+import { eventBus } from '@/lib/eventBus';
+
 import { useState, useEffect, useRef } from 'react';
 import { aiAnalysisService } from '@/services/aiAnalysis';
 import { Recommendation } from '@/types/recommendation.types';
@@ -545,23 +547,31 @@ export default function RecommendationsWidget({ className }: RecommendationsWidg
     const [selected, setSelected] = useState<Recommendation | null>(null);
     const [error, setError] = useState<string | null>(null);
 
+    const requestVersion = useRef(0);
     const fetchRecommendations = async () => {
+        const version = ++requestVersion.current;
         setLoading(true);
         setError(null);
         try {
             const data = await aiAnalysisService.getDashboardRecommendations();
-            setRecommendations(Array.isArray(data) ? data : []);
+            if (version === requestVersion.current) setRecommendations(Array.isArray(data) ? data : []);
         } catch (err) {
             console.error('Failed to load recommendations:', err);
-            setError('Không thể tải gợi ý');
-            setRecommendations([]);
+            if (version === requestVersion.current) {
+                setError('Không thể tải gợi ý');
+                setRecommendations([]);
+            }
         } finally {
-            setLoading(false);
+            if (version === requestVersion.current) setLoading(false);
         }
     };
 
     useEffect(() => {
         let cancelled = false;
+        const unsubscribe = eventBus.on('mood:logged', () => {
+            setSelected(null);
+            void fetchRecommendations();
+        });
         const timeoutId = setTimeout(() => {
             if (!cancelled) {
                 fetchRecommendations();
@@ -570,6 +580,8 @@ export default function RecommendationsWidget({ className }: RecommendationsWidg
 
         return () => {
             cancelled = true;
+            requestVersion.current++;
+            unsubscribe();
             clearTimeout(timeoutId);
         };
     }, []);

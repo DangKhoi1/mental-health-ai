@@ -19,10 +19,14 @@ export interface DailyMood {
   workloadLevel: WorkloadLevel;
   note?: string;
   createdAt: string;
+  recordedAt?: string | null;
+  updatedAt?: string;
   userId: string;
 }
 
 export interface CreateDailyMoodDto {
+  requestId?: string;
+  confirmRecent?: boolean;
   moodScore: number;
   stressLevel: number;
   workloadLevel?: WorkloadLevel;

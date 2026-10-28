@@ -1,9 +1,9 @@
 import privateAxios from '@/lib/privateAxios';
 import { DailyMood, CreateDailyMoodDto } from '@/types';
-import { IBackendRes, IPaginatedRes } from '@/types/backend.type';
+import { IBackendRes } from '@/types/backend.type';
 
 export const dailyMoodService = {
-  async create(data: CreateDailyMoodDto): Promise<IBackendRes<DailyMood>> {
+  async create(data: CreateDailyMoodDto): Promise<IBackendRes<{ dailyMood?: DailyMood; recentMood?: DailyMood }> & { recentMood?: DailyMood }> {
     return privateAxios.post('/daily-moods/create-daily-mood', data);
   },
 
@@ -20,6 +20,20 @@ export const dailyMoodService = {
     params.append('limit', String(limit));
     
     return privateAxios.get(`/daily-moods/all-daily-moods?${params.toString()}`);
+  },
+
+  async getAllEntries(startDate?: string, endDate?: string): Promise<DailyMood[]> {
+    const entries: DailyMood[] = [];
+    let page = 1;
+    let totalPages = 1;
+    do {
+      const response = await dailyMoodService.getAll(startDate, endDate, page, 100);
+      if (response.EC !== 1 || !response.data) throw new Error('Unable to load moods');
+      entries.push(...response.data.moods);
+      totalPages = response.data.totalPages;
+      page++;
+    } while (page <= totalPages);
+    return entries;
   },
 
   async getById(id: string): Promise<IBackendRes<DailyMood>> {

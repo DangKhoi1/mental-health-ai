@@ -431,13 +431,44 @@ export class UserService {
       const sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-      const moodData = await this.dailyMoodRepository.find({
+      const moodEntries = await this.dailyMoodRepository.find({
         where: {
           user: { userId },
+          isDeleted: false,
           createdAt: MoreThan(sevenDaysAgo),
         },
         order: { createdAt: 'ASC' },
       });
+
+      const days = new Map<
+        string,
+        {
+          createdAt: Date;
+          moodScore: number;
+          stressLevel: number;
+          count: number;
+        }
+      >();
+      for (const entry of moodEntries) {
+        const key = entry.createdAt.toLocaleDateString('en-CA', {
+          timeZone: 'Asia/Ho_Chi_Minh',
+        });
+        const day = days.get(key) ?? {
+          createdAt: new Date(`${key}T00:00:00+07:00`),
+          moodScore: 0,
+          stressLevel: 0,
+          count: 0,
+        };
+        day.moodScore += entry.moodScore;
+        day.stressLevel += entry.stressLevel;
+        day.count++;
+        days.set(key, day);
+      }
+      const moodData = [...days.values()].map((day) => ({
+        ...day,
+        moodScore: day.moodScore / day.count,
+        stressLevel: day.stressLevel / day.count,
+      }));
 
       const averageMoodScore =
         moodData.length > 0
@@ -551,7 +582,9 @@ export class UserService {
       }
 
       const moodTrend: MoodTrendDataDto[] = moodData.map((mood) => ({
-        date: mood.createdAt.toISOString().split('T')[0],
+        date: mood.createdAt.toLocaleDateString('en-CA', {
+          timeZone: 'Asia/Ho_Chi_Minh',
+        }),
         moodScore: mood.moodScore,
         stressLevel: mood.stressLevel,
       }));

@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useDailyMoodStore } from '@/stores';
 import { CreateDailyMoodDto, WorkloadLevel, DailyMood } from '@/types';
+import RecentMoodChoice from '@/components/daily-mood/RecentMoodChoice';
+import DayMoodPicker from '@/components/daily-mood/DayMoodPicker';
 import DailyMoodForm from '@/components/daily-mood/DailyMoodForm';
 import DailyMoodList from '@/components/daily-mood/DailyMoodList';
 import DailyMoodModal from '@/components/daily-mood/DailyMoodModal';
@@ -20,6 +22,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 function DailyMoodContent() {
     const {
         moods,
+        recentMood,
         isLoading,
         isSubmitting,
         fetchMoods,
@@ -69,19 +72,22 @@ function DailyMoodContent() {
         return matchesDate && matchesMood;
     });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (e?: React.FormEvent, confirmRecent = false) => {
+        e?.preventDefault();
+        if (isSubmitting) return;
 
         let success;
         if (editTargetId) {
             success = await updateMood(editTargetId, formData);
         } else {
-            success = await createMood(formData);
+            success = await createMood({ ...formData, confirmRecent });
         }
 
         if (success) {
             toast.success(editTargetId ? 'Cập nhật tâm trạng thành công!' : 'Tạo nhật ký tâm trạng thành công!');
             handleCloseForm();
+        } else if (useDailyMoodStore.getState().recentMood) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
             const storeError = useDailyMoodStore.getState().error;
             toast.error(storeError || 'Có lỗi xảy ra. Vui lòng thử lại.');
@@ -89,6 +95,7 @@ function DailyMoodContent() {
     };
 
     const handleCloseForm = () => {
+        useDailyMoodStore.setState({ recentMood: null, pendingRequest: null });
         setShowForm(false);
         setEditTargetId(null);
         setFormData({
@@ -100,6 +107,7 @@ function DailyMoodContent() {
     }
 
     const handleEdit = (mood: DailyMood) => {
+        useDailyMoodStore.setState({ recentMood: null, pendingRequest: null });
         setFormData({
             moodScore: mood.moodScore,
             stressLevel: mood.stressLevel,
@@ -111,6 +119,13 @@ function DailyMoodContent() {
         // Scroll to top to see form
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    useEffect(() => {
+        const recent = useDailyMoodStore.getState().recentMood;
+        if (recent) handleEdit(recent);
+        // Only consume an edit request when navigating from the quick widget.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleDelete = (id: string) => {
         setDeleteTargetId(id);
@@ -226,13 +241,18 @@ function DailyMoodContent() {
                                 ) : (
                                     <>
                                         <Plus className="size-4" />
-                                        Thêm mới
+                                        Ghi nhận cảm xúc lúc này
                                     </>
                                 )}
                             </Button>
                         </div>
                     </div>
 
+                    <DayMoodPicker date={filterDate} refreshKey={moods} onSelect={setSelectedMood} onEdit={handleEdit} />
+                    {showForm && editTargetId && <p className="text-sm text-muted-foreground">Đang sửa bản ghi đã chọn. Thời điểm ghi nhận được giữ nguyên.</p>}
+                    {showForm && recentMood && <RecentMoodChoice mood={recentMood} busy={isSubmitting}
+                        onEdit={() => handleEdit(recentMood)} onCreate={() => void handleSubmit(undefined, true)}
+                        onCancel={() => useDailyMoodStore.setState({ recentMood: null })} />}
                     {showForm && (
                         <DailyMoodForm
                             formData={formData}

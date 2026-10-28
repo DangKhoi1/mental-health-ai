@@ -33,7 +33,7 @@ export default function DailyMoodModal({ mood, onClose }: DailyMoodModalProps) {
     if (typeof document === 'undefined') return null;
 
     const moodInfo = moodEmojis[mood.moodScore] || moodEmojis[5];
-    const date = new Date(mood.createdAt);
+    const date = new Date(mood.recordedAt ?? mood.createdAt);
 
     const modalContent = (
         <div

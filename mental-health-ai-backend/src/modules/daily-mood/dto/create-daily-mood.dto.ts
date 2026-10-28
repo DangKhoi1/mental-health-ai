@@ -1,5 +1,7 @@
 import {
   IsInt,
+  IsUUID,
+  IsBoolean,
   IsOptional,
   IsString,
   Min,
@@ -10,6 +12,14 @@ import {
 import { WorkloadLevel } from '../enums';
 
 export class CreateDailyMoodDto {
+  @IsOptional()
+  @IsUUID()
+  requestId?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  confirmRecent?: boolean;
+
   @IsInt()
   @Min(1)
   @Max(10)

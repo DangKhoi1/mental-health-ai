@@ -26,6 +26,9 @@ export class DailyMood {
   @Column({ type: 'text', nullable: true })
   note: string;
 
+  @Column({ type: 'timestamptz', nullable: true })
+  recordedAt: Date | null;
+
   @CreateDateColumn()
   createdAt: Date;
 

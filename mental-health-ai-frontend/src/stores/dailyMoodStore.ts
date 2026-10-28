@@ -7,6 +7,8 @@ import { eventBus } from '@/lib/eventBus';
 
 interface DailyMoodState {
   moods: DailyMood[];
+  recentMood: DailyMood | null;
+  pendingRequest: { payload: string; id: string } | null;
   isLoading: boolean;
   isSubmitting: boolean;
   isSubmittingRef: { current: boolean };
@@ -30,6 +32,8 @@ interface DailyMoodActions {
 
 const initialState: DailyMoodState = {
   moods: [],
+  recentMood: null,
+  pendingRequest: null,
   isLoading: false,
   isSubmitting: false,
   isSubmittingRef: { current: false },
@@ -71,12 +75,24 @@ export const useDailyMoodStore = create<DailyMoodState & DailyMoodActions>((set,
     get().isSubmittingRef.current = true;
     set({ isSubmitting: true, error: null });
     try {
-      const res = await dailyMoodService.create(data);
+      const { confirmRecent, requestId: _requestId, ...values } = data;
+      void _requestId;
+      const payload = JSON.stringify(values);
+      const pending = get().pendingRequest;
+      const id = pending?.payload === payload ? pending.id : crypto.randomUUID();
+      set({ pendingRequest: { payload, id } });
+      const res = await dailyMoodService.create({ ...values, confirmRecent, requestId: id });
+      if (res?.EC === 2) {
+        set({ recentMood: res.data?.recentMood ?? res.recentMood ?? null, isSubmitting: false });
+        get().isSubmittingRef.current = false;
+        return false;
+      }
       if (res && res.EC === 1) {
         const state = get();
         await state.fetchMoods(state.startDate, state.endDate, state.page, state.limit);
         set({ isSubmitting: false });
         get().isSubmittingRef.current = false;
+        set({ recentMood: null, pendingRequest: null });
         eventBus.emit('mood:logged');
         return true;
       } else {
@@ -109,6 +125,7 @@ export const useDailyMoodStore = create<DailyMoodState & DailyMoodActions>((set,
       const state = get();
       await state.fetchMoods(state.startDate, state.endDate, state.page, state.limit);
       set({ error: null });
+      eventBus.emit('mood:logged');
       return true;
     } catch (error) {
       console.error('Failed to delete mood:', error);
@@ -128,6 +145,8 @@ export const useDailyMoodStore = create<DailyMoodState & DailyMoodActions>((set,
         await state.fetchMoods(state.startDate, state.endDate, state.page, state.limit);
         set({ isSubmitting: false });
         get().isSubmittingRef.current = false;
+        set({ recentMood: null, pendingRequest: null });
+        eventBus.emit('mood:logged');
         return true;
       } else {
         set({
@@ -154,6 +173,7 @@ export const useDailyMoodStore = create<DailyMoodState & DailyMoodActions>((set,
       }
       const state = get();
       await state.fetchMoods(state.startDate, state.endDate, state.page, state.limit);
+      eventBus.emit('mood:logged');
       return true;
     } catch (error) {
       console.error('Failed to restore mood:', error);

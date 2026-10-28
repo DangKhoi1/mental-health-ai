@@ -88,7 +88,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
 
             {moods.map((mood) => {
                 const config = moodConfig[mood.moodScore] || moodConfig[5];
-                const date = new Date(mood.createdAt);
+                const date = new Date(mood.recordedAt ?? mood.createdAt);
 
                 const isToday = new Date().toDateString() === date.toDateString();
 
@@ -110,6 +110,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                                     <div>
                                         <p className="text-sm text-muted-foreground">{date.toLocaleDateString('vi-VN', { weekday: 'long' })}</p>
                                         <p suppressHydrationWarning className="text-base font-semibold">{date.toLocaleDateString('vi-VN')}</p>
+                                        {mood.updatedAt && new Date(mood.updatedAt).getTime() > new Date(mood.createdAt).getTime() + 1000 && <p className="text-xs text-muted-foreground">Đã chỉnh sửa: {new Date(mood.updatedAt).toLocaleString('vi-VN')}</p>}
                                         <div suppressHydrationWarning className="mt-1 flex items-center gap-2">
                                             <span className={cn('inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-bold', config.theme.badge)}>
                                                 {config.label} · {mood.moodScore}/10
@@ -126,18 +127,17 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                                         <Clock3 className="size-3.5" />
                                         {date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                                     </span>
-                                    {isToday ? (
+                                    <>
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 onEdit(mood);
                                             }}
                                             className={cn("rounded-xl border p-2 transition", config.theme.button)}
-                                            title="Sửa bản ghi (Chỉ trong ngày)"
+                                            title="Sửa bản ghi"
                                         >
                                             <Pencil className="size-4" />
                                         </button>
-                                    ) : (
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -148,7 +148,7 @@ export default function DailyMoodList({ moods, isLoading, onDelete, onSelect, on
                                         >
                                             <Trash2 className="size-4" />
                                         </button>
-                                    )}
+                                    </>
                                 </div>
                             </div>
 

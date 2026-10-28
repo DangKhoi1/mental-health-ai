@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import {
   Injectable,
   InternalServerErrorException,
@@ -9,7 +10,7 @@ import { DailyMood } from './entities';
 import { User } from '../user/entities';
 import { CreateDailyMoodDto } from './dto/create-daily-mood.dto';
 import { UpdateDailyMoodDto } from './dto/update-daily-mood.dto';
-import { parse } from 'date-fns';
+import { parse, isValid } from 'date-fns';
 
 @Injectable()
 export class DailyMoodService {
@@ -20,47 +21,67 @@ export class DailyMoodService {
 
   async createDailyMood(user: User, createDto: CreateDailyMoodDto) {
     try {
-      const today = new Date();
-      const startOfDay = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate(),
-      );
-      const endOfDay = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate(),
-        23,
-        59,
-        59,
-        999,
-      );
-
-      const existingMood = await this.dailyMoodRepository.findOne({
-        where: {
+      const { requestId, confirmRecent, ...values } = createDto;
+      if (requestId) {
+        const existing = await this.dailyMoodRepository.findOne({
+          where: { dailyMoodId: requestId },
+        });
+        if (existing) {
+          const owned = await this.dailyMoodRepository.findOne({
+            where: {
+              dailyMoodId: requestId,
+              user: { userId: user.userId },
+              isDeleted: false,
+            },
+          });
+          return owned
+            ? { EC: 1, EM: 'Daily mood already saved', dailyMood: owned }
+            : { EC: 0, EM: 'Request ID already used' };
+        }
+      }
+      const latest = await this.dailyMoodRepository.findOne({
+        where: { user: { userId: user.userId }, isDeleted: false },
+        order: { createdAt: 'DESC' },
+      });
+      if (
+        !confirmRecent &&
+        latest &&
+        Date.now() - latest.createdAt.getTime() < 5 * 60_000
+      ) {
+        return {
+          EC: 2,
+          EM: 'Bạn vừa ghi nhận cảm xúc. Bạn muốn sửa lần đó hay ghi nhận mới?',
+          recentMood: latest,
+        };
+      }
+      const dailyMood = this.dailyMoodRepository.create({
+        ...values,
+        dailyMoodId: requestId ?? randomUUID(),
+        recordedAt: new Date(),
+        user,
+      });
+      // Primary-key conflict protection makes retries safe, including concurrent requests.
+      await this.dailyMoodRepository
+        .createQueryBuilder()
+        .insert()
+        .into(DailyMood)
+        .values({
+          ...values,
+          dailyMoodId: dailyMood.dailyMoodId,
+          recordedAt: dailyMood.recordedAt,
           user: { userId: user.userId },
-          createdAt: Between(startOfDay, endOfDay),
+        })
+        .orIgnore()
+        .execute();
+      const savedDailyMood = await this.dailyMoodRepository.findOne({
+        where: {
+          dailyMoodId: dailyMood.dailyMoodId,
+          user: { userId: user.userId },
           isDeleted: false,
         },
       });
 
-      if (existingMood) {
-        return {
-          EC: 0,
-          EM: 'Bạn đã ghi nhật ký cảm xúc hôm nay rồi. Mỗi ngày chỉ được ghi 1 lần.',
-        };
-      }
-
-      const dailyMood = this.dailyMoodRepository.create({
-        ...createDto,
-        user,
-      });
-      await this.dailyMoodRepository.save(dailyMood);
-      const savedDailyMood = await this.dailyMoodRepository.findOne({
-        where: { user: { userId: user.userId } },
-        relations: ['user'],
-      });
-
+      if (!savedDailyMood) return { EC: 0, EM: 'Request ID already used' };
       return {
         EC: 1,
         EM: 'Daily mood created successfully',
@@ -97,13 +118,36 @@ export class DailyMoodService {
       if (startDate && endDate) {
         const parsedStartDate = parse(startDate, 'dd/MM/yyyy', new Date());
         const parsedEndDate = parse(endDate, 'dd/MM/yyyy', new Date());
-        if (parsedStartDate > parsedEndDate) {
+        if (
+          !isValid(parsedStartDate) ||
+          !isValid(parsedEndDate) ||
+          parsedStartDate > parsedEndDate
+        ) {
           return {
             EC: 0,
             EM: 'Start date must be before or equal to end date',
           };
         }
-        where.createdAt = Between(parsedStartDate, parsedEndDate);
+        parsedEndDate.setHours(23, 59, 59, 999);
+        // Product calendar uses Vietnam time, independent of the server timezone.
+        const start = new Date(
+          Date.UTC(
+            parsedStartDate.getFullYear(),
+            parsedStartDate.getMonth(),
+            parsedStartDate.getDate(),
+          ) -
+            7 * 3600_000,
+        );
+        const end = new Date(
+          Date.UTC(
+            parsedEndDate.getFullYear(),
+            parsedEndDate.getMonth(),
+            parsedEndDate.getDate() + 1,
+          ) -
+            7 * 3600_000 -
+            1,
+        );
+        where.createdAt = Between(start, end);
       }
       const [moods, total] = await this.dailyMoodRepository.findAndCount({
         where,
@@ -228,18 +272,6 @@ export class DailyMoodService {
         return { EC: 0, EM: 'Daily mood not found' };
       }
 
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const moodDate = new Date(dailyMood.createdAt);
-      moodDate.setHours(0, 0, 0, 0);
-
-      if (moodDate.getTime() !== today.getTime()) {
-        return {
-          EC: 0,
-          EM: 'Bạn chỉ có thể Cập nhật nhật ký cảm xúc trong ngày tạo. Với các ngày trước đó, bạn chỉ có thể Xóa.',
-        };
-      }
-
       Object.assign(dailyMood, updateDto);
       await this.dailyMoodRepository.save(dailyMood);
 
@@ -285,18 +317,6 @@ export class DailyMoodService {
         });
       }
 
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const moodDate = new Date(dailyMood.createdAt);
-      moodDate.setHours(0, 0, 0, 0);
-
-      if (moodDate.getTime() === today.getTime()) {
-        return {
-          EC: 0,
-          EM: 'Không thể xóa bản ghi tạo trong ngày hiện tại. Vui lòng sử dụng chức năng Sửa (Cập nhật).',
-        };
-      }
-
       dailyMood.isDeleted = true;
       dailyMood.deletedAt = new Date();
       await this.dailyMoodRepository.save(dailyMood);
@@ -334,37 +354,6 @@ export class DailyMoodService {
         return { EC: 0, EM: 'Deleted daily mood not found' };
       }
 
-      const moodDate = new Date(dailyMood.createdAt);
-      const startOfDay = new Date(
-        moodDate.getFullYear(),
-        moodDate.getMonth(),
-        moodDate.getDate(),
-      );
-      const endOfDay = new Date(
-        moodDate.getFullYear(),
-        moodDate.getMonth(),
-        moodDate.getDate(),
-        23,
-        59,
-        59,
-        999,
-      );
-
-      const activeRecordSameDay = await this.dailyMoodRepository.findOne({
-        where: {
-          user: { userId: user.userId },
-          createdAt: Between(startOfDay, endOfDay),
-          isDeleted: false,
-        },
-      });
-
-      if (activeRecordSameDay) {
-        return {
-          EC: 0,
-          EM: 'Đã có bản ghi active cho ngày này. Vui lòng xóa bản ghi hiện tại trước khi khôi phục.',
-        };
-      }
-
       dailyMood.isDeleted = false;
       dailyMood.deletedAt = null;
       await this.dailyMoodRepository.save(dailyMood);
@@ -385,10 +374,23 @@ export class DailyMoodService {
     }
   }
 
+  async getLastMoodChange(userId: string): Promise<Date | null> {
+    const latest = await this.dailyMoodRepository.findOne({
+      where: { user: { userId } },
+      order: { updatedAt: 'DESC' },
+    });
+    return latest?.updatedAt ?? null;
+  }
+
   async getDailyMoodStats(userId: string, days: number = 7) {
     try {
-      const startDate = new Date();
-      startDate.setDate(startDate.getDate() - days);
+      const startDate = new Date(Date.now() + 7 * 3600_000);
+      days = Number.isFinite(days)
+        ? Math.min(365, Math.max(1, Math.floor(days)))
+        : 7;
+      startDate.setUTCDate(startDate.getUTCDate() - days + 1);
+      startDate.setUTCHours(0, 0, 0, 0);
+      startDate.setTime(startDate.getTime() - 7 * 3600_000);
 
       const moods = await this.dailyMoodRepository.find({
         where: {
@@ -408,10 +410,26 @@ export class DailyMoodService {
         };
       }
 
+      const groups = new Map<
+        string,
+        { mood: number; stress: number; count: number }
+      >();
+      for (const m of moods) {
+        const key = new Date(m.recordedAt ?? m.createdAt).toLocaleDateString(
+          'en-CA',
+          { timeZone: 'Asia/Ho_Chi_Minh' },
+        );
+        const group = groups.get(key) ?? { mood: 0, stress: 0, count: 0 };
+        group.mood += m.moodScore;
+        group.stress += m.stressLevel;
+        group.count++;
+        groups.set(key, group);
+      }
+      const daily = [...groups.values()];
       const avgMood =
-        moods.reduce((sum, m) => sum + m.moodScore, 0) / moods.length;
+        daily.reduce((sum, d) => sum + d.mood / d.count, 0) / daily.length;
       const avgStress =
-        moods.reduce((sum, m) => sum + m.stressLevel, 0) / moods.length;
+        daily.reduce((sum, d) => sum + d.stress / d.count, 0) / daily.length;
 
       return {
         EC: 1,
@@ -419,6 +437,17 @@ export class DailyMoodService {
         averageMood: Math.round(avgMood * 10) / 10,
         averageStress: Math.round(avgStress * 10) / 10,
         count: moods.length,
+        daysWithData: groups.size,
+        recentEntries: [...moods]
+          .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+          .slice(0, 10)
+          .map((m) => ({
+            dailyMoodId: m.dailyMoodId,
+            recordedAt: m.recordedAt ?? m.createdAt,
+            moodScore: m.moodScore,
+            stressLevel: m.stressLevel,
+            note: m.note,
+          })),
       };
     } catch (error: unknown) {
       console.error(
